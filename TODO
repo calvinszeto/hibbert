@@ -1,0 +1,46 @@
+Stories:
+First round:
+-Recommender system that applies default weight and chooses at random if weight is near the default
+-Scraper for recommendation data
+-Set up Postgres
+-Deploy to Heroku
+-Seed Heroku database
+Second Round:
+-Ability to select sources
+-Recommendations will filter on selected sources
+-Recommender system that weights on multiple sources
+Third Round:
+-User accounts to store preferences
+-User Authentication
+-Recommender system that weights on sources which are trusted
+Fourth Round:
+-Location search that limits results to certain area
+-Recommender system that weights on sources specific for recently searched locations
+Fifth Round:
+-Cool responsive frontend display and filter for restaurants
+-Admin Page
+    -Authorization
+    -Easy upload function to upload new restaurant data
+Later:
+-Automatic up-to-date for recommendations
+-Recommender system that weights on sources specific for type of food
+
+Models:
+User
+    preferences
+    recent_locations
+Restaurant
+    name
+    later:
+        (4)geolocation data
+        (5)website
+        (l)food type
+Source
+    name
+    category
+    website
+Recommendation
+    restaurant
+    source
+    date
+    website
