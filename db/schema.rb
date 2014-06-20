@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140620165200) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "recommendations", force: true do |t|
     t.integer  "restaurant_id"
     t.integer  "source_id"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140620165200) do
     t.datetime "updated_at"
   end
 
-  add_index "recommendations", ["restaurant_id"], name: "index_recommendations_on_restaurant_id"
-  add_index "recommendations", ["source_id"], name: "index_recommendations_on_source_id"
+  add_index "recommendations", ["restaurant_id"], name: "index_recommendations_on_restaurant_id", using: :btree
+  add_index "recommendations", ["source_id"], name: "index_recommendations_on_source_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
