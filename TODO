@@ -12,6 +12,15 @@ First round:
                 4. caching
         For now, just do take
 -Scraper for recommendation data
+    Sources to scrape from:
+        Critics
+        Blogs/Food websites
+            Eater
+        Newspapers
+            Austin Chronicle food issue
+        TV Shows
+            Anthony Bourdain
+            Andrew Zimmern
 -Set up Postgres
 -Deploy to Heroku
 -Seed Heroku database
