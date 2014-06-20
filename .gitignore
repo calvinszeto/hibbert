@@ -15,4 +15,8 @@
 /log/*.log
 /tmp
 
+# Keep out database.yml
+database.yml
+
+# Ignore Vim swap files
 *.swp

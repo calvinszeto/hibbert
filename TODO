@@ -1,6 +1,16 @@
 Stories:
 First round:
 -Recommender system that applies default weight and chooses at random if weight is near the default
+    The problem: there will be a very large database of recommendations - how do we store the scores?
+        Calculate scores on each search might be okay: if we can first narrow the list down by
+            features we know will result in lower scores, we can map a score function onto a subset of recommendations
+            Then, we only need to find a top-10 or so recommendations, not necessarily even the highest 10
+            Optimizing this will be figuring out how to improve 
+                1. database filtering 
+                2. function mapping
+                3. determining 'good-enough'
+                4. caching
+        For now, just do take
 -Scraper for recommendation data
 -Set up Postgres
 -Deploy to Heroku
