@@ -5,38 +5,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:restaurant_id) %></th>
-      <th><%= model_class.human_attribute_name(:source_id) %></th>
+      <th><%= model_class.human_attribute_name(:restaurant) %></th>
+      <th><%= model_class.human_attribute_name(:source) %></th>
       <th><%= model_class.human_attribute_name(:date_recommended) %></th>
       <th><%= model_class.human_attribute_name(:website) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @recommendations.each do |recommendation| %>
       <tr>
-        <td><%= link_to recommendation.id, recommendation_path(recommendation) %></td>
-        <td><%= recommendation.restaurant_id %></td>
-        <td><%= recommendation.source_id %></td>
+				<td><%= recommendation.restaurant.name %></td>
+				<td><%= recommendation.source.name %></td>
         <td><%= recommendation.date_recommended %></td>
         <td><%= recommendation.website %></td>
-        <td><%=l recommendation.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_recommendation_path(recommendation), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      recommendation_path(recommendation),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_recommendation_path,
-            :class => 'btn btn-primary' %>

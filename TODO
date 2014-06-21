@@ -21,13 +21,27 @@ First round:
         TV Shows
             Anthony Bourdain
             Andrew Zimmern
--Set up Postgres
--Deploy to Heroku
--Seed Heroku database
+    Information to scrape:
+        Name
+        Source
+        Date
+        Address
+        Website
+    How to import scraped data into postgres database? 
+-(DONE)Set up Postgres
+-(DONE)Deploy to Heroku
+-(DONE)Seed database
+-Specify source categories
 Second Round:
+-Admin Page
+    -Authorization
+    -Easy upload function to upload new restaurant data
 -Ability to select sources
 -Recommendations will filter on selected sources
 -Recommender system that weights on multiple sources
+-Seed Heroku Database
+-Fix up Frontend
+-Paginate results
 Third Round:
 -User accounts to store preferences
 -User Authentication
@@ -37,10 +51,8 @@ Fourth Round:
 -Recommender system that weights on sources specific for recently searched locations
 Fifth Round:
 -Cool responsive frontend display and filter for restaurants
--Admin Page
-    -Authorization
-    -Easy upload function to upload new restaurant data
 Later:
+-Move category into separate model
 -Automatic up-to-date for recommendations
 -Recommender system that weights on sources specific for type of food
 
@@ -54,8 +66,10 @@ Restaurant
         (4)geolocation data
         (5)website
         (l)food type
+        images
 Source
     name
+    description
     category
     website
 Recommendation

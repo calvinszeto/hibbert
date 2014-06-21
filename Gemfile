@@ -43,3 +43,6 @@ gem 'twitter-bootstrap-rails'
 gem 'pg'
 # For deploying on Heroku
 gem 'rails_12factor', group: :production
+
+# Annotates models
+gem 'annotate'
