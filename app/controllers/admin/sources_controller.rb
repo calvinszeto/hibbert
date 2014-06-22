@@ -30,7 +30,7 @@ class Admin::SourcesController < ApplicationController
 		format = params[:recommendations][:format]
 		raw_input = params[:recommendations][:raw_input]
 		input = JSON.parse raw_input if format == "json"
-		Restaurant.create_recommendations_from_json @source, input
+		@source.create_recommendations_from_json input
     respond_to do |format|
       if @source.save
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
