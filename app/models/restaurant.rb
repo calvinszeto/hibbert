@@ -9,4 +9,9 @@
 #
 
 class Restaurant < ActiveRecord::Base
+
+def create_recommendations_from_json(source, input)
+
+end
+
 end

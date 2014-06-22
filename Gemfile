@@ -54,6 +54,7 @@ gem 'pry', group: :development
 # Gems needed for using RSpec w/ Guard and Spring
 group :development, :test do
 	gem 'rspec-rails'
+	gem 'factory_girl_rails'
 	gem 'spring-commands-rspec'
 	gem 'guard-rspec'
 end
