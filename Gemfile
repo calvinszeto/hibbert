@@ -46,3 +46,14 @@ gem 'rails_12factor', group: :production
 
 # Annotates models
 gem 'annotate'
+# Authentication and Authorization
+gem 'devise'
+# Pry
+gem 'pry', group: :development
+
+# Gems needed for using RSpec w/ Guard and Spring
+group :development, :test do
+	gem 'rspec-rails'
+	gem 'spring-commands-rspec'
+	gem 'guard-rspec'
+end

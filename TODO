@@ -1,5 +1,5 @@
 Stories:
-First round:
+Second Round:
 -Recommender system that applies default weight and chooses at random if weight is near the default
     The problem: there will be a very large database of recommendations - how do we store the scores?
         Calculate scores on each search might be okay: if we can first narrow the list down by
@@ -28,11 +28,6 @@ First round:
         Address
         Website
     How to import scraped data into postgres database? 
--(DONE)Set up Postgres
--(DONE)Deploy to Heroku
--(DONE)Seed database
--Specify source categories
-Second Round:
 -Admin Page
     -Authorization
     -Easy upload function to upload new restaurant data
@@ -55,6 +50,20 @@ Later:
 -Move category into separate model
 -Automatic up-to-date for recommendations
 -Recommender system that weights on sources specific for type of food
+(DONE)First round:
+-(DONE)Set up Postgres
+-(DONE)Deploy to Heroku
+-(DONE)Seed database
+-(DONE)Specify source categories
+
+Bugs:
+-Make notice hidden
+
+Tests:
+-Scraper
+-Recommender
+-Uploading
+-Frontend
 
 Models:
 User
