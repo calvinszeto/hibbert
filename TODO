@@ -1,33 +1,11 @@
-Stories:
+TODO:
 Second Round:
 -Recommender system that applies default weight and chooses at random if weight is near the default
-    The problem: there will be a very large database of recommendations - how do we store the scores?
-        Calculate scores on each search might be okay: if we can first narrow the list down by
-            features we know will result in lower scores, we can map a score function onto a subset of recommendations
-            Then, we only need to find a top-10 or so recommendations, not necessarily even the highest 10
-            Optimizing this will be figuring out how to improve 
-                1. database filtering 
-                2. function mapping
-                3. determining 'good-enough'
-                4. caching
-        For now, just do take
--Scraper for recommendation data
-    Sources to scrape from:
-        Critics
-        Blogs/Food websites
-            Eater
-        Newspapers
-            Austin Chronicle food issue
-        TV Shows
-            Anthony Bourdain
-            Andrew Zimmern
-    Information to scrape:
-        Name
-        Source
-        Date
-        Address
-        Website
-    How to import scraped data into postgres database? 
+    Restaurant score is a function of 
+        1. Source count
+        2. Recommendation count
+        With filters on location, type, etc.
+        So really, scores can be cached and updated with every new recommendation
 -(DONE)Admin Page
     -(DONE)Authorization
     -(DONE)Easy upload function to upload new restaurant data
@@ -36,11 +14,13 @@ Second Round:
 -Recommender system that weights on multiple sources
 -Seed Heroku Database
 -Fix up Frontend
--Paginate results
+-Rename 'Source'
+-Add Recommendation Groups
 Third Round:
 -User accounts to store preferences
 -User Authentication
 -Recommender system that weights on sources which are trusted
+-Paginate results
 Fourth Round:
 -Location search that limits results to certain area
 -Recommender system that weights on sources specific for recently searched locations
@@ -63,7 +43,6 @@ Bugs:
 -Make notice hidden
 
 Tests:
--Scraper
 -Recommender
 -Uploading
 -Frontend
