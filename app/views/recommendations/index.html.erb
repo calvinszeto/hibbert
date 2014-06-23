@@ -8,16 +8,14 @@
       <th><%= model_class.human_attribute_name(:restaurant) %></th>
       <th><%= model_class.human_attribute_name(:source) %></th>
       <th><%= model_class.human_attribute_name(:date_recommended) %></th>
-      <th><%= model_class.human_attribute_name(:website) %></th>
     </tr>
   </thead>
   <tbody>
     <% @recommendations.each do |recommendation| %>
       <tr>
 				<td><%= recommendation.restaurant.name %></td>
-				<td><%= recommendation.source.name %></td>
+				<td><%= recommendation.source.name if recommendation.source %></td>
         <td><%= recommendation.date_recommended %></td>
-        <td><%= recommendation.website %></td>
       </tr>
     <% end %>
   </tbody>

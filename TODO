@@ -28,9 +28,9 @@ Second Round:
         Address
         Website
     How to import scraped data into postgres database? 
--Admin Page
-    -Authorization
-    -Easy upload function to upload new restaurant data
+-(DONE)Admin Page
+    -(DONE)Authorization
+    -(DONE)Easy upload function to upload new restaurant data
 -Ability to select sources
 -Recommendations will filter on selected sources
 -Recommender system that weights on multiple sources
@@ -46,10 +46,13 @@ Fourth Round:
 -Recommender system that weights on sources specific for recently searched locations
 Fifth Round:
 -Cool responsive frontend display and filter for restaurants
+-Add "Don't Show this Again"
+-Add "Tried"
 Later:
 -Move category into separate model
 -Automatic up-to-date for recommendations
 -Recommender system that weights on sources specific for type of food
+-Fix up admin upload to show more info
 (DONE)First round:
 -(DONE)Set up Postgres
 -(DONE)Deploy to Heroku
