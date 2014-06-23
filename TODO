@@ -6,15 +6,21 @@ Second Round:
         2. Recommendation count
         With filters on location, type, etc.
         So really, scores can be cached and updated with every new recommendation
+            However, we don't want scores to include sources that the user doesn't like
+            We could store unaltered score, and retrieve entries paginated by the 100's, and apply all score changes to that array. Sort that array, and retrieve the next page after displaying ~75 entries. Applying the score change function on 100-125 entries at once is very manageable, even in ruby.
+                Example case:
+                    Let's say we have 10 items, page size 5. The unaltered scores are 10 9 8 7 6 5 4 3 2 1, but the altered scores are 5 4 3 2 1 5 4 3 2 1. The app will show: 5 4 3 (load more) 5 4 3 3 2 2 1 1. We can see how in a worst case scenario, that second '5' could get buried.
+            An option: instead of letting users remove a source from the scores, only allow them to blacklist sources completely: filter out restaurants that have ever been recommended by that source. This is a database filter and thus will be SQL-optimized.
+
 -(DONE)Admin Page
     -(DONE)Authorization
     -(DONE)Easy upload function to upload new restaurant data
+-Fix up Frontend
+    -Plan out JS framework
 -Ability to select sources
 -Recommendations will filter on selected sources
 -Recommender system that weights on multiple sources
 -Seed Heroku Database
--Fix up Frontend
--Rename 'Source'
 -Add Recommendation Groups
 Third Round:
 -User accounts to store preferences

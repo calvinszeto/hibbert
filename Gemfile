@@ -37,8 +37,6 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Apply bootstrap themed views
-gem 'twitter-bootstrap-rails'
 # Use PostgreSQL
 gem 'pg'
 # For deploying on Heroku
