@@ -14,5 +14,7 @@
 
 FactoryGirl.define do
   factory :recommendation do
+		restaurant
+		source
   end
 end

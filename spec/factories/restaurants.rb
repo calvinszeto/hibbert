@@ -13,5 +13,6 @@
 
 FactoryGirl.define do
   factory :restaurant do
+		name "Larry's Lobsters"
   end
 end

@@ -11,4 +11,5 @@
 
 class Restaurant < ActiveRecord::Base
 has_many :recommendations, dependent: :destroy
+has_many :sources, through: :recommendations
 end

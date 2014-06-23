@@ -51,6 +51,7 @@ Bugs:
 Tests:
 -Recommender
 -Uploading
+-Counts get updated correctly
 -Frontend
 
 Models:
