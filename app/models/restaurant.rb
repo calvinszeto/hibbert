@@ -7,6 +7,8 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #  recommendations_count :integer          default(0)
+#  sources_count         :integer          default(0)
+#  website               :string(255)
 #
 
 class Restaurant < ActiveRecord::Base

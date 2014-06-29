@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :users
+	scope :format => true, :constraints => { :format => 'json' } do
+		devise_for :users
+		resources :users
 
-  resources :recommendations
+		resources :recommendations
 
-  resources :sources
+		resources :sources
 
-  resources :restaurants
+		resources :restaurants
+	end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'restaurants#index'
+	# TODO: route root to the angular app
+  # root 'restaurants#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

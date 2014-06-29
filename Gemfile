@@ -49,6 +49,9 @@ gem 'devise'
 # Pry
 gem 'pry', group: :development
 
+# Carrierwave for uploading images
+gem 'carrierwave'
+
 # Gems needed for using RSpec w/ Guard and Spring
 group :development, :test do
 	gem 'rspec-rails'

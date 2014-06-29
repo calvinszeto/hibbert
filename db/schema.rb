@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623203451) do
+ActiveRecord::Schema.define(version: 20140628213328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recommendation_groups", force: true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recommendation_groups", ["source_id"], name: "index_recommendation_groups_on_source_id", using: :btree
 
   create_table "recommendations", force: true do |t|
     t.integer  "restaurant_id"
@@ -22,8 +32,11 @@ ActiveRecord::Schema.define(version: 20140623203451) do
     t.date     "date_recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
+    t.integer  "recommendation_group_id"
   end
 
+  add_index "recommendations", ["recommendation_group_id"], name: "index_recommendations_on_recommendation_group_id", using: :btree
   add_index "recommendations", ["restaurant_id"], name: "index_recommendations_on_restaurant_id", using: :btree
   add_index "recommendations", ["source_id"], name: "index_recommendations_on_source_id", using: :btree
 
@@ -33,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140623203451) do
     t.datetime "updated_at"
     t.integer  "recommendations_count", default: 0
     t.integer  "sources_count",         default: 0
+    t.string   "website"
   end
 
   create_table "sources", force: true do |t|

@@ -1,40 +1,28 @@
 TODO:
-Second Round:
 -Recommender system that applies default weight and chooses at random if weight is near the default
     Restaurant score is a function of 
         1. Source count
         2. Recommendation count
         With filters on location, type, etc.
-        So really, scores can be cached and updated with every new recommendation
-            However, we don't want scores to include sources that the user doesn't like
-            We could store unaltered score, and retrieve entries paginated by the 100's, and apply all score changes to that array. Sort that array, and retrieve the next page after displaying ~75 entries. Applying the score change function on 100-125 entries at once is very manageable, even in ruby.
-                Example case:
-                    Let's say we have 10 items, page size 5. The unaltered scores are 10 9 8 7 6 5 4 3 2 1, but the altered scores are 5 4 3 2 1 5 4 3 2 1. The app will show: 5 4 3 (load more) 5 4 3 3 2 2 1 1. We can see how in a worst case scenario, that second '5' could get buried.
-            An option: instead of letting users remove a source from the scores, only allow them to blacklist sources completely: filter out restaurants that have ever been recommended by that source. This is a database filter and thus will be SQL-optimized.
-
--(DONE)Admin Page
-    -(DONE)Authorization
-    -(DONE)Easy upload function to upload new restaurant data
+        allow users to blacklist sources: filter out restaurants that have ever been recommended by that source. This is a database filter and thus will be SQL-optimized.
 -Fix up Frontend
     -Plan out JS framework
--Ability to select sources
--Recommendations will filter on selected sources
--Recommender system that weights on multiple sources
+-Improve manual uploading
+-Make Rails backend JSON-only    
 -Seed Heroku Database
+-Add Images to Restaurants and Sources
 -Add Recommendation Groups
-Third Round:
 -User accounts to store preferences
 -User Authentication
+-Ability to select sources
+-Recommendations will filter on selected sources
 -Recommender system that weights on sources which are trusted
 -Paginate results
-Fourth Round:
 -Location search that limits results to certain area
 -Recommender system that weights on sources specific for recently searched locations
-Fifth Round:
 -Cool responsive frontend display and filter for restaurants
 -Add "Don't Show this Again"
 -Add "Tried"
-Later:
 -Move category into separate model
 -Automatic up-to-date for recommendations
 -Recommender system that weights on sources specific for type of food
@@ -44,9 +32,9 @@ Later:
 -(DONE)Deploy to Heroku
 -(DONE)Seed database
 -(DONE)Specify source categories
-
-Bugs:
--Make notice hidden
+-(DONE)Admin Page
+    -(DONE)Authorization
+    -(DONE)Easy upload function to upload new restaurant data
 
 Tests:
 -Recommender
@@ -60,18 +48,29 @@ User
     recent_locations
 Restaurant
     name
-    later:
-        (4)geolocation data
-        (5)website
-        (l)food type
-        images
+    website
+    food type?
+    images?
+Address
+    street
+    city
+    state
+    zip code
+    geolocation data
+Image
 Source
     name
     description
+    images?
     category
+    website
+Recommendation Group
+    name
+    source
     website
 Recommendation
     restaurant
     source
+    recommendation group
     date
     website
