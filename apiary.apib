@@ -1,0 +1,58 @@
+FORMAT: 1A
+
+# hibbert
+hibbert API is a restaurant recommendation service, intended for use in the hibbert application.
+
+# Group Users
+
+# Group Restaurants
+
+## Restaurants Collection [/notes]
+### List all Restaurants [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "title": "Jogging in park"
+        }, {
+          "id": 2, "title": "Pick-up posters from post-office"
+        }]
+
+### Create a Restaurant [POST]
++ Request (application/json)
+
+        { "title": "Buy cheese and bread for breakfast." }
+
++ Response 201 (application/json)
+
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+## Restaurant [/notes/{id}]
+A single Note object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+
+### Retrieve a Restaurant [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 2, "title": "Pick-up posters from post-office" }
+
+### Remove a Restaurant [DELETE]
++ Response 204
+
+# Group Sources
+
+# Group Recommendations
+
+# Group RecommendationGroups
+
+# Group Images
+
+# Group Addresses
+
