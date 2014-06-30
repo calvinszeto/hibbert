@@ -1,6 +1,6 @@
 [Restaurant|id:integer;name:string;website:string;category:string]
-[Recommendation|id:integer;date:date;website:string]
-[RecommendationGroup|id:integer;name:string;description:text;website:string]
+[Recommendation|id:integer]
+[RecommendationGroup|id:integer;name:string;description:text;date:date;website:string]
 [Source|id:integer;name:string;description:text;category:string;website:string]
 [User|id:integer]
 [UserPreference|id:integer;recent_addresses:array;recent_categories:array;no_show_sources:array;no_show_restaurants:array;tried_restaurants:array]
