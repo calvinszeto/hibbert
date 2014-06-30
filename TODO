@@ -1,16 +1,12 @@
 TODO:
 -Recommender system that applies default weight and chooses at random if weight is near the default
-    Restaurant score is a function of 
-        1. Source count
-        2. Recommendation count
-        With filters on location, type, etc.
-        allow users to blacklist sources: filter out restaurants that have ever been recommended by that source. This is a database filter and thus will be SQL-optimized.
--Plan out complete backend API and write tests for how all of it is expected to work
+-Otherwise, recommender gives restaurants which have the most sources, and then the most recommendations
+-Plan out complete backend API 
+-Write rspec expectations for API 
 -Code out backend
 -Fix up Frontend
     -Plan out JS framework
 -Improve manual uploading
--Make Rails backend JSON-only    
 -Seed Heroku Database
 -Add Images to Restaurants and Sources
 -Add Recommendation Groups
@@ -18,17 +14,14 @@ TODO:
 -User Authentication
 -Ability to select sources
 -Recommendations will filter on selected sources
--Recommender system that weights on sources which are trusted
 -Paginate results
 -Location search that limits results to certain area
 -Recommender system that weights on sources specific for recently searched locations
--Cool responsive frontend display and filter for restaurants
 -Add "Don't Show this Again"
 -Add "Tried"
 -Move category into separate model
 -Automatic up-to-date for recommendations
 -Recommender system that weights on sources specific for type of food
--Fix up admin upload to show more info
 (DONE)First round:
 -(DONE)Set up Postgres
 -(DONE)Deploy to Heroku
@@ -43,36 +36,3 @@ Tests:
 -Uploading
 -Counts get updated correctly
 -Frontend
-
-Models:
-User
-    preferences
-    recent_locations
-Restaurant
-    name
-    website
-    food type?
-    images?
-Address
-    street
-    city
-    state
-    zip code
-    geolocation data
-Image
-Source
-    name
-    description
-    images?
-    category
-    website
-Recommendation Group
-    name
-    source
-    website
-Recommendation
-    restaurant
-    source
-    recommendation group
-    date
-    website
