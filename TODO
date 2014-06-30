@@ -5,6 +5,8 @@ TODO:
         2. Recommendation count
         With filters on location, type, etc.
         allow users to blacklist sources: filter out restaurants that have ever been recommended by that source. This is a database filter and thus will be SQL-optimized.
+-Plan out complete backend API and write tests for how all of it is expected to work
+-Code out backend
 -Fix up Frontend
     -Plan out JS framework
 -Improve manual uploading
