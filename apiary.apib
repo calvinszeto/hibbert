@@ -1,36 +1,30 @@
 FORMAT: 1A
-
 # hibbert
 hibbert API is a restaurant recommendation service, intended for use in the hibbert application.
 
-# Group Users
-
 # Group Restaurants
 
-## Restaurants Collection [/notes]
+## Restaurants Collection [/restaurants{?only&except&location&tried&no_filter}]
+Collection of recommended restaurants with applied filters and ordered by number of sources, followed by number of recommendations.
+
++ Parameters
+    + only (optional, array) ... Specifies the only restaurant categories to return. An empty array means return all categories.
+    + except (optional, array) ... Specifies any restaurant categories not to return.
+    + location (optional, string) ... Specifies a location to search nearby.
+    + tried (optional, boolean) ... Specifies whether or not to return restaurants that have been marked tried. By default the API will not return tried restaurants. 
+    + no_filter (optional, boolean) ... Specifies whether or not to return restaurants or sources which have been marked 'Do Not Show'
+
 ### List all Restaurants [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        [{ "id": 1, "name": "Larry's Lobsters" , "website": "www.lobster.fake" , "category": "Seafood" , "image": "TODO" , "street": "123 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" },
+        { "id": 2, "name": "Perry's Pork" , "website": "www.pork.fake" , "category": "Barbecue" , "image": "TODO" , "street": "456 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" }]
 
-### Create a Restaurant [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Restaurant [/notes/{id}]
-A single Note object with all its details
+## Restaurant [/restaurants/{id}]
+A single Restaurant object with its image and address information.
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Restaurant to perform action with. Has example value.
 
 ### Retrieve a Restaurant [GET]
 + Response 200 (application/json)
@@ -41,18 +35,88 @@ A single Note object with all its details
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Restaurant [DELETE]
-+ Response 204
+            { "id": 1, "name": "Larry's Lobsters" , "website": "www.lobster.fake" , "category": "Seafood" , "image": "www.hibbert" , "street": "123 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" }
 
 # Group Sources
 
-# Group Recommendations
+## Sources Collection [/sources{?location&no_filter}]
+Collection of all sources with any applied filters. Ordered alphabetically.
+
++ Parameters
+    + location (optional, string) ... Specifies a location to search nearby. Sources with restaurants near this location will be returned.
+    + no_filter (optional, boolean) ... Specifies whether or not to return restaurants or sources which have been marked 'Do Not Show'
+
+### List all Sources [GET]
++ Response 200 (application/json)
+
+        [{ "id": 1, "name": "Larry's Lobsters" , "website": "www.lobster.fake" , "category": "Seafood" , "image": "TODO" , "street": "123 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" },
+        { "id": 2, "name": "Perry's Pork" , "website": "www.pork.fake" , "category": "Barbecue" , "image": "TODO" , "street": "456 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" }]
+
+## Source [/sources/{id}]
+A single Source object with its image and address information.
+
++ Parameters
+    + id
+
+### Retrieve a Source [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "name": "" , "description": "", "website": "" , "category": "" , "image": "" , "street": "" , "city": "", "state": "", "zip_code": "" }
 
 # Group RecommendationGroups
 
-# Group Images
+## RecommendationGroups Collection [/recommendation_groups{?source_id}]
+Collection of all Recommendation Groups belonging to a specified Source.
 
-# Group Addresses
++ Parameters
+    + source_id (required, integer) ... Specifies the Source whose associated Recommendation Groups should be returned.
 
+### List all RecommendationGroups[GET]
++ Response 200 (application/json)
+
+        [{ "id": 1, "name": "Larry's Lobsters" , "website": "www.lobster.fake" , "category": "Seafood" , "image": "TODO" , "street": "123 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" },
+        { "id": 2, "name": "Perry's Pork" , "website": "www.pork.fake" , "category": "Barbecue" , "image": "TODO" , "street": "456 Fake St." , "city": "Springfield", "state": "IL", "zip_code": "12345" }]
+
+## RecommendationGroup [/recommendation_groups/{id}]
++ Parameters
+    + id
+
+### Retrieve a RecommendationGroup [GET]
+A RecommendationGroup object with an array of its recommendations.
+
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "name": "" , "description": "", "source_id": "" , "website": "" ,  "recommendations": [{"id": 1, "restaurant_id": "" ,"restaurant_name": "" ,"restaurant_category": "" ,"restaurant_image": "" }, {"id": 2, "restaurant_id": "" ,"restaurant_name": "" ,"restaurant_category": "" ,"restaurant_image": "" }, {"id": 3, "restaurant_id": "" ,"restaurant_name": "" ,"restaurant_category": "" ,"restaurant_image": "" }]}
+
+# Group Users
+
+## User [/users]
+A User object corresponding to the currently-logged-in user
+
+### Retrieve User [GET]
+
+### Create User [POST]
+
+### Edit User [PATCH]
+
+### Destroy User [DELETE]
+
+# Group Sessions
+
+## Session [/sessions]
+
+### Login [POST]
+
+### Logout [DELETE]
