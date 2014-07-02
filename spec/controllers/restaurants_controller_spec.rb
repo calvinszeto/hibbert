@@ -47,13 +47,9 @@ RSpec.describe RestaurantsController, :type => :controller do
 				end
 			end
 
-			it "should give preference to recent categories" do
-				pending "I figure out how to do this"
-			end
+			it "should give preference to recent categories"
 
-			it "should give preference to recent locations" do
-				pending "I figure out how to do this"
-			end
+			it "should give preference to recent locations"
 		end
 
 		context "without user signed in" do

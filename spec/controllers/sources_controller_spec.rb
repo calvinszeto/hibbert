@@ -23,9 +23,7 @@ RSpec.describe SourcesController, :type => :controller do
 				end
 			end
 
-			it "should give preference to recent locations" do
-				pending "I figure out how to do this"
-			end
+			it "should give preference to recent locations"
 		end
 
 		context "without user signed in" do
@@ -42,9 +40,7 @@ RSpec.describe SourcesController, :type => :controller do
 		end
 
 		context "with :location param" do
-			it "should give preference with sources which recommend restaurants near the param" do
-				pending "I figure out how to do this"
-			end
+			it "should give preference with sources which recommend restaurants near the param"
 
 			it "should return an error if param can't be geocoded" do
 			end
