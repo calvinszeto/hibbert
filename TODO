@@ -1,5 +1,9 @@
 TODO:
 -Plan out non-admin backend API 
+    -How to display all specs
+    -How to fix pending
+    -Fix routes to match API
+    -Postgres hash for user preferences?
 -Write rspec expectations for API 
 -Code out backend
     -Recommender system that applies default weight and chooses at random if weight is near the default

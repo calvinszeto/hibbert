@@ -6,123 +6,128 @@ RSpec.describe RestaurantsController, :type => :controller do
 	end
 
   describe "GET index" do
-    it "assigns all restaurants as @restaurants" do
-      restaurant = Restaurant.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:restaurants)).to eq([restaurant])
-    end
+		context "with user signed in" do
+			it "should return restaurants with user preference attributes" do
+				#restaurant = Restaurant.create! valid_attributes
+				#get :index, {}, valid_session
+				#expect(assigns(:restaurants)).to eq([restaurant])
+			end
+
+			it "should filter by source preferences" do
+			end
+
+			it "should filter by restaurant preferences" do
+			end
+
+			it "should filter out tried restaurants by default" do
+			end
+
+			context "with :tried=false" do
+				it "should not filter out tried restaurants" do
+				end
+			end
+
+			context "with :no_filter=true" do
+				it "should return restaurants without filtering on user preferences" do
+				end
+			end
+
+			context "with :only param" do
+				it "should add the categories to user preferences" do
+				end
+			end
+
+			context "with :except param" do
+				it "should add the categories to user preferences" do
+				end
+			end
+
+			context "with :location param" do
+				it "should add the location to user preferences" do
+				end
+			end
+
+			it "should give preference to recent categories" do
+				pending "I figure out how to do this"
+			end
+
+			it "should give preference to recent locations" do
+				pending "I figure out how to do this"
+			end
+		end
+
+		context "without user signed in" do
+			it "should return restaurants without user preference attributes" do
+			end
+
+			it "should return all restaurants by default" do
+			end
+
+			context "with :no_filter=true" do
+				it "should return all restaurants by default" do
+				end
+			end
+		end
+
+		context "with :only param" do
+			it "should return all categories if param is empty" do
+			end
+
+			it "should return only restaurants whose category matches the param" do
+			end
+		end
+
+		context "with :except param" do
+			it "should return all categories if param is empty" do
+			end
+
+			it "should filter out restaurants whose category matches the param" do
+			end
+		end
+
+		context "with :location param" do
+			it "should return restaurants with a distance attribute" do
+			end
+
+			it "should return restaurants ordered by distance from the param" do
+			end
+
+			it "should return an error if param can't be geocoded" do
+			end	
+
+			it "should return all restaurants if param can't be geocoded" do
+			end
+		end
   end
 
   describe "GET show" do
-    it "assigns the requested restaurant as @restaurant" do
-      restaurant = Restaurant.create! valid_attributes
-      get :show, {:id => restaurant.to_param}, valid_session
-      expect(assigns(:restaurant)).to eq(restaurant)
-    end
+		it "should return the specified restaurant object" do
+      #restaurant = Restaurant.create! valid_attributes
+      #get :show, {:id => restaurant.to_param}, valid_session
+      #expect(assigns(:restaurant)).to eq(restaurant)
+		end
+
+		context "with user signed in" do
+			it "should return a restaurant with user preference attributes" do
+			end
+		end
+
+		context "without user signed in" do
+			it "should return a restaurant without user preference attributes" do
+			end
+		end
   end
 
-  describe "GET new" do
-    it "assigns a new restaurant as @restaurant" do
-      get :new, {}, valid_session
-      expect(assigns(:restaurant)).to be_a_new(Restaurant)
-    end
-  end
+	describe "PATCH update" do
+		context "with :tried param" do
+			it "should update user tried preferences" do
+			end
+		end
 
-  describe "GET edit" do
-    it "assigns the requested restaurant as @restaurant" do
-      restaurant = Restaurant.create! valid_attributes
-      get :edit, {:id => restaurant.to_param}, valid_session
-      expect(assigns(:restaurant)).to eq(restaurant)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Restaurant" do
-        expect {
-          post :create, {:restaurant => valid_attributes}, valid_session
-        }.to change(Restaurant, :count).by(1)
-      end
-
-      it "assigns a newly created restaurant as @restaurant" do
-        post :create, {:restaurant => valid_attributes}, valid_session
-        expect(assigns(:restaurant)).to be_a(Restaurant)
-        expect(assigns(:restaurant)).to be_persisted
-      end
-
-      it "redirects to the created restaurant" do
-        post :create, {:restaurant => valid_attributes}, valid_session
-        expect(response).to redirect_to(Restaurant.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved restaurant as @restaurant" do
-        post :create, {:restaurant => invalid_attributes}, valid_session
-        expect(assigns(:restaurant)).to be_a_new(Restaurant)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:restaurant => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested restaurant" do
-        restaurant = Restaurant.create! valid_attributes
-        put :update, {:id => restaurant.to_param, :restaurant => new_attributes}, valid_session
-        restaurant.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested restaurant as @restaurant" do
-        restaurant = Restaurant.create! valid_attributes
-        put :update, {:id => restaurant.to_param, :restaurant => valid_attributes}, valid_session
-        expect(assigns(:restaurant)).to eq(restaurant)
-      end
-
-      it "redirects to the restaurant" do
-        restaurant = Restaurant.create! valid_attributes
-        put :update, {:id => restaurant.to_param, :restaurant => valid_attributes}, valid_session
-        expect(response).to redirect_to(restaurant)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the restaurant as @restaurant" do
-        restaurant = Restaurant.create! valid_attributes
-        put :update, {:id => restaurant.to_param, :restaurant => invalid_attributes}, valid_session
-        expect(assigns(:restaurant)).to eq(restaurant)
-      end
-
-      it "re-renders the 'edit' template" do
-        restaurant = Restaurant.create! valid_attributes
-        put :update, {:id => restaurant.to_param, :restaurant => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested restaurant" do
-      restaurant = Restaurant.create! valid_attributes
-      expect {
-        delete :destroy, {:id => restaurant.to_param}, valid_session
-      }.to change(Restaurant, :count).by(-1)
-    end
-
-    it "redirects to the restaurants list" do
-      restaurant = Restaurant.create! valid_attributes
-      delete :destroy, {:id => restaurant.to_param}, valid_session
-      expect(response).to redirect_to(restaurants_url)
-    end
-  end
+		context "with :do_not_show param" do
+			it "should update user do-not-show preferences" do
+			end
+		end
+	end
 
 end
