@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+	devise_for :users
+	resources :users
 	scope :format => true, :constraints => { :format => 'json' } do
-		devise_for :users
-		resources :users
 
 		resources :recommendations
 

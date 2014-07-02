@@ -1,27 +1,34 @@
 TODO:
--Recommender system that applies default weight and chooses at random if weight is near the default
--Otherwise, recommender gives restaurants which have the most sources, and then the most recommendations
--Plan out complete backend API 
+-Plan out non-admin backend API 
 -Write rspec expectations for API 
 -Code out backend
--Fix up Frontend
+    -Recommender system that applies default weight and chooses at random if weight is near the default
+    -Otherwise, recommender gives restaurants which have the most sources, and then the most recommendations
+    -Recommender system that weights on sources specific for recently searched locations
+    -Add Images to Restaurants and Sources
+    -Add Recommendation Groups
+    -User Authentication
+        -Remove unwanted Devise modules
+    -User accounts to store preferences
+    -Ability to select sources
+    -Recommendations will filter on selected sources
+    -Location search that limits results to certain area
+    -Add "Don't Show this Again"
+    -Add "Tried"
+    -Recommender system that weights on sources specific for type of food
+-Code up Frontend
     -Plan out JS framework
--Improve manual uploading
+    -User Authentication
+    -Paginate results
+-Admin
+    -Plan out admin backend API
+    -Write rspec expectations of admin API
+    -Code out admin stuff
+    -Improve manual uploading
 -Seed Heroku Database
--Add Images to Restaurants and Sources
--Add Recommendation Groups
--User accounts to store preferences
--User Authentication
--Ability to select sources
--Recommendations will filter on selected sources
--Paginate results
--Location search that limits results to certain area
--Recommender system that weights on sources specific for recently searched locations
--Add "Don't Show this Again"
--Add "Tried"
+-Add distance for any location searches
 -Move category into separate model
 -Automatic up-to-date for recommendations
--Recommender system that weights on sources specific for type of food
 (DONE)First round:
 -(DONE)Set up Postgres
 -(DONE)Deploy to Heroku
