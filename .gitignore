@@ -15,5 +15,6 @@
 /log/*.log
 /tmp
 
-# Ignore Vim swap files
+# Ignore Vim swap files and session files.
 *.swp
+*.vim
