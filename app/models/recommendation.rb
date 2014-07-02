@@ -4,20 +4,15 @@
 #
 #  id                      :integer          not null, primary key
 #  restaurant_id           :integer
-#  source_id               :integer
-#  date_recommended        :date
 #  created_at              :datetime
 #  updated_at              :datetime
-#  website                 :string(255)
 #  recommendation_group_id :integer
 #
 
 class Recommendation < ActiveRecord::Base
 	validates :restaurant_id, :presence => true
-	validates :source_id, :presence => true
 
   belongs_to :restaurant, :counter_cache => true
-  belongs_to :source
 
 	after_create :update_restaurant_sources_count
 

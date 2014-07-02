@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702163103) do
+ActiveRecord::Schema.define(version: 20140702164632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140702163103) do
 
   add_index "addresses", ["addressable_id"], name: "index_addresses_on_addressable_id", using: :btree
 
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", force: true do |t|
     t.string   "image"
     t.integer  "imageable_id"
@@ -45,23 +51,21 @@ ActiveRecord::Schema.define(version: 20140702163103) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.text     "description"
   end
 
   add_index "recommendation_groups", ["source_id"], name: "index_recommendation_groups_on_source_id", using: :btree
 
   create_table "recommendations", force: true do |t|
     t.integer  "restaurant_id"
-    t.integer  "source_id"
-    t.date     "date_recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "website"
     t.integer  "recommendation_group_id"
   end
 
   add_index "recommendations", ["recommendation_group_id"], name: "index_recommendations_on_recommendation_group_id", using: :btree
   add_index "recommendations", ["restaurant_id"], name: "index_recommendations_on_restaurant_id", using: :btree
-  add_index "recommendations", ["source_id"], name: "index_recommendations_on_source_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
@@ -72,6 +76,14 @@ ActiveRecord::Schema.define(version: 20140702163103) do
     t.string   "website"
   end
 
+  create_table "restaurants_categories", id: false, force: true do |t|
+    t.integer "restaurant_id"
+    t.integer "category_id"
+  end
+
+  add_index "restaurants_categories", ["category_id"], name: "index_restaurants_categories_on_category_id", using: :btree
+  add_index "restaurants_categories", ["restaurant_id"], name: "index_restaurants_categories_on_restaurant_id", using: :btree
+
   create_table "sources", force: true do |t|
     t.string   "name"
     t.string   "category"
@@ -80,6 +92,19 @@ ActiveRecord::Schema.define(version: 20140702163103) do
     t.datetime "updated_at"
     t.text     "description"
   end
+
+  create_table "user_preferences", force: true do |t|
+    t.integer  "user_id"
+    t.string   "recent_addresses"
+    t.string   "recent_categories"
+    t.string   "no_show_sources"
+    t.string   "no_show_restaurants"
+    t.string   "tried_restaurants"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_preferences", ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
