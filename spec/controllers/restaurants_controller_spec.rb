@@ -33,10 +33,18 @@ RSpec.describe RestaurantsController, :type => :controller do
 			end
 
 			it "should filter out tried restaurants by default" do
+				tried_restaurant = FactoryGirl.create(:restaurant)
+				@user.add_tried_restaurant(tried_restaurant)
+				get :index, format: :json
+				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
 			end
 
 			context "with :tried=false" do
 				it "should not filter out tried restaurants" do
+					tried_restaurant = FactoryGirl.create(:restaurant)
+					@user.add_tried_restaurant(tried_restaurant)
+					get :index, tried: true, format: :json
+					expect(assigns(:restaurants).to_a).to eq(Restaurant.all.to_a)
 				end
 			end
 

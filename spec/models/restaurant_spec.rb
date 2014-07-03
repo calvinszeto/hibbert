@@ -32,6 +32,20 @@ RSpec.describe Restaurant, :type => :model do
 		end
 	end
 
+	context "scope not_tried_by" do
+		it "should return all restaurants if user has no tried_restaurants" do
+			user = FactoryGirl.create(:user)
+			expect(Restaurant.not_tried_by(user).to_a).to eq([@restaurant])
+		end
+
+		it "should return restaurants which are not in the user's tried_restaurants" do
+			user = FactoryGirl.create(:user)
+			bad_restaurant = FactoryGirl.create(:restaurant)
+			user.add_tried_restaurant(bad_restaurant)
+			expect(Restaurant.not_tried_by(user).to_a).to eq([@restaurant])
+		end
+	end
+
 	context "source_showable" do
 		it "should return true if restaurant is not recommended by a bad source" do
 			user = FactoryGirl.create(:user)

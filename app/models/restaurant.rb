@@ -18,6 +18,7 @@ class Restaurant < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
 	scope :showable, ->(user) { where("(?) IS NULL OR id NOT IN (?)", user.no_show_restaurants, user.no_show_restaurants)}
+	scope :not_tried_by, ->(user) { where("(?) IS NULL OR id NOT IN (?)", user.tried_restaurants, user.tried_restaurants)}
 	
 	def source_showable(user)
 		(self.sources.map(&:id) & user.no_show_sources).empty?
