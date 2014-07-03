@@ -18,7 +18,10 @@ class Restaurant < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
 	scope :showable, ->(user) { where("id NOT IN (?)", user.no_show_restaurants)}
-	# where any of its sources are not in user's no_show_sources
+	
+	def source_showable(user)
+		(self.sources.map(&:id) - user.no_show_sources).empty?
+	end
 	
 	def sources
 		self.recommendations.map(&:source)
