@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702164632) do
+ActiveRecord::Schema.define(version: 20140703134925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,11 +95,9 @@ ActiveRecord::Schema.define(version: 20140702164632) do
 
   create_table "user_preferences", force: true do |t|
     t.integer  "user_id"
-    t.string   "recent_addresses"
-    t.string   "recent_categories"
-    t.string   "no_show_sources"
-    t.string   "no_show_restaurants"
-    t.string   "tried_restaurants"
+    t.string   "no_show_sources",     default: [], array: true
+    t.string   "no_show_restaurants", default: [], array: true
+    t.string   "tried_restaurants",   default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

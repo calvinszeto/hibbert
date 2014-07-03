@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :source do
 		sequence(:name) {|n| "source#{n}"}
 		category "Blog"
-		website "www.#{name}.com"
+		website {"www.#{name}.com"}
 		description "The #1 source on yummy delights."
   end
 end

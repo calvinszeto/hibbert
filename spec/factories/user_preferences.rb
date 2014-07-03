@@ -4,11 +4,9 @@
 #
 #  id                  :integer          not null, primary key
 #  user_id             :integer
-#  recent_addresses    :string(255)
-#  recent_categories   :string(255)
-#  no_show_sources     :string(255)
-#  no_show_restaurants :string(255)
-#  tried_restaurants   :string(255)
+#  no_show_sources     :string(255)      default([]), is an Array
+#  no_show_restaurants :string(255)      default([]), is an Array
+#  tried_restaurants   :string(255)      default([]), is an Array
 #  created_at          :datetime
 #  updated_at          :datetime
 #
@@ -17,11 +15,5 @@
 
 FactoryGirl.define do
   factory :user_preference do
-    user nil
-    recent_addresses "MyString"
-    recent_categories "MyString"
-    no_show_sources "MyString"
-    no_show_restaurants "MyString"
-    tried_restaurants "MyString"
   end
 end

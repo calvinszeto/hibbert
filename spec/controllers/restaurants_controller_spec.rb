@@ -3,14 +3,20 @@ require 'rails_helper'
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
+		@restaurants = (1..10).each {FactoryGirl.create(:restaurant)}
+		@restaurant = @restaurants.first
 	end
 
   describe "GET index" do
 		context "with user signed in" do
+			before(:each) do
+				@user = FactoryGirl.create(:user)
+				sign_in @user
+			end
+
 			it "should return restaurants with user preference attributes" do
-				#restaurant = Restaurant.create! valid_attributes
-				#get :index, {}, valid_session
-				#expect(assigns(:restaurants)).to eq([restaurant])
+				get :index, format: :json	
+				expect(assigns(:restaurants).all).to eq(@restaurants)
 			end
 
 			it "should filter by source preferences" do

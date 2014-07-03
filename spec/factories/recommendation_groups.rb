@@ -19,9 +19,9 @@ FactoryGirl.define do
   factory :recommendation_group do
 		sequence(:name) {|n| "recommendation_group#{n}"}
     source
-    website "www.#{name}.org"
+    website {"www.#{name}.org"}
 		date DateTime.now
-		description "#{source.name}'s top 10 list of restaurants for #{date}"
+		description {"#{source.name}'s top 10 list of restaurants for #{date}"}
 
 		factory :recommendation_group_with_recommendations do
 			ignore do
