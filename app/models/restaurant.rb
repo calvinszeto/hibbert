@@ -15,6 +15,12 @@ class Restaurant < ActiveRecord::Base
 	include Addressable
 
 	has_many :recommendations, dependent: :destroy
-	has_many :sources, through: :recommendations
 	has_and_belongs_to_many :categories
+
+	scope :showable, ->(user) { where("id NOT IN (?)", user.no_show_restaurants)}
+	# where any of its sources are not in user's no_show_sources
+	
+	def sources
+		self.recommendations.map(&:source)
+	end
 end

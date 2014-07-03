@@ -13,6 +13,9 @@ class Recommendation < ActiveRecord::Base
 	validates :restaurant_id, :presence => true
 
   belongs_to :restaurant, :counter_cache => true
+	belongs_to :recommendation_group
+	delegate :source,
+		:to => :recommendation_group
 
 	after_create :update_restaurant_sources_count
 

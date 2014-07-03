@@ -25,6 +25,5 @@ FactoryGirl.define do
 		sequence(:email) {|n| "user#{n}@email.com"}
 		password "password"
 		password_confirmation "password"
-		user_preference {FactoryGirl.create(:user_preference)}
   end
 end

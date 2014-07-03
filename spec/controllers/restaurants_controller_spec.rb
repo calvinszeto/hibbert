@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
-		@restaurants = (1..10).each {FactoryGirl.create(:restaurant)}
+		(1..10).each {FactoryGirl.create(:restaurant)}
+		@restaurants = Restaurant.all
 		@restaurant = @restaurants.first
 	end
 
@@ -15,11 +16,11 @@ RSpec.describe RestaurantsController, :type => :controller do
 			end
 
 			it "should return restaurants with user preference attributes" do
-				get :index, format: :json	
-				expect(assigns(:restaurants).all).to eq(@restaurants)
 			end
 
 			it "should filter by source preferences" do
+				get :index, format: :json	
+				expect(assigns(:restaurants)).to eq(@restaurants)
 			end
 
 			it "should filter by restaurant preferences" do

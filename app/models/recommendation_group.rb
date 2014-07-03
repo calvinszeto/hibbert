@@ -14,4 +14,5 @@
 
 class RecommendationGroup < ActiveRecord::Base
   belongs_to :source
+	has_many :recommendations, dependent: :destroy
 end

@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1?format=json
   def show
-      @restaurant = Restaurant.find(params[:id])
+		@restaurant = Restaurant.find(params[:id])
   end
 
 	# PATCH /restaurants/1
