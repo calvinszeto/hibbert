@@ -19,10 +19,15 @@ RSpec.describe Restaurant, :type => :model do
 	end
 
 	context "scope showable" do
+		it "should return all restaurants if user has no no_show_restaurants" do
+			user = FactoryGirl.create(:user)
+			expect(Restaurant.showable(user).to_a).to eq([@restaurant])
+		end
+
 		it "should return restaurants which are not in the user's no_show_restaurants" do
 			user = FactoryGirl.create(:user)
 			bad_restaurant = FactoryGirl.create(:restaurant)
-			user.no_show_restaurants.push(bad_restaurant.id)
+			user.add_no_show_restaurant(bad_restaurant)
 			expect(Restaurant.showable(user).to_a).to eq([@restaurant])
 		end
 	end
@@ -38,7 +43,7 @@ RSpec.describe Restaurant, :type => :model do
 			bad_restaurant = FactoryGirl.create(:restaurant)
 			recommendation = FactoryGirl.create(:recommendation,
 																					:restaurant => bad_restaurant)	
-			user.no_show_sources.push(recommendation.source)
+			user.add_no_show_source(recommendation.source)
 			expect(bad_restaurant.source_showable(user)).to eq(false)
 		end
 	end

@@ -3,6 +3,8 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
 		unless params[:no_filter]
+			@restaurants = @restaurants.showable(current_user)
+			
 			# Until I figure out how to do this via queries, keep this last
 			@restaurants = @restaurants.to_a.keep_if{|r| r.source_showable(current_user)}
 		end

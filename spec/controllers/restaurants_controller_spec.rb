@@ -20,12 +20,16 @@ RSpec.describe RestaurantsController, :type => :controller do
 				bad_restaurant = FactoryGirl.create(:restaurant)
 				recommendation = FactoryGirl.create(:recommendation,
 																						:restaurant => bad_restaurant)	
-				@user.no_show_sources.push(recommendation.source)
+				@user.add_no_show_source(recommendation.source)
 				get :index, format: :json	
 				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
 			end
 
 			it "should filter by restaurant preferences" do
+				bad_restaurant = FactoryGirl.create(:restaurant)
+				@user.add_no_show_restaurant(bad_restaurant)
+				get :index, format: :json	
+				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
 			end
 
 			it "should filter out tried restaurants by default" do

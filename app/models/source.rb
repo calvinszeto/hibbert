@@ -18,15 +18,4 @@ class Source < ActiveRecord::Base
 	validates :category, inclusion: {in: ["Blog", "TV Show", "Critic"],
 		message: "%{value} is not a valid category."}
 
-	def create_recommendations_from_json(input)
-		input.each do |record|
-			if restaurant = Restaurant.find_by(:name => record[:name])
-			else
-				restaurant = Restaurant.create(:name => record[:name])
-			end
-			Recommendation.create(:restaurant => restaurant,
-													 :source => self)
-		end
-	end
-
 end

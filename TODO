@@ -25,6 +25,7 @@ TODO:
     -User Authentication
     -Paginate results
 -Optimization
+    -Change the restaurant showable scope to use NOT EXISTS instead of NOT IN
     -Find out how to do source_showable using SQL/scopes
     -Remove unwanted Devise modules
 -Admin
