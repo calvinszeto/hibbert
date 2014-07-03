@@ -14,7 +14,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+
   factory :restaurant do
-		name "Larry's Lobsters"
+		sequence(:name) {|n| "restaurant#{n}"}
+		website "www.#{name}.org"
   end
 end

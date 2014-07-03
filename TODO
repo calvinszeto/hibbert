@@ -1,5 +1,8 @@
 TODO:
 -Write rspec expectations for non-admin API 
+    -Get concerns working
+    -Write out factories
+    -Write out specs
 -Code out backend
     -Fix routes to match API
     -Postgres hash for user preferences?
@@ -17,6 +20,7 @@ TODO:
     -Add "Don't Show this Again"
     -Add "Tried"
     -Recommender system that weights on sources specific for type of food
+    -Default images based on category if no images are found
 -Code up Frontend
     -Plan out JS framework
     -User Authentication

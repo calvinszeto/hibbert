@@ -12,6 +12,6 @@
 
 FactoryGirl.define do
   factory :category do
-    name "MyString"
+		sequence(:name) {|n| "restaurant_category#{n}"}
   end
 end
