@@ -98,6 +98,7 @@ GEM
     multi_json (1.10.1)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pg_array_parser (0.0.9)
     polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
@@ -209,6 +210,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  pg_array_parser
   pry
   rails (= 4.1.1)
   rails_12factor

@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 20140703134925) do
 
   create_table "user_preferences", force: true do |t|
     t.integer  "user_id"
-    t.string   "no_show_sources",     default: [], array: true
-    t.string   "no_show_restaurants", default: [], array: true
-    t.string   "tried_restaurants",   default: [], array: true
+    t.integer  "no_show_sources",     default: [], array: true
+    t.integer  "no_show_restaurants", default: [], array: true
+    t.integer  "tried_restaurants",   default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

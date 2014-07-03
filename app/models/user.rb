@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
 	delegate :no_show_sources,
 		:no_show_restaurants,
 		:tried_restaurants,
+		:add_no_show_source,
+		:remove_no_show_source,
+		:add_no_show_restaurant,
+		:remove_no_show_restaurant,
+		:add_tried_restaurant,
+		:remove_tried_restaurant,
 		:to => :user_preference
 
 	private

@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 
 # Use PostgreSQL
 gem 'pg'
+# Makes Postgres arrays faster
+gem 'pg_array_parser'
 # For deploying on Heroku
 gem 'rails_12factor', group: :production
 
