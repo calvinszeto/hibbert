@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
-		(1..10).each {FactoryGirl.create(:restaurant)}
-		@restaurants = Restaurant.all
-		@restaurant = @restaurants.first
+		@good_restaurant = FactoryGirl.create(:restaurant)
 	end
 
   describe "GET index" do
@@ -19,8 +17,12 @@ RSpec.describe RestaurantsController, :type => :controller do
 			end
 
 			it "should filter by source preferences" do
+				bad_restaurant = FactoryGirl.create(:restaurant)
+				recommendation = FactoryGirl.create(:recommendation,
+																						:restaurant => bad_restaurant)	
+				@user.no_show_sources.push(recommendation.source)
 				get :index, format: :json	
-				expect(assigns(:restaurants)).to eq(@restaurants)
+				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
 			end
 
 			it "should filter by restaurant preferences" do

@@ -36,7 +36,8 @@ RSpec.describe Restaurant, :type => :model do
 		it "should return false if restaurant is recommended by a bad source" do
 			user = FactoryGirl.create(:user)
 			bad_restaurant = FactoryGirl.create(:restaurant)
-			recommendation = FactoryGirl.create(:recommendation, :restaurant => bad_restaurant)	
+			recommendation = FactoryGirl.create(:recommendation,
+																					:restaurant => bad_restaurant)	
 			user.no_show_sources.push(recommendation.source)
 			expect(bad_restaurant.source_showable(user)).to eq(false)
 		end
