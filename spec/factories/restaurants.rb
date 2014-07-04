@@ -17,5 +17,11 @@ FactoryGirl.define do
   factory :restaurant do
 		sequence(:name) {|n| "restaurant#{n}"}
 		website {"www.#{name}.org"}
+
+		after(:create) do |r| 
+			if r.recommendations.empty?
+				FactoryGirl.create :recommendation, :restaurant => r
+			end
+		end
   end
 end

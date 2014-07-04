@@ -15,8 +15,7 @@ RSpec.describe RestaurantsController, :type => :controller do
 
 			it "should filter by source preferences" do
 				bad_restaurant = FactoryGirl.create(:restaurant)
-				recommendation = FactoryGirl.create(:recommendation,
-																						:restaurant => bad_restaurant)	
+				recommendation = bad_restaurant.recommendations.first
 				@user.add_no_show_source(recommendation.source)
 				get :index, format: :json	
 				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
@@ -41,16 +40,15 @@ RSpec.describe RestaurantsController, :type => :controller do
 					tried_restaurant = FactoryGirl.create(:restaurant)
 					@user.add_tried_restaurant(tried_restaurant)
 					get :index, tried: true, format: :json
-					expect(assigns(:restaurants).to_a).to eq(Restaurant.all.to_a)
+					expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 				end
 			end
 
 			context "with :no_filter=true" do
 				it "should return restaurants without filtering on user preferences" do
 				bad_restaurant_one = FactoryGirl.create(:restaurant)
-				recommendation = FactoryGirl.create(:recommendation,
-																						:restaurant => bad_restaurant_one)	
-				bad_restaurant_two = FactoryGirl.create(:restaurant)
+				recommendation = bad_restaurant_one.recommendations.first
+			  bad_restaurant_two = FactoryGirl.create(:restaurant)
 				@user.add_no_show_source(recommendation.source)
 				@user.add_no_show_restaurant(bad_restaurant_two)
 				get :index, no_filter: true, format: :json	

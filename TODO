@@ -3,8 +3,9 @@ TODO:
     -Write out controller specs
     -Write out view specs
 -Code out backend
+    -Add callback to recommendation to reduce source count if destroyed
+    -Add validation that a restaurant can only be recommended once per group
     -Fix routes to match API
-    -Postgres hash for user preferences?
     -Recommender system that applies default weight and chooses at random if weight is near the default
     -Otherwise, recommender gives restaurants which have the most sources, and then the most recommendations
     -Recommender system that weights on sources specific for recently searched locations
@@ -34,6 +35,7 @@ TODO:
     -Improve manual uploading
 -Seed Heroku Database
 -Automatic up-to-date for recommendations
+-(DONE)Postgres array for user preferences
 -(DONE)Add Recommendation Groups
 -(DONE)Move category into separate model
 -(DONE)Set up Postgres

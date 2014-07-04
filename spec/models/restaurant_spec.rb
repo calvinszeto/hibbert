@@ -32,6 +32,28 @@ RSpec.describe Restaurant, :type => :model do
 		end
 	end
 
+	context "scope source_showable" do
+		it "should return all restaurants if user has no no_show_sources" do
+			user = FactoryGirl.create(:user)
+			expect(Restaurant.not_tried_by(user).to_a).to eq([@restaurant])
+		end
+
+		it "should filter any restaurants recommended by bad sources" do
+			user = FactoryGirl.create(:user)
+			bad_restaurant = FactoryGirl.create(:restaurant)
+			recommendation = bad_restaurant.recommendations.first
+			user.add_no_show_source(recommendation.source)
+			expect(Restaurant.source_showable(user).to_a).to eq([@restaurant])
+		end
+
+		it "should only return one instance of each restaurant" do
+			user = FactoryGirl.create(:user)
+			second_good_recommendation = FactoryGirl.create :recommendation,
+				:restaurant => @restaurant
+			expect(Restaurant.source_showable(user).to_a).to eq([@restaurant])
+		end
+	end
+
 	context "scope not_tried_by" do
 		it "should return all restaurants if user has no tried_restaurants" do
 			user = FactoryGirl.create(:user)
@@ -46,24 +68,31 @@ RSpec.describe Restaurant, :type => :model do
 		end
 	end
 
-	context "source_showable" do
-		it "should return true if restaurant is not recommended by a bad source" do
-			user = FactoryGirl.create(:user)
-			expect(@restaurant.source_showable(user)).to eq(true)
+	context "scope only_categories" do
+		it "should only return restaurants which have any of the given categories" do
+			pending "working on scope source_showable first"
+			category = FactoryGirl.create :category
+			bad_restaurant = FactoryGirl.create :restaurant
+			category.restaurants << bad_restaurant
+			expect(Restaurant.only_categories([category.name])).to eq([@restaurant])
 		end
 
-		it "should return false if restaurant is recommended by a bad source" do
-			user = FactoryGirl.create(:user)
-			bad_restaurant = FactoryGirl.create(:restaurant)
-			recommendation = FactoryGirl.create(:recommendation,
-																					:restaurant => bad_restaurant)	
-			user.add_no_show_source(recommendation.source)
-			expect(bad_restaurant.source_showable(user)).to eq(false)
+		it "should return restaurants of any category if given an empty list "
+	end
+
+	context "scope except_categories" do
+		it "should return restaurants which don't have any of the given categories"
+
+		it "should return restaurants of any category if given an empty list "
+	end
+
+	context "sources method" do
+		it "should return the sources that belong to a restaurant" do
+			expect(@restaurant.sources.count).to eq(1)
+			expect{FactoryGirl.create :recommendation, :restaurant => @restaurant}
+				.to change{@restaurant.sources.count}.by(1)
+			expect{RecommendationGroup.all.each.map(&:destroy)}
+				.to change{@restaurant.sources.count}.to(0)
 		end
 	end
-
-	context "scope source_showable" do
-		it "should filter any restaurants recommended by bad sources"
-	end
-
 end
