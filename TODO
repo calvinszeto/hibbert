@@ -3,6 +3,7 @@ TODO:
     -Write out controller specs
     -Write out view specs
 -Code out backend
+    -Get rid of sources_count for sources_list
     -Add callback to recommendation to reduce source count if destroyed
     -Add validation that a restaurant can only be recommended once per group
     -Find out how to return restaurants that are excluded from the inner join

@@ -16,6 +16,11 @@ RSpec.describe Recommendation, :type => :model do
 		@recommendation = FactoryGirl.build(:recommendation)
 	end
 
+	it "updates restaurant's sources_list after create" do
+		@recommendation.save
+		expect(@recommendation.restaurant.sources_list).to include(@recommendation.source.id)
+	end
+
 	it "updates restaurant's sources counts after create" do
 		expect{@recommendation.save}.to change{@recommendation.restaurant.sources_count}.by(1)
 	end

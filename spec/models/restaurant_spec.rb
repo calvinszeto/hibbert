@@ -9,6 +9,7 @@
 #  recommendations_count :integer          default(0)
 #  sources_count         :integer          default(0)
 #  website               :string(255)
+#  sources_list          :integer          default([]), is an Array
 #
 
 require 'rails_helper'
@@ -105,7 +106,7 @@ RSpec.describe Restaurant, :type => :model do
 			expect{FactoryGirl.create :recommendation, :restaurant => @restaurant}
 				.to change{@restaurant.sources.count}.by(1)
 			expect{RecommendationGroup.all.each.map(&:destroy)}
-				.to change{@restaurant.sources.count}.to(0)
+				.to change{@restaurant.reload; @restaurant.sources.count}.to(0)
 		end
 	end
 end

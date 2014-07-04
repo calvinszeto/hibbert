@@ -9,6 +9,7 @@
 #  recommendations_count :integer          default(0)
 #  sources_count         :integer          default(0)
 #  website               :string(255)
+#  sources_list          :integer          default([]), is an Array
 #
 
 class Restaurant < ActiveRecord::Base
@@ -41,7 +42,6 @@ class Restaurant < ActiveRecord::Base
 																						.uniq}
 	
 	def sources
-		Source.joins(recommendation_groups: :recommendations)
-					.where(recommendations: {restaurant_id: self.id})
+		Source.find(sources_list)
 	end
 end
