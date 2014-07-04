@@ -7,7 +7,6 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #  recommendations_count :integer          default(0)
-#  sources_count         :integer          default(0)
 #  website               :string(255)
 #  sources_list          :integer          default([]), is an Array
 #

@@ -3,8 +3,7 @@ TODO:
     -Write out controller specs
     -Write out view specs
 -Code out backend
-    -Get rid of sources_count for sources_list
-    -Add callback to recommendation to reduce source count if destroyed
+    -Find out how to make sources_count a sql operation using array_length
     -Add validation that a restaurant can only be recommended once per group
     -Find out how to return restaurants that are excluded from the inner join
     -Fix routes to match API
@@ -37,6 +36,7 @@ TODO:
     -Improve manual uploading
 -Seed Heroku Database
 -Automatic up-to-date for recommendations
+-(DONE)Get rid of sources_count for sources_list
 -(DONE)Postgres array for user preferences
 -(DONE)Add Recommendation Groups
 -(DONE)Move category into separate model

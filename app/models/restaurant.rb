@@ -7,7 +7,6 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #  recommendations_count :integer          default(0)
-#  sources_count         :integer          default(0)
 #  website               :string(255)
 #  sources_list          :integer          default([]), is an Array
 #
@@ -19,13 +18,10 @@ class Restaurant < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
 	scope :showable, ->(user) { where("(?) IS NULL OR restaurants.id NOT IN (?)", user.no_show_restaurants, user.no_show_restaurants)}
-	# source_showable doesn't return restaurants without any recommendations
-	scope :source_showable, ->(user) { joins(recommendations: :recommendation_group)
-																	 .where("(?) IS NULL OR 
-																					recommendation_groups.source_id NOT IN (?)",
-																				 user.no_show_sources,
-																				 user.no_show_sources)
-																	 .uniq}
+	scope :source_showable, ->(user) { where(
+									 	 "(?) IS NULL OR (?) != ANY (sources_list)",
+																					 user.no_show_sources, 
+																					 user.no_show_sources)}
 	scope :not_tried_by, ->(user) { where("(?) IS NULL OR restaurants.id NOT IN (?)", user.tried_restaurants, user.tried_restaurants)}
 
 	scope :only_categories, ->(categories) { joins(:categories)
@@ -43,5 +39,9 @@ class Restaurant < ActiveRecord::Base
 	
 	def sources
 		Source.find(sources_list)
+	end
+
+	def sources_count
+		sources_list.count
 	end
 end

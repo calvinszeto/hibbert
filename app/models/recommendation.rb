@@ -19,7 +19,6 @@ class Recommendation < ActiveRecord::Base
 
 	after_create :add_to_restaurant_sources_list
 	after_destroy :remove_from_restaurant_sources_list
-	after_create :update_restaurant_sources_count
 
 	private
 		def add_to_restaurant_sources_list()
@@ -39,12 +38,5 @@ class Recommendation < ActiveRecord::Base
 				self.restaurant.sources_list_will_change!
 				self.restaurant.save
 			end
-		end
-
-		def update_restaurant_sources_count()
-			# This may or may not increment, since sources may recommend
-			# a restaurant more than once. Thus we cannot use a simple
-			# counter cache.
-			self.restaurant.sources_count = self.restaurant.sources.count
 		end
 end
