@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703210611) do
+ActiveRecord::Schema.define(version: 20140704171312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140703210611) do
     t.integer  "recommendations_count", default: 0
     t.integer  "sources_count",         default: 0
     t.string   "website"
+    t.integer  "sources_list",          default: [], array: true
   end
 
   create_table "sources", force: true do |t|
