@@ -70,20 +70,33 @@ RSpec.describe Restaurant, :type => :model do
 
 	context "scope only_categories" do
 		it "should only return restaurants which have any of the given categories" do
-			pending "working on scope source_showable first"
 			category = FactoryGirl.create :category
+			category.restaurants << @restaurant
 			bad_restaurant = FactoryGirl.create :restaurant
-			category.restaurants << bad_restaurant
-			expect(Restaurant.only_categories([category.name])).to eq([@restaurant])
+			expect(Restaurant.only_categories([category.name]).to_a).to eq([@restaurant])
 		end
 
-		it "should return restaurants of any category if given an empty list "
+		it "should return restaurants of any category if given an empty list" do
+			category = FactoryGirl.create :category
+			category.restaurants << @restaurant
+			expect(Restaurant.only_categories([]).to_a).to eq([@restaurant])
+		end
 	end
 
 	context "scope except_categories" do
-		it "should return restaurants which don't have any of the given categories"
+		it "should return restaurants which don't have any of the given categories" do
+			pending "Adding a categories array on restaurant"
+			category = FactoryGirl.create :category
+			bad_restaurant = FactoryGirl.create :restaurant
+			category.restaurants << bad_restaurant
+			expect(Restaurant.except_categories([category.name]).to_a).to eq([@restaurant])
+		end
 
-		it "should return restaurants of any category if given an empty list "
+		it "should return restaurants of any category if given an empty list " do
+			category = FactoryGirl.create :category
+			category.restaurants << @restaurant
+			expect(Restaurant.except_categories([]).to_a).to eq([@restaurant])
+		end
 	end
 
 	context "sources method" do

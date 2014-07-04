@@ -19,9 +19,8 @@ FactoryGirl.define do
 		website {"www.#{name}.org"}
 
 		after(:create) do |r| 
-			if r.recommendations.empty?
 				FactoryGirl.create :recommendation, :restaurant => r
-			end
+				r.categories << FactoryGirl.create(:category)
 		end
   end
 end

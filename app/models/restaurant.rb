@@ -18,6 +18,7 @@ class Restaurant < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
 	scope :showable, ->(user) { where("(?) IS NULL OR restaurants.id NOT IN (?)", user.no_show_restaurants, user.no_show_restaurants)}
+	# source_showable doesn't return restaurants without any recommendations
 	scope :source_showable, ->(user) { joins(recommendations: :recommendation_group)
 																	 .where("(?) IS NULL OR 
 																					recommendation_groups.source_id NOT IN (?)",
@@ -26,8 +27,18 @@ class Restaurant < ActiveRecord::Base
 																	 .uniq}
 	scope :not_tried_by, ->(user) { where("(?) IS NULL OR restaurants.id NOT IN (?)", user.tried_restaurants, user.tried_restaurants)}
 
-	scope :only_categories, ->(categories) {}
-	scope :except_categories, ->(categories) {}
+	scope :only_categories, ->(categories) { joins(:categories)
+																					.where("(?) IS NULL OR
+																								 categories.name IN (?)",
+																								categories,
+																								categories)
+																					.uniq}
+	scope :except_categories, ->(categories) { joins(:categories)
+																						.where("(?) IS NULL OR
+																									 categories.name NOT IN (?)",
+																									categories,
+																									categories)
+																						.uniq}
 	
 	def sources
 		Source.joins(recommendation_groups: :recommendations)
