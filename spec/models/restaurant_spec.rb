@@ -9,6 +9,7 @@
 #  recommendations_count :integer          default(0)
 #  website               :string(255)
 #  sources_list          :integer          default([]), is an Array
+#  categories_list       :string(255)      default([]), is an Array
 #
 
 require 'rails_helper'

@@ -9,5 +9,6 @@
 #
 
 class Category < ActiveRecord::Base
-		has_and_belongs_to_many :restaurants
+		has_many :restaurants, through: :categorizations
+		has_many :categorizations, dependent: :destroy
 end
