@@ -18,21 +18,21 @@ RSpec.describe RestaurantsController, :type => :controller do
 				recommendation = bad_restaurant.recommendations.first
 				@user.add_no_show_source(recommendation.source)
 				get :index, format: :json	
-				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant])
 			end
 
 			it "should filter by restaurant preferences" do
 				bad_restaurant = FactoryGirl.create(:restaurant)
 				@user.add_no_show_restaurant(bad_restaurant)
 				get :index, format: :json	
-				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant])
 			end
 
 			it "should filter out tried restaurants by default" do
 				tried_restaurant = FactoryGirl.create(:restaurant)
 				@user.add_tried_restaurant(tried_restaurant)
 				get :index, format: :json
-				expect(assigns(:restaurants).to_a).to eq([@good_restaurant])
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant])
 			end
 
 			context "with :tried=false" do
@@ -52,7 +52,7 @@ RSpec.describe RestaurantsController, :type => :controller do
 				@user.add_no_show_source(recommendation.source)
 				@user.add_no_show_restaurant(bad_restaurant_two)
 				get :index, no_filter: true, format: :json	
-				expect(assigns(:restaurants).to_a).to eq(Restaurant.all.to_a)
+				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 				end
 			end
 		end
@@ -60,27 +60,50 @@ RSpec.describe RestaurantsController, :type => :controller do
 		context "without user signed in" do
 			it "should return all restaurants by default" do
 				get :index, format: :json	
-				expect(assigns(:restaurants).to_a).to eq(Restaurant.all.to_a)
+				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 			end
 
 			context "with :no_filter=true" do
 				it "should return all restaurants by default" do
 					get :index, no_filter: true, format: :json	
-					expect(assigns(:restaurants).to_a).to eq(Restaurant.all.to_a)
+					expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 				end
 			end
 		end
 
 		context "with :only param" do
-			it "should return all categories if param is empty"
+			before(:each) do
+				bad_restaurant = FactoryGirl.create :restaurant
+			end
 
-			it "should return only restaurants whose category matches the param"
+			it "should return all categories if param is empty" do
+				get :index, format: :json	
+				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
+			end
+
+			it "should return only restaurants whose category matches the param" do
+				good_category = @good_restaurant.categories.first
+				get :index, :only => [good_category.name], format: :json	
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant])
+			end
 		end
 
 		context "with :except param" do
-			it "should return all categories if param is empty"
+			before(:each) do
+				@bad_restaurant = FactoryGirl.create :restaurant
+				@bad_category = FactoryGirl.create :category
+				@bad_restaurant.categories << @bad_category
+			end
 
-			it "should filter out restaurants whose category matches the param"
+			it "should return all categories if param is empty" do
+				get :index, format: :json	
+				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
+			end
+
+			it "should filter out restaurants whose category matches the param" do
+				get :index, :except => [@bad_category.name], format: :json	
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant])
+			end
 		end
 
 		context "with :location param" do

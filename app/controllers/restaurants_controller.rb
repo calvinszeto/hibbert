@@ -2,12 +2,12 @@ class RestaurantsController < ApplicationController
   # GET /restaurants?format=json{&only&except&location&tried&no_filter}
   def index
     @restaurants = Restaurant.all
-		#if params[:only]
-			#@restaurants = @restaurants.only_categories(params[:only])
-		#end
-		#if params[:except]
-			#@restaurants = @restaurants.except_categories(params[:except])
-		#end
+		if params[:only]
+			@restaurants = @restaurants.only_categories(params[:only])
+		end
+		if params[:except]
+			@restaurants = @restaurants.except_categories(params[:except])
+		end
 		unless current_user.nil?
 			unless params[:tried]
 				@restaurants = @restaurants.not_tried_by(current_user)
