@@ -23,25 +23,21 @@ class Restaurant < ActiveRecord::Base
 																		user.no_show_restaurants, 
 																		user.no_show_restaurants)}
 	scope :source_showable, ->(user) { where(
-									 	 "(?) IS NULL OR (?) != ANY (sources_list)",
+									 	 "(?) IS NULL OR NOT ((?) = ANY (sources_list))",
 																					 user.no_show_sources, 
 																					 user.no_show_sources)}
 	scope :not_tried_by, ->(user) { where("(?) IS NULL OR restaurants.id NOT IN (?)",
 																				user.tried_restaurants, 
 																				user.tried_restaurants)}
 
-	scope :only_categories, ->(categories) { joins(:categories)
-																					.where("(?) IS NULL OR
-																								 categories.name IN (?)",
+	scope :only_categories, ->(categories) { where("(?) IS NULL OR
+																								 ((?) = ANY (categories_list))",
 																								categories,
-																								categories)
-																					.uniq}
-	scope :except_categories, ->(categories) { joins(:categories)
-																						.where("(?) IS NULL OR
-																									 categories.name NOT IN (?)",
+																								categories)}
+	scope :except_categories, ->(categories) { where("(?) IS NULL OR
+																								 NOT ((?) = ANY (categories_list))",
 																									categories,
-																									categories)
-																						.uniq}
+																									categories)}
 	
 	def sources
 		Source.find(sources_list)

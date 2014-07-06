@@ -39,11 +39,13 @@ RSpec.describe Restaurant, :type => :model do
 			expect(Restaurant.not_tried_by(user).to_a).to eq([@restaurant])
 		end
 
-		it "should filter any restaurants recommended by bad sources" do
+		it "should filter any restaurants recommended by any bad sources" do
 			user = FactoryGirl.create(:user)
 			bad_restaurant = FactoryGirl.create(:restaurant)
-			recommendation = bad_restaurant.recommendations.first
-			user.add_no_show_source(recommendation.source)
+			bad_recommendation = bad_restaurant.recommendations.first
+			good_recommendation = FactoryGirl.create(:recommendation,
+																							:restaurant => bad_restaurant)
+			user.add_no_show_source(bad_recommendation.source)
 			expect(Restaurant.source_showable(user).to_a).to eq([@restaurant])
 		end
 
@@ -86,7 +88,6 @@ RSpec.describe Restaurant, :type => :model do
 
 	context "scope except_categories" do
 		it "should return restaurants which don't have any of the given categories" do
-			pending "Adding a categories array on restaurant"
 			category = FactoryGirl.create :category
 			bad_restaurant = FactoryGirl.create :restaurant
 			category.restaurants << bad_restaurant

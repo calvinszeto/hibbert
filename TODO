@@ -3,8 +3,6 @@ TODO:
     -Write out controller specs
     -Write out view specs
 -Code out backend
-    -Add a join model for restaurants and categories
-    -Find out how to make sources_count a sql operation using array_length
     -Add validation that a restaurant can only be recommended once per group
     -Find out how to return restaurants that are excluded from the inner join
     -Fix routes to match API
@@ -27,6 +25,7 @@ TODO:
     -User Authentication
     -Paginate results
 -Optimization
+    -Find out how to make sources_count a sql operation using array_length
     -Change the restaurant showable scope to use NOT EXISTS instead of NOT IN
     -Find out how to do source_showable using SQL/scopes
     -Remove unwanted Devise modules
@@ -37,6 +36,7 @@ TODO:
     -Improve manual uploading
 -Seed Heroku Database
 -Automatic up-to-date for recommendations
+-(DONE)Add a join model for restaurants and categories
 -(DONE)Get rid of sources_count for sources_list
 -(DONE)Postgres array for user preferences
 -(DONE)Add Recommendation Groups
