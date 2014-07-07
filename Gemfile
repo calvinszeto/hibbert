@@ -53,8 +53,9 @@ gem 'pry', group: :development
 
 # Carrierwave for uploading images
 gem 'carrierwave'
-# Geocoder for working with locations
+# Geocoder for working with locations and Indirizzo for address parsing
 gem 'geocoder'
+gem 'Indirizzo'
 
 # Gems needed for using RSpec w/ Guard and Spring
 group :development, :test do
