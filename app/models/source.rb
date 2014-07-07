@@ -12,7 +12,6 @@
 #
 
 class Source < ActiveRecord::Base
-
 	has_many :recommendation_groups, dependent: :destroy
 	has_many :recommendations, through: :recommendation_groups
 

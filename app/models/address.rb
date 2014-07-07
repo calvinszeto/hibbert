@@ -16,4 +16,17 @@
 
 class Address < ActiveRecord::Base
   belongs_to :addressable
+
+	# Add validations here
+
+	geocoded_by :full_address
+	after_validation :geocode, if: :address_changed?
+
+	def full_address
+		return [street, city, state, zip_code].join(" ")
+	end
+
+	def address_changed?
+		street_changed? || city_changed? || state_changed? || zip_code_changed?
+	end
 end
