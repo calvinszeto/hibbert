@@ -15,4 +15,7 @@
 class RecommendationGroup < ActiveRecord::Base
   belongs_to :source
 	has_many :recommendations, dependent: :destroy
+
+	scope :find_by_source_name, ->(name) { joins(:source)
+																				.where(sources: {name: name})}
 end
