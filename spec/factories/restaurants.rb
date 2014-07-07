@@ -20,8 +20,8 @@ FactoryGirl.define do
 		website {"www.#{name}.org"}
 
 		after(:create) do |r| 
-				FactoryGirl.create :recommendation, :restaurant => r
-				r.categories << FactoryGirl.create(:category)
+			FactoryGirl.create :recommendation, :restaurant => r
+			r.categories << FactoryGirl.create(:category)
 		end
   end
 end

@@ -34,6 +34,7 @@ TODO:
     -Find out how to do source_showable using SQL/scopes
     -Remove unwanted Devise modules
     -Move to memcached/memcashier
+    -Add more fine tuning btwn ordering by location vs. ordering by recommendations
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API

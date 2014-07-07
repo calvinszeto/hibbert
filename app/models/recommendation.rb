@@ -22,10 +22,10 @@ class Recommendation < ActiveRecord::Base
 
 	private
 		def add_to_restaurant_sources_list()
-			self.restaurant.update_sources_list('create', self.source)
+			self.restaurant.update_sources_list('create', self.source) unless self.restaurant.nil?
 		end
 
 		def remove_from_restaurant_sources_list()
-			self.restaurant.update_sources_list('destroy', self.source)
+			self.restaurant.update_sources_list('destroy', self.source) unless self.restaurant.nil?
 		end
 end

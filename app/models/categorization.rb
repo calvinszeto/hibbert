@@ -18,10 +18,11 @@ class Categorization < ActiveRecord::Base
 
 	private
 		def add_to_restaurant_categories_list()
-			self.restaurant.update_categories_list('create', self.category)
+			self.restaurant.update_categories_list('create', self.category) unless self.restaurant.nil?
 		end
 
 		def remove_from_restaurant_categories_list()
-			self.restaurant.update_categories_list('destroy', self.category)
+			self.restaurant.update_categories_list('destroy', self.category) unless self.restaurant.nil?
+
 		end
 end

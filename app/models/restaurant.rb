@@ -38,6 +38,10 @@ class Restaurant < ActiveRecord::Base
 																								 NOT ((?) = ANY (categories_list))",
 																									categories,
 																									categories)}
+
+	scope :order_by_reputation, ->() { select('*, array_length(sources_list, 1) as s_count') 
+																		.order('s_count DESC')
+																		.order(recommendations_count: :desc)}
 	
 	def sources
 		Source.find(sources_list)
@@ -65,8 +69,8 @@ class Restaurant < ActiveRecord::Base
 	def update_categories_list(operation, category)
 		if operation == 'create' && !categories_list.include?(category.name)
 			categories_list.push category.name
-		elsif operation == 'destroy' && Categorizations.where(restaurant: self)
-											 .joins(:categories)
+		elsif operation == 'destroy' && Categorization.where(restaurant: self)
+											 .joins(:category)
 										   .where(categories: {name: category.name})
 										   .empty?
 			categories_list.delete category.name

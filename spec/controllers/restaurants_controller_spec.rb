@@ -171,7 +171,19 @@ RSpec.describe RestaurantsController, :type => :controller do
 		end
 
 		context "without :location param" do
-			it "should return restaurants ordered by sources count and recommendation count"
+			it "should return restaurants ordered by sources count and recommendation count" do
+				@good_restaurant.destroy
+				restaurants = []
+				(1..10).each do |n|
+					restaurant = FactoryGirl.create(:restaurant)
+					(1..n).each do |m|
+						FactoryGirl.create(:recommendation, restaurant: restaurant)
+					end
+					restaurants.push restaurant
+				end
+				get :index, format: :json
+				expect(assigns(:restaurants).to_a).to eq(restaurants.reverse)
+			end
 		end
   end
 

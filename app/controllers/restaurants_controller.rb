@@ -25,7 +25,10 @@ class RestaurantsController < ApplicationController
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
 			@restaurants = Restaurant.near(@restaurants, params[:location], distance)
+		else
+			@restaurants = @restaurants.order_by_reputation
 		end
+		@restaurants
   end
 
   # GET /restaurants/1?format=json

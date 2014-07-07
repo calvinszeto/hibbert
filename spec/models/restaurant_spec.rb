@@ -101,6 +101,21 @@ RSpec.describe Restaurant, :type => :model do
 		end
 	end
 
+	context "scope order_by_reputation" do
+		it "should return restaurants by descending sources count and recommendations count" do
+			@restaurant.destroy
+			restaurants = []
+			(1..10).each do |n|
+				restaurant = FactoryGirl.create(:restaurant)
+				(1..n).each do |m|
+					FactoryGirl.create(:recommendation, restaurant: restaurant)
+				end
+				restaurants.push restaurant
+			end
+			expect(Restaurant.order_by_reputation.to_a).to eq(restaurants.reverse)
+		end
+	end
+
 	context "sources method" do
 		it "should return the sources that belong to a restaurant" do
 			expect(@restaurant.sources.count).to eq(1)
