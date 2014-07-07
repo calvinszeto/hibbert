@@ -11,6 +11,17 @@ require 'rails_helper'
 
 #it "should return all restaurants if param can't be geocoded"
 
+# The following specs were written here but should be in the user controller
+#describe "PATCH update" do
+	#context "with :tried param" do
+		#it "should update user tried preferences"
+	#end
+
+	#context "with :do_not_show param" do
+		#it "should update user do-not-show preferences"
+	#end
+#end
+
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
@@ -120,33 +131,41 @@ RSpec.describe RestaurantsController, :type => :controller do
 		context "with :location param" do
 			before(:each) do
 				allow_any_instance_of(Address).to receive(:geocode)
+				@near_restaurant = FactoryGirl.create :restaurant	
+				FactoryGirl.create :address, :addressable => @good_restaurant
 			end
 
 			it "should return restaurants within the default search distance" do
-				FactoryGirl.create :address, :addressable => @good_restaurant
-				near_restaurant = FactoryGirl.create :restaurant	
-				FactoryGirl.create :address, :addressable => near_restaurant, 
+				FactoryGirl.create :address, :addressable => @near_restaurant, 
 					:distance  => RestaurantsController.default_search_distance - 1
 				FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
 					:distance => RestaurantsController.default_search_distance + 1 
 				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
-				expect(assigns(:restaurants).to_a).to eq([@good_restaurant, near_restaurant])
+				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant, @near_restaurant])
 			end
 			
 			it "should return restaurants ordered by distance from the param" do
+				restaurants = [@good_restaurant]
+				(1..10).each do |n|
+					restaurant = FactoryGirl.create(:restaurant)
+					FactoryGirl.create :address, :addressable => restaurant, :distance => n
+					restaurants.push restaurant
+				end
+				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
+				expect(assigns(:restaurants).to_a).to eq(restaurants)
 			end
 
 			context "with :distance param" do
 				it "should return restaurants within the provided distance" do
 					FactoryGirl.create :address, :addressable => @good_restaurant
-					near_restaurant = FactoryGirl.create :restaurant	
+					@near_restaurant = FactoryGirl.create :restaurant	
 					distance = RestaurantsController.default_search_distance * 2
-					FactoryGirl.create :address, :addressable => near_restaurant, 
+					FactoryGirl.create :address, :addressable => @near_restaurant, 
 						:distance  => distance - 1
 					FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
 						:distance => distance + 1
 					get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], distance: distance, format: :json	
-					expect(assigns(:restaurants).to_a).to eq([@good_restaurant, near_restaurant])
+					expect(assigns(:restaurants).to_a).to match_array([@good_restaurant, @near_restaurant])
 				end
 			end
 		end
@@ -157,20 +176,9 @@ RSpec.describe RestaurantsController, :type => :controller do
   end
 
   describe "GET show" do
-		it "should return the specified restaurant object"
-      #restaurant = Restaurant.create! valid_attributes
-      #get :show, {:id => restaurant.to_param}, valid_session
-      #expect(assigns(:restaurant)).to eq(restaurant)
+		it "should return the specified restaurant object" do
+			get :show, :id => @good_restaurant.id, format: :json
+			expect(assigns(:restaurant)).to eq(@good_restaurant)
+		end
   end
-
-	describe "PATCH update" do
-		context "with :tried param" do
-			it "should update user tried preferences"
-		end
-
-		context "with :do_not_show param" do
-			it "should update user do-not-show preferences"
-		end
-	end
-
 end

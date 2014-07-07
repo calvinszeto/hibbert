@@ -24,7 +24,7 @@ class RestaurantsController < ApplicationController
 		end
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
-			@restaurants = Restaurant.near(params[:location], distance)
+			@restaurants = Restaurant.near(@restaurants, params[:location], distance)
 		end
   end
 
@@ -32,8 +32,4 @@ class RestaurantsController < ApplicationController
   def show
 		@restaurant = Restaurant.find(params[:id])
   end
-
-	# PATCH /restaurants/1
-	def update
-	end
 end
