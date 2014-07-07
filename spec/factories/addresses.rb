@@ -18,12 +18,15 @@
 
 FactoryGirl.define do
   factory :address do
-    street "MyString"
-    city "MyString"
-    state "MyString"
-    zip_code 1
-    latitude 1.5
-    longitude 1.5
-    addressable nil
+		ignore do
+			distance 0
+		end
+
+		sequence(:street) {|n| "#{n} street"}
+    city "Buford"
+    state "WY"
+    zip_code 82052
+		latitude 20
+		longitude {20 + distance / 6.5 * 0.1 }
   end
 end

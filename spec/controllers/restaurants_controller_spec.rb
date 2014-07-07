@@ -1,5 +1,16 @@
 require 'rails_helper'
 
+# The following specs were written here but belong in view specs
+#it "should return restaurants with user preference attributes"
+
+#it "should return a restaurant without user preference attributes"
+
+#it "should return restaurants with a distance attribute"
+
+#it "should return an error if param can't be geocoded"
+
+#it "should return all restaurants if param can't be geocoded"
+
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
@@ -107,13 +118,41 @@ RSpec.describe RestaurantsController, :type => :controller do
 		end
 
 		context "with :location param" do
-			it "should return restaurants with a distance attribute"
+			before(:each) do
+				allow_any_instance_of(Address).to receive(:geocode)
+			end
 
-			it "should return restaurants ordered by distance from the param"
+			it "should return restaurants within the default search distance" do
+				FactoryGirl.create :address, :addressable => @good_restaurant
+				near_restaurant = FactoryGirl.create :restaurant	
+				FactoryGirl.create :address, :addressable => near_restaurant, 
+					:distance  => RestaurantsController.default_search_distance - 1
+				FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
+					:distance => RestaurantsController.default_search_distance + 1 
+				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
+				expect(assigns(:restaurants).to_a).to eq([@good_restaurant, near_restaurant])
+			end
+			
+			it "should return restaurants ordered by distance from the param" do
+			end
 
-			it "should return an error if param can't be geocoded"
+			context "with :distance param" do
+				it "should return restaurants within the provided distance" do
+					FactoryGirl.create :address, :addressable => @good_restaurant
+					near_restaurant = FactoryGirl.create :restaurant	
+					distance = RestaurantsController.default_search_distance * 2
+					FactoryGirl.create :address, :addressable => near_restaurant, 
+						:distance  => distance - 1
+					FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
+						:distance => distance + 1
+					get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], distance: distance, format: :json	
+					expect(assigns(:restaurants).to_a).to eq([@good_restaurant, near_restaurant])
+				end
+			end
+		end
 
-			it "should return all restaurants if param can't be geocoded"
+		context "without :location param" do
+			it "should return restaurants ordered by sources count and recommendation count"
 		end
   end
 
@@ -122,14 +161,6 @@ RSpec.describe RestaurantsController, :type => :controller do
       #restaurant = Restaurant.create! valid_attributes
       #get :show, {:id => restaurant.to_param}, valid_session
       #expect(assigns(:restaurant)).to eq(restaurant)
-
-		context "with user signed in" do
-			it "should return a restaurant with user preference attributes"
-		end
-
-		context "without user signed in" do
-			it "should return a restaurant without user preference attributes"
-		end
   end
 
 	describe "PATCH update" do

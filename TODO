@@ -4,8 +4,6 @@ TODO:
         -Add restaurant specs for ordering
     -Write out view specs
         -Recommendation count
--Write rake task for uploading data
-    -Add categories for restaurants
 -Code out backend
     -Add validation that a restaurant can only be recommended once per group
     -Add address validations
@@ -25,6 +23,7 @@ TODO:
     -Add "Tried"
     -Recommender system that weights on sources specific for type of food
     -Default images based on category if no images are found
+-Add uploading of categories for restaurants
 -Code up Frontend
     -Plan out JS framework
     -User Authentication
@@ -34,7 +33,7 @@ TODO:
     -Change the restaurant showable scope to use NOT EXISTS instead of NOT IN
     -Find out how to do source_showable using SQL/scopes
     -Remove unwanted Devise modules
-    -Move to memcached
+    -Move to memcached/memcashier
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API
@@ -42,6 +41,7 @@ TODO:
     -Improve manual uploading
 -Seed Heroku Database
 -Automatic up-to-date for recommendations
+-(DONE)Write rake task for uploading data
 -(DONE)Find out how to return restaurants that are excluded from the inner join
 -(DONE)Add a join model for restaurants and categories
 -(DONE)Get rid of sources_count for sources_list

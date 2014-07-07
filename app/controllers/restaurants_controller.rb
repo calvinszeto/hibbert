@@ -1,4 +1,9 @@
 class RestaurantsController < ApplicationController
+	@@default_search_distance = 25 # MILES
+	def self.default_search_distance
+		@@default_search_distance
+	end
+
   # GET /restaurants?format=json{&only&except&location&tried&no_filter}
   def index
     @restaurants = Restaurant.all
@@ -16,6 +21,10 @@ class RestaurantsController < ApplicationController
 				@restaurants = @restaurants.showable(current_user)
 				@restaurants = @restaurants.source_showable(current_user)
 			end
+		end
+		if params[:location]
+			distance = params[:distance] || @@default_search_distance
+			@restaurants = Restaurant.near(params[:location], distance)
 		end
   end
 
