@@ -1,20 +1,37 @@
 Rails.application.routes.draw do
+	# TODO: Add angular app
+	# root :to =>
+
 	devise_for :users
-	resources :users
-	get '/users', to: 'users#show'
-	patch '/users', to: 'users#update'
-	delete '/users', to: 'users#destroy'
+
 	scope :format => true, :constraints => { :format => 'json' } do
-		resources :recommendations
+		get '/users', to: 'users#show'
+		patch '/users', to: 'users#update'
+		post '/users', to: 'users#create'
+		delete '/users', to: 'users#destroy'
 
-		resources :recommendation_groups
+		get '/restaurants', to: 'restaurants#index'
+		get '/restaurants/:id', to: 'restaurants#show'
 
-		resources :sources
+		get '/recommendation_groups_for/:name', to: 'recommendation_groups#index'
+		get '/recommendation_groups/:id', to: 'recommendation_groups#show'
 
-		resources :restaurants
-	end
+		get '/sources', to: 'sources#index'
+		get '/sources/:id', to: 'sources#show'
 
-	namespace :admin do
-		resources :sources
+		devise_scope :user do
+			match '/sessions' => 'sessions#create', :via => :post
+			match '/sessions' => 'sessions#destroy', :via => :delete
+		end
+
+		namespace :admin do
+			resources :sources
+
+			resources :recommendation_groups
+
+			resources :sources
+
+			resources :restaurants
+		end
 	end
 end

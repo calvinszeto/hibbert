@@ -3,9 +3,6 @@ TODO:
     -Write out view specs
         -Recommendation count
 -Code out backend
-    -Validations
-        -(DONE)Add validation that a restaurant can only be recommended once per group
-        -(DONE)Add validation on model names
     -Routes
         -Fix routes to match API
         -Add root route

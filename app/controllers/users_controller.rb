@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:create]
 
+	@@current_user_url = '/users'
+
   # GET /users/1.json
   def show
 		@user = current_user
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			sign_in(@user)
-			render :show, status: :created, location: @user, format: :json
+			render :show, status: :created, location: @@current_user_url, format: :json
 		else
 			render json: @user.errors, status: :unprocessable_entity
 		end
@@ -45,7 +47,7 @@ class UsersController < ApplicationController
 				@user.remove_tried_restaurant(restaurant)
 			end
 		end
-		render :show, status: :ok, location: @user, format: :json 
+		render :show, status: :ok, location: @@current_user_url, format: :json 
 	end
 
 	# DELETE /users/1.json
