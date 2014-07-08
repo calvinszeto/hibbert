@@ -156,8 +156,7 @@ RSpec.describe RestaurantsController, :type => :controller do
 			end
 
 			it "should return all restaurants if no results are found" do
-				# TODO: stub out geocoding call
-				get :index, location: "invalid", format: :json
+				get :index, location: [0,0], format: :json
 				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 			end
 
