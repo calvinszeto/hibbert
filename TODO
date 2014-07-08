@@ -3,15 +3,13 @@ TODO:
     -Write out view specs
         -Recommendation count
 -Code out backend
-    -Routes
-        -Fix routes to match API
-        -Add root route
     -Views
         -Add distance for any location searches
     -Images
         -Add Images to Restaurants and Sources
         -Default images based on category if no images are found
 -Code up Frontend
+    -Add root route
     -Plan out JS framework
     -User Authentication
     -Paginate results
@@ -25,7 +23,7 @@ TODO:
     -Change the restaurant showable scope to use NOT EXISTS instead of NOT IN
     -Find out how to do source_showable using SQL/scopes
     -Remove unwanted Devise modules
-    -Move to memcached/memcashier
+    -Move to memcached/memcashier for views(fragment caching) and for geocoding
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations
 -Admin
     -Plan out admin backend API

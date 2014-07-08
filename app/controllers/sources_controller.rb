@@ -7,7 +7,9 @@ class SourcesController < ApplicationController
   # GET /sources?format=json{&location&no_filter}
   def index
     @sources = Source.all
-		unless current_user.nil? || params[:no_filter]
+		@no_filter = params[:no_filter] == true
+		@user = current_user
+		unless current_user.nil? || @no_filter
 			@sources = @sources.showable(current_user)
 		end
 		if params[:location]
