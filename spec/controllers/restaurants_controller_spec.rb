@@ -155,7 +155,11 @@ RSpec.describe RestaurantsController, :type => :controller do
 				expect(assigns(:restaurants).to_a).to eq(restaurants)
 			end
 
-			it "should return all restaurants if param can't be geocoded"
+			it "should return all restaurants if no results are found" do
+				# TODO: stub out geocoding call
+				get :index, location: "invalid", format: :json
+				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
+			end
 
 			context "with :distance param" do
 				it "should return restaurants within the provided distance" do

@@ -24,7 +24,8 @@ class RestaurantsController < ApplicationController
 		end
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
-			@restaurants = Restaurant.near(@restaurants, params[:location], distance)
+			near_restaurants = Restaurant.near(@restaurants, params[:location], distance)
+			@restaurants = near_restaurants unless near_restaurants.empty?
 		else
 			@restaurants = @restaurants.order_by_reputation
 		end
