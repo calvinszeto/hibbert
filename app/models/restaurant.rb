@@ -14,6 +14,9 @@
 
 class Restaurant < ActiveRecord::Base
 	include Addressable
+	
+	validates :name, presence: true
+	validates :name, :uniqueness => {case_sensitive: false}
 
 	has_many :recommendations, dependent: :destroy
 	has_many :categorizations, dependent: :destroy

@@ -15,7 +15,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :restaurant do
+	factory :restaurant do
 		sequence(:name) {|n| "restaurant#{n}"}
 		website {"www.#{name}.org"}
 
@@ -23,5 +23,5 @@ FactoryGirl.define do
 			FactoryGirl.create :recommendation, :restaurant => r
 			r.categories << FactoryGirl.create(:category)
 		end
-  end
+	end
 end

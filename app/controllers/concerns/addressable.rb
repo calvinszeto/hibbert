@@ -11,6 +11,8 @@ module Addressable
 		methods = [:street, :city, :state, :zip_code, :latitude, :longitude]
 		if methods.include? meth
 			addresses.first[meth]
+		else
+			super
 		end
 	end
 

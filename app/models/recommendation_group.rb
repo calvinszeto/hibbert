@@ -14,6 +14,9 @@
 
 class RecommendationGroup < ActiveRecord::Base
   belongs_to :source
+
+	validates :name, presence: true
+
 	has_many :recommendations, dependent: :destroy
 
 	scope :find_by_source_name, ->(name) { joins(:source)
