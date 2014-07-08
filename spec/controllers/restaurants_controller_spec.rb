@@ -68,13 +68,13 @@ RSpec.describe RestaurantsController, :type => :controller do
 
 			context "with :no_filter=true" do
 				it "should return restaurants without filtering on user preferences" do
-				bad_restaurant_one = FactoryGirl.create(:restaurant)
-				recommendation = bad_restaurant_one.recommendations.first
-			  bad_restaurant_two = FactoryGirl.create(:restaurant)
-				@user.add_no_show_source(recommendation.source)
-				@user.add_no_show_restaurant(bad_restaurant_two)
-				get :index, no_filter: true, format: :json	
-				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
+					bad_restaurant_one = FactoryGirl.create(:restaurant)
+					recommendation = bad_restaurant_one.recommendations.first
+					bad_restaurant_two = FactoryGirl.create(:restaurant)
+					@user.add_no_show_source(recommendation.source)
+					@user.add_no_show_restaurant(bad_restaurant_two)
+					get :index, no_filter: true, format: :json	
+					expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
 				end
 			end
 		end
@@ -154,6 +154,8 @@ RSpec.describe RestaurantsController, :type => :controller do
 				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
 				expect(assigns(:restaurants).to_a).to eq(restaurants)
 			end
+
+			it "should return all restaurants if param can't be geocoded"
 
 			context "with :distance param" do
 				it "should return restaurants within the provided distance" do

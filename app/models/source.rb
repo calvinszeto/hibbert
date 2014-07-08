@@ -18,4 +18,10 @@ class Source < ActiveRecord::Base
 	validates :category, inclusion: {in: ["Blog", "TV Show", "Critic"],
 		message: "%{value} is not a valid category."}
 
+	scope :showable, ->(user) { where("(?) IS NULL OR sources.id NOT IN (?)",
+																		user.no_show_sources, 
+																		user.no_show_sources)}
+	scope :sources_near,
+		->(location, distance) { where(id: Restaurant.sources_near(Restaurant.all, location, distance)) }
+
 end
