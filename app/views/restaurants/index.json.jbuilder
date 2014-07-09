@@ -1,5 +1,5 @@
 json.array!(@restaurants) do |restaurant|
-  json.extract! restaurant, :id, :name, :website
+  json.extract! restaurant, :id, :name, :website, :categories_list
 	if @no_filter && @user
 		json.no_show @user.no_show_restaurants.include?(restaurant.id)
 	end

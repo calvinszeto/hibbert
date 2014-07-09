@@ -2,7 +2,6 @@ TODO:
 -Code out backend
     -Views
         -Write out view specs
-        -Add distance for any location searches
     -Images
         -Add Images to Restaurants and Sources
         -Default images based on category if no images are found
@@ -22,10 +21,8 @@ TODO:
     -Refactor Source location search
     -Add uploading of categories for restaurants
     -Recommender system that applies default weight and chooses at random if weight is near the default
-    -Find out how to make sources_count a sql operation using array_length
     -Remove unwanted Devise modules
     -Move to memcached/memcashier for views(fragment caching) and for geocoding
-    -Add more fine tuning btwn ordering by location vs. ordering by recommendations
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API
@@ -34,3 +31,9 @@ TODO:
 -Content
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
+-Future Plans
+    -Add more fine tuning btwn ordering by location vs. ordering by recommendations
+    -Search recommendation groups based on restaurant
+    -Allow regular users to make personal sources/recommendations
+    -Connect with other regular users to see their personal sources/recommendations
+    -Perhaps allow regular users to edit sources and stuff
