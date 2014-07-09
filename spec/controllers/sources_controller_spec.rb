@@ -19,10 +19,22 @@ RSpec.describe SourcesController, :type => :controller do
 	end
 
   describe "GET index" do
+		it "should assign no_filter param as no_filter" do
+				get :index, no_filter: true, format: :json	
+				expect(assigns(:no_filter)).to eq(true)
+				get :index, no_filter: false, format: :json	
+				expect(assigns(:no_filter)).to eq(false)
+		end
+
 		context "with user signed in" do
 			before(:each) do
 				@user = FactoryGirl.create(:user)
 				sign_in @user
+			end
+
+			it "should assign current_user as user" do
+				get :index, format: :json	
+				expect(assigns(:user)).to eq(@user)
 			end
 
 			it "should filter by source preferences" do
@@ -76,6 +88,15 @@ RSpec.describe SourcesController, :type => :controller do
 		it "should return the specified source object" do
 			get :show, :id => @good_source.id, format: :json
 			expect(assigns(:source)).to eq(@good_source)
+		end
+
+		context "with user signed in" do
+			it "should assign current_user as user" do
+				user = FactoryGirl.create :user
+				sign_in user
+				get :show, :id => @good_source.id, format: :json
+				expect(assigns(:user)).to eq(user)
+			end
 		end
 	end
 end

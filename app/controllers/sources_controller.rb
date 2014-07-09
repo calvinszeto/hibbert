@@ -24,5 +24,6 @@ class SourcesController < ApplicationController
   # GET /sources/1?format=json
   def show
 		@source = Source.find(params[:id])
+		@user = current_user
   end
 end
