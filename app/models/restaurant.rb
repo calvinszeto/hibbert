@@ -54,20 +54,6 @@ class Restaurant < ActiveRecord::Base
 		sources_list.count
 	end
 
-	# Depends on Addressable#near
-	# Also, it returns source ids
-	# TODO: Refactor this. It's very bad.
-	def self.sources_near(restaurants, location, distance)
-		restaurants = Restaurant.near(restaurants, location, distance)
-		expanded_sources = restaurants.map(&:sources).reduce([]) {|x, y| x + y}
-		sources = expanded_sources.reduce({}) do |hash, source|
-			hash[source.id] = hash[source.id] ? hash[source.id] + 1 : 1
-			hash
-		end
-		sources.sort_by {|source, count| count}
-		sources.keys
-	end
-
 	def update_sources_list(operation, source)
 		if operation == 'create' && !sources_list.include?(source.id)
 			sources_list.push source.id

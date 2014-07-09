@@ -1,17 +1,5 @@
 require 'rails_helper'
 
-# The following specs were written here but belong in view specs
-#it "should return sources with user preference attributes"
-
-#it "should return an error if param can't be geocoded"
-#context "with user signed in" do
-	#it "should return a source with user preference attributes"
-#end
-
-#context "without user signed in" do
-	#it "should return a source without user preference attributes"
-#end
-
 RSpec.describe SourcesController, :type => :controller do
 
 	before(:each) do
@@ -69,17 +57,48 @@ RSpec.describe SourcesController, :type => :controller do
 		end
 
 		context "with :location param" do
-			it "should return sources which recommend restaurants near the param" do
-				allow_any_instance_of(Address).to receive(:geocode)
-				near_restaurant = FactoryGirl.create :restaurant	
-				FactoryGirl.create :address, :addressable => near_restaurant, 
-					:distance  => SourcesController.default_search_distance - 1
-				near_source = near_restaurant.sources.first
-				FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
-					:distance => SourcesController.default_search_distance + 1 
-				# TODO: remove hard numbers
-				get :index, location: [20, 20], format: :json	
-				expect(assigns(:sources).to_a).to match_array([near_source])
+			context "with nearby restaurants" do
+				it "should return sources which recommend nearby restaurants" do
+					allow_any_instance_of(Address).to receive(:geocode)
+					near_restaurant = FactoryGirl.create :restaurant	
+					FactoryGirl.create :address, :addressable => near_restaurant, 
+						:distance  => SourcesController.default_search_distance - 1
+					near_source = near_restaurant.sources.first
+					FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
+						:distance => SourcesController.default_search_distance + 1 
+					get :index, location: [20, 20], format: :json	
+					expect(assigns(:sources).to_a).to match_array([near_source])
+				end
+				
+				it "should assign location to the location param" do
+					allow_any_instance_of(Address).to receive(:geocode)
+					near_restaurant = FactoryGirl.create :restaurant	
+					FactoryGirl.create :address, :addressable => near_restaurant, 
+						:distance  => SourcesController.default_search_distance - 1
+					near_source = near_restaurant.sources.first
+					FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
+						:distance => SourcesController.default_search_distance + 1 
+					get :index, location: [20, 20], format: :json	
+					expect(assigns(:location)).to eq([20, 20])
+				end
+			end
+
+			context "without nearby restaurants" do
+				it "should return all restaurants" do
+					allow_any_instance_of(Address).to receive(:geocode)
+					FactoryGirl.create_list(:address, 3, :addressable => FactoryGirl.create(:restaurant),
+						:distance => SourcesController.default_search_distance + 1)
+					get :index, location: [20, 20], format: :json	
+					expect(assigns(:sources)).to match_array(Source.all.to_a)
+				end
+
+				it "should assign location to error" do
+					allow_any_instance_of(Address).to receive(:geocode)
+					FactoryGirl.create_list(:address, 3, :addressable => FactoryGirl.create(:restaurant),
+						:distance => SourcesController.default_search_distance + 1)
+					get :index, location: [20, 20], format: :json	
+					expect(assigns(:location)).to eq("error")
+				end
 			end
 		end
 	end

@@ -14,7 +14,9 @@ class SourcesController < ApplicationController
 		end
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
-			@sources = @sources.sources_near(params[:location], distance)
+			near_sources = Source.sources_near(@sources, params[:location], distance)
+			@location = near_sources.empty? ? "error" : params[:location]
+			@sources = near_sources unless near_sources.empty?
 		else
 			@sources.order(:name)
 		end
