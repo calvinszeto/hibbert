@@ -7,6 +7,9 @@ class RestaurantsController < ApplicationController
   # GET /restaurants?format=json{&only&except&location&tried&no_filter}
   def index
     @restaurants = Restaurant.all
+		@no_filter = params[:no_filter] == true
+		@tried = params[:tried] == true
+		@user = current_user
 		if params[:only]
 			@restaurants = @restaurants.only_categories(params[:only])
 		end
@@ -14,10 +17,10 @@ class RestaurantsController < ApplicationController
 			@restaurants = @restaurants.except_categories(params[:except])
 		end
 		unless current_user.nil?
-			unless params[:tried]
+			unless @tried 
 				@restaurants = @restaurants.not_tried_by(current_user)
 			end
-			unless params[:no_filter]
+			unless @no_filter 
 				@restaurants = @restaurants.showable(current_user)
 				@restaurants = @restaurants.source_showable(current_user)
 			end
@@ -25,6 +28,7 @@ class RestaurantsController < ApplicationController
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
 			near_restaurants = Restaurant.near(@restaurants, params[:location], distance)
+			@location = near_restaurants.empty? ? "error" : params[:location]
 			@restaurants = near_restaurants unless near_restaurants.empty?
 		else
 			@restaurants = @restaurants.order_by_reputation
@@ -35,5 +39,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1?format=json
   def show
 		@restaurant = Restaurant.find(params[:id])
+		@user = current_user
   end
 end

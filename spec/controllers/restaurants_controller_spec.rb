@@ -1,27 +1,5 @@
 require 'rails_helper'
 
-# The following specs were written here but belong in view specs
-#it "should return restaurants with user preference attributes"
-
-#it "should return a restaurant without user preference attributes"
-
-#it "should return restaurants with a distance attribute"
-
-#it "should return an error if param can't be geocoded"
-
-#it "should return all restaurants if param can't be geocoded"
-
-# The following specs were written here but should be in the user controller
-#describe "PATCH update" do
-	#context "with :tried param" do
-		#it "should update user tried preferences"
-	#end
-
-	#context "with :do_not_show param" do
-		#it "should update user do-not-show preferences"
-	#end
-#end
-
 RSpec.describe RestaurantsController, :type => :controller do
 
 	before(:each) do
@@ -29,10 +7,29 @@ RSpec.describe RestaurantsController, :type => :controller do
 	end
 
   describe "GET index" do
+		it "should assign no_filter param as no_filter" do
+				get :index, no_filter: true, format: :json	
+				expect(assigns(:no_filter)).to eq(true)
+				get :index, no_filter: false, format: :json	
+				expect(assigns(:no_filter)).to eq(false)
+		end
+
+		it "should assign tried param as tried" do
+				get :index, tried: true, format: :json	
+				expect(assigns(:tried)).to eq(true)
+				get :index, tried: false, format: :json	
+				expect(assigns(:tried)).to eq(false)
+		end
+
 		context "with user signed in" do
 			before(:each) do
 				@user = FactoryGirl.create(:user)
 				sign_in @user
+			end
+
+			it "should assign current_user as user" do
+				get :index, format: :json	
+				expect(assigns(:user)).to eq(@user)
 			end
 
 			it "should filter by source preferences" do
@@ -135,42 +132,56 @@ RSpec.describe RestaurantsController, :type => :controller do
 				FactoryGirl.create :address, :addressable => @good_restaurant
 			end
 
-			it "should return restaurants within the default search distance" do
-				FactoryGirl.create :address, :addressable => @near_restaurant, 
-					:distance  => RestaurantsController.default_search_distance - 1
-				FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
-					:distance => RestaurantsController.default_search_distance + 1 
-				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
-				expect(assigns(:restaurants).to_a).to match_array([@good_restaurant, @near_restaurant])
-			end
-			
-			it "should return restaurants ordered by distance from the param" do
-				restaurants = [@good_restaurant]
-				(1..10).each do |n|
-					restaurant = FactoryGirl.create(:restaurant)
-					FactoryGirl.create :address, :addressable => restaurant, :distance => n
-					restaurants.push restaurant
-				end
-				get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
-				expect(assigns(:restaurants).to_a).to eq(restaurants)
-			end
-
-			it "should return all restaurants if no results are found" do
-				get :index, location: [0,0], format: :json
-				expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
-			end
-
-			context "with :distance param" do
-				it "should return restaurants within the provided distance" do
-					FactoryGirl.create :address, :addressable => @good_restaurant
-					@near_restaurant = FactoryGirl.create :restaurant	
-					distance = RestaurantsController.default_search_distance * 2
+			context "with nearby restaurants" do
+				it "should return restaurants within the default search distance" do
 					FactoryGirl.create :address, :addressable => @near_restaurant, 
-						:distance  => distance - 1
+						:distance  => RestaurantsController.default_search_distance - 1
 					FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
-						:distance => distance + 1
-					get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], distance: distance, format: :json	
+						:distance => RestaurantsController.default_search_distance + 1 
+					get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
 					expect(assigns(:restaurants).to_a).to match_array([@good_restaurant, @near_restaurant])
+				end
+				
+				it "should return restaurants ordered by distance from the param" do
+					restaurants = [@good_restaurant]
+					(1..10).each do |n|
+						restaurant = FactoryGirl.create(:restaurant)
+						FactoryGirl.create :address, :addressable => restaurant, :distance => n
+						restaurants.push restaurant
+					end
+					get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], format: :json	
+					expect(assigns(:restaurants).to_a).to eq(restaurants)
+				end
+
+				context "with :distance param" do
+					it "should return restaurants within the provided distance" do
+						FactoryGirl.create :address, :addressable => @good_restaurant
+						@near_restaurant = FactoryGirl.create :restaurant	
+						distance = RestaurantsController.default_search_distance * 2
+						FactoryGirl.create :address, :addressable => @near_restaurant, 
+							:distance  => distance - 1
+						FactoryGirl.create :address, :addressable => FactoryGirl.create(:restaurant),
+							:distance => distance + 1
+						get :index, location: [@good_restaurant.latitude, @good_restaurant.longitude], distance: distance, format: :json	
+						expect(assigns(:restaurants).to_a).to match_array([@good_restaurant, @near_restaurant])
+					end
+				end
+					
+				it "should assign location to the location param" do
+					get :index, location: [20, 20], format: :json	
+					expect(assigns(:location)).to eq([20, 20])
+				end
+			end
+
+			context "without nearby restaurants" do
+				it "should return all restaurants" do
+					get :index, location: [0,0], format: :json
+					expect(assigns(:restaurants).to_a).to match_array(Restaurant.all.to_a)
+				end
+
+				it "should assign location to error" do
+					get :index, location: [0, 0], format: :json	
+					expect(assigns(:location)).to eq("error")
 				end
 			end
 		end
@@ -196,6 +207,15 @@ RSpec.describe RestaurantsController, :type => :controller do
 		it "should return the specified restaurant object" do
 			get :show, :id => @good_restaurant.id, format: :json
 			expect(assigns(:restaurant)).to eq(@good_restaurant)
+		end
+
+		context "with user signed in" do
+			it "should assign current_user as user" do
+				user = FactoryGirl.create :user
+				sign_in user
+				get :show, :id => @good_restaurant.id, format: :json
+				expect(assigns(:user)).to eq(user)
+			end
 		end
   end
 end
