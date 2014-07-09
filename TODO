@@ -4,6 +4,7 @@ TODO:
         -Recommendation count
 -Code out backend
     -Views
+        -Remove recommendation_groups#index: it's redundant with sources#show
         -Add distance for any location searches
     -Images
         -Add Images to Restaurants and Sources

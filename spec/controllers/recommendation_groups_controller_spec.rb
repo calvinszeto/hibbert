@@ -8,19 +8,21 @@ RSpec.describe RecommendationGroupsController, :type => :controller do
 		end
 	end
 
-  describe "GET index" do
-		it "should return a list of recommendation groups that belong to the given source" do
-			FactoryGirl.create :recommendation_group
-			get :index, name: @source.name, format: :json
-			expect(assigns(:recommendation_groups).to_a).to match_array(@source.recommendation_groups.to_a)
-		end
-  end
-
   describe "GET show" do
 		it "should return the specified recommendation group with its recommendations" do
 			rg = RecommendationGroup.take
 			get :show, :id => rg.id, format: :json
 			expect(assigns(:recommendation_group)).to eq(rg)
+		end
+
+		it "should assign current_user as user" do
+			rg = RecommendationGroup.take
+			get :show, :id => rg.id, format: :json
+			expect(assigns(:user)).to be_nil
+			user = FactoryGirl.create :user
+			sign_in user
+			get :show, :id => rg.id, format: :json
+			expect(assigns(:user)).to eq(user)
 		end
   end
 end
