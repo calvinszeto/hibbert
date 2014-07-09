@@ -1,45 +1,52 @@
 require 'rails_helper'
 
-# The following specs were written here but belong in view specs
-#it "should return restaurants with user preference attributes"
-
-#it "should return a restaurant without user preference attributes"
-
-#it "should return restaurants with a distance attribute"
-
-#it "should return an error if param can't be geocoded"
-
-#it "should return all restaurants if param can't be geocoded"
-
-RSpec.describe "sources/index", type: :view do
-	it "should return all sources" do
-		assign(:sources, FactoryGirl.create_list(:source, 5))
+RSpec.describe "restaurants/index", type: :view do
+	it "should return all restaurants" do
+		assign(:restaurants, FactoryGirl.create_list(:restaurant, 5))
 		assign(:no_filter, false)
 		render
-		expect(JSON.parse(rendered).count).to eq(Source.count)
+		expect(JSON.parse(rendered).count).to eq(Restaurant.count)
 	end
 
 	context "with :no_filter=true" do
 		it "should return no_show status" do
 			user = FactoryGirl.create :user
 			sign_in user
-			bad_source = FactoryGirl.create :source
-			user.add_no_show_source bad_source
+			bad_restaurant = FactoryGirl.create :restaurant
+			user.add_no_show_restaurant bad_restaurant
 
-			assign(:sources, FactoryGirl.create_list(:source, 5) + [bad_source])
+			assign(:restaurants, FactoryGirl.create_list(:restaurant, 5) + [bad_restaurant])
 			assign(:user, user)
 			assign(:no_filter, true)
 
 			render
 			expect(JSON.parse(rendered).first).to have_key("no_show")
 			expect(JSON.parse(rendered)
-						 .select{|s| s["id"] == bad_source.id}.first["no_show"]).to eq(true)
+						 .select{|s| s["id"] == bad_restaurant.id}.first["no_show"]).to eq(true)
+		end
+	end
+
+	context "with :tried=true" do
+		it "should return tried status" do
+			user = FactoryGirl.create :user
+			sign_in user
+			tried_restaurant = FactoryGirl.create :restaurant
+			user.add_tried_restaurant tried_restaurant
+
+			assign(:restaurants, FactoryGirl.create_list(:restaurant, 5) + [tried_restaurant])
+			assign(:user, user)
+			assign(:tried, true)
+
+			render
+			expect(JSON.parse(rendered).first).to have_key("tried")
+			expect(JSON.parse(rendered)
+						 .select{|s| s["id"] == tried_restaurant.id}.first["tried"]).to eq(true)
 		end
 	end
 	
 	context "with :location=error" do
 		it "should return an error message" do
-			assign(:sources, FactoryGirl.create_list(:source, 3))
+			assign(:restaurants, FactoryGirl.create_list(:restaurant, 3))
 			assign(:location, "error")
 			render
 			expect(JSON.parse(rendered).first).to have_key("error")
@@ -48,12 +55,12 @@ RSpec.describe "sources/index", type: :view do
 	end
 
 	context "with valid :location" do
-		it "should return nearby_restaurants_count and searched_location" do
-			assign(:sources, FactoryGirl.create_list(:source, 3))
-			Source.all.each {|s| s.nearby_restaurants_count = 3}
+		it "should return distance and searched_location" do
+			assign(:restaurants, FactoryGirl.create_list(:restaurant, 3))
+			Restaurant.all.each {|r| r.distance = 3}
 			assign(:location, "123 Fake St.")
 			render
-			expect(JSON.parse(rendered).first).to have_key("nearby_restaurants_count")
+			expect(JSON.parse(rendered).first).to have_key("distance")
 			expect(JSON.parse(rendered).first).to have_key("searched_location")
 		end
 	end
