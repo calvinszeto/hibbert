@@ -23,4 +23,23 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+	has_one :user_preference, dependent: :destroy
+	before_create :create_user_preference
+
+	delegate :no_show_sources,
+		:no_show_restaurants,
+		:tried_restaurants,
+		:add_no_show_source,
+		:remove_no_show_source,
+		:add_no_show_restaurant,
+		:remove_no_show_restaurant,
+		:add_tried_restaurant,
+		:remove_tried_restaurant,
+		:to => :user_preference
+
+	private
+		def create_user_preference
+			self.user_preference ||= UserPreference.create
+		end
 end

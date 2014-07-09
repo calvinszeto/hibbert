@@ -1,30 +1,31 @@
 class SourcesController < ApplicationController
-  before_action :set_source, only: [:show, :update]
+	@@default_search_distance = 25 # MILES
+	def self.default_search_distance
+		@@default_search_distance
+	end
 
   # GET /sources?format=json{&location&no_filter}
   def index
     @sources = Source.all
+		@no_filter = params[:no_filter] == true
+		@user = current_user
+		unless current_user.nil? || @no_filter
+			@sources = @sources.showable(current_user)
+		end
+		if params[:location]
+			distance = params[:distance] || @@default_search_distance
+			near_sources = Source.sources_near(@sources, params[:location], distance)
+			@location = near_sources.empty? ? "error" : params[:location]
+			@sources = near_sources unless near_sources.empty?
+		else
+			@sources.order(:name)
+		end
+		@sources
   end
 
   # GET /sources/1?format=json
   def show
+		@source = Source.find(params[:id])
+		@user = current_user
   end
-
-  # PATCH /sources/1
-  def update
-    respond_to do |format|
-      if @source.update(source_params)
-        format.html { redirect_to @source, notice: 'Source was successfully updated.' }
-        format.json { render :show, status: :ok, location: @source }
-      else
-        format.html { render :edit }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  private
-    def set_source
-      @source = Source.find(params[:id])
-    end
 end

@@ -18,19 +18,32 @@ RSpec.describe Source, :type => :model do
 		@source = FactoryGirl.create(:source)
 	end
 
-	it "creates new recommendations for existing restaurants" do
-		FactoryGirl.create(:restaurant, :name => "Sam's Steaks")
-		FactoryGirl.create(:restaurant, :name => "Larry's Lobsters")
-		FactoryGirl.create(:restaurant, :name => "Rob's Roosters")
-		input = [{:name => "Sam's Steaks"},{:name => "Larry's Lobsters"},{:name => "Rob's Roosters"}]
-		@source.create_recommendations_from_json(input)
-		expect(Recommendation.count).to eq(3)
-		Restaurant.all.each do |r|
-			expect(r.recommendations_count).to eq(1)
+	context "sources_near method" do
+		it "should return only sources which have restaurants near the location" do
+			allow_any_instance_of(Address).to receive(:geocode)
+			restaurant = FactoryGirl.create(:restaurant)
+			FactoryGirl.create :address, :addressable => restaurant
+			near_source = restaurant.sources.first
+		  far_restaurant = FactoryGirl.create(:restaurant)
+			FactoryGirl.create :address, distance: 6, :addressable => far_restaurant
+			far_source = far_restaurant.sources.first
+	  	expect(Source.sources_near(Source.all, 
+																		 [restaurant.latitude, restaurant.longitude],
+																		5)).to match_array([near_source])
 		end
-		expect(@source.recommendations.count).to eq(3)
 	end
 
-	it "creates new recommendations for new restaurants" do
+	context "scope showable" do
+		it "should return all sources if user has no no_show_sources" do
+			user = FactoryGirl.create(:user)
+			expect(Source.showable(user).to_a).to eq([@source])
+		end
+
+		it "should return sources which are not in the user's no_show_sources" do
+			user = FactoryGirl.create(:user)
+			bad_source = FactoryGirl.create(:source)
+			user.add_no_show_source(bad_source)
+			expect(Source.showable(user).to_a).to eq([@source])
+		end
 	end
 end

@@ -11,10 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628213328) do
+ActiveRecord::Schema.define(version: 20140707181158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_code"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "addressable_type"
+  end
+
+  add_index "addresses", ["addressable_id"], name: "index_addresses_on_addressable_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories_restaurants", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "restaurant_id"
+  end
+
+  add_index "categories_restaurants", ["category_id"], name: "index_categories_restaurants_on_category_id", using: :btree
+  add_index "categories_restaurants", ["restaurant_id"], name: "index_categories_restaurants_on_restaurant_id", using: :btree
+
+  create_table "categorizations", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
+  add_index "categorizations", ["restaurant_id"], name: "index_categorizations_on_restaurant_id", using: :btree
+
+  create_table "images", force: true do |t|
+    t.string   "image"
+    t.integer  "imageable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
 
   create_table "recommendation_groups", force: true do |t|
     t.string   "name"
@@ -22,31 +70,30 @@ ActiveRecord::Schema.define(version: 20140628213328) do
     t.integer  "source_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.text     "description"
   end
 
   add_index "recommendation_groups", ["source_id"], name: "index_recommendation_groups_on_source_id", using: :btree
 
   create_table "recommendations", force: true do |t|
     t.integer  "restaurant_id"
-    t.integer  "source_id"
-    t.date     "date_recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "website"
     t.integer  "recommendation_group_id"
   end
 
   add_index "recommendations", ["recommendation_group_id"], name: "index_recommendations_on_recommendation_group_id", using: :btree
   add_index "recommendations", ["restaurant_id"], name: "index_recommendations_on_restaurant_id", using: :btree
-  add_index "recommendations", ["source_id"], name: "index_recommendations_on_source_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recommendations_count", default: 0
-    t.integer  "sources_count",         default: 0
     t.string   "website"
+    t.integer  "sources_list",          default: [], array: true
+    t.string   "categories_list",       default: [], array: true
   end
 
   create_table "sources", force: true do |t|
@@ -57,6 +104,17 @@ ActiveRecord::Schema.define(version: 20140628213328) do
     t.datetime "updated_at"
     t.text     "description"
   end
+
+  create_table "user_preferences", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "no_show_sources",     default: [], array: true
+    t.integer  "no_show_restaurants", default: [], array: true
+    t.integer  "tried_restaurants",   default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_preferences", ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

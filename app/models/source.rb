@@ -12,21 +12,33 @@
 #
 
 class Source < ActiveRecord::Base
+	has_many :recommendation_groups, dependent: :destroy
+	has_many :recommendations, through: :recommendation_groups
 
-has_many :recommendations, dependent: :destroy
+	validates :name, presence: true
+	validates :name, :uniqueness => {case_sensitive: false}
+	validates :category, inclusion: {in: ["Blog", "TV Show", "Critic"],
+		message: "%{value} is not a valid category."}
 
-validates :category, inclusion: {in: ["Blog", "TV Show", "Critic"],
-	message: "%{value} is not a valid category."}
+	scope :showable, ->(user) { where("(?) IS NULL OR sources.id NOT IN (?)",
+																		user.no_show_sources, 
+																		user.no_show_sources)}
 
-def create_recommendations_from_json(input)
-	input.each do |record|
-		if restaurant = Restaurant.find_by(:name => record[:name])
-		else
-			restaurant = Restaurant.create(:name => record[:name])
+	# Depends on Addressable#near
+	# Also, it returns source ids
+	# TODO: Refactor this. It's very bad.
+	attr_accessor :nearby_restaurants_count
+	def self.sources_near(sources, location, distance)
+		restaurants = Restaurant.near(Restaurant.all, location, distance)
+		expanded_sources = restaurants.map(&:sources).reduce([], :+)
+		near_sources = expanded_sources.reduce({}) do |hash, source|
+			hash[source.id] = hash[source.id] ? hash[source.id] + 1 : 1
+			hash
 		end
-		Recommendation.create(:restaurant => restaurant,
-												 :source => self)
+		near_sources.sort_by {|source, count| count}
+		sources = sources.where(id: near_sources.keys).each do |source|
+			source.nearby_restaurants_count = near_sources[source.id]
+		end
 	end
-end
 
 end

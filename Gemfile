@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 
 # Use PostgreSQL
 gem 'pg'
+# Makes Postgres arrays faster
+gem 'pg_array_parser'
 # For deploying on Heroku
 gem 'rails_12factor', group: :production
 
@@ -51,6 +53,9 @@ gem 'pry', group: :development
 
 # Carrierwave for uploading images
 gem 'carrierwave'
+# Geocoder for working with locations and Indirizzo for address parsing
+gem 'geocoder'
+gem 'Indirizzo'
 
 # Gems needed for using RSpec w/ Guard and Spring
 group :development, :test do

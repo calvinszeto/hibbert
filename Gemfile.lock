@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    Indirizzo (0.1.7)
     actionmailer (4.1.1)
       actionpack (= 4.1.1)
       actionview (= 4.1.1)
@@ -64,6 +65,7 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.5)
+    geocoder (1.2.2)
     guard (2.6.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -97,6 +99,7 @@ GEM
     multi_json (1.10.1)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pg_array_parser (0.0.9)
     polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
@@ -198,15 +201,18 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  Indirizzo
   annotate
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
+  geocoder
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  pg_array_parser
   pry
   rails (= 4.1.1)
   rails_12factor
