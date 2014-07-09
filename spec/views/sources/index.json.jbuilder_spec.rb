@@ -25,4 +25,25 @@ RSpec.describe "sources/index", type: :view do
 						 .select{|s| s["id"] == bad_source.id}.first["no_show"]).to eq(true)
 		end
 	end
+	
+	context "with :location=error" do
+		it "should return an error message" do
+			assign(:sources, FactoryGirl.create_list(:source, 3))
+			assign(:location, "error")
+			render
+			expect(JSON.parse(rendered).first).to have_key("error")
+			expect(JSON.parse(rendered).first["error"]).not_to be_empty
+		end
+	end
+
+	context "with valid :location" do
+		it "should return nearby_restaurants_count and searched_location" do
+			assign(:sources, FactoryGirl.create_list(:source, 3))
+			Source.all.each {|s| s.nearby_restaurants_count = 3}
+			assign(:location, "123 Fake St.")
+			render
+			expect(JSON.parse(rendered).first).to have_key("nearby_restaurants_count")
+			expect(JSON.parse(rendered).first).to have_key("searched_location")
+		end
+	end
 end

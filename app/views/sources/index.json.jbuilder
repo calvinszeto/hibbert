@@ -7,6 +7,8 @@ json.array!(@sources) do |source|
 		if @location == "error"
 			json.error "No sources have recommended restaurants near your location yet!"
 		else
+			json.extract! source, :nearby_restaurants_count
+			json.searched_location @location
 		end
 	end
 end
