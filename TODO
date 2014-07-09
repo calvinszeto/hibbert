@@ -32,6 +32,8 @@ TODO:
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
 -Future Plans
+    -Fix up Address to save full address text
+    -Add User Favorites
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations
     -Search recommendation groups based on restaurant
     -Allow regular users to make personal sources/recommendations
