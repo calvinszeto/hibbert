@@ -1,7 +1,31 @@
 TODO:
 -Code up Frontend
-    -Add root route
+    -Decide on how to split up application
+        -Nav bar
+        -restaurants
+            -service
+            -list
+            -show
+        -sources
+            -service
+            -list
+            -show
+        -recommendation groups
+            -service
+            -show
+        -users
+            -service
+            -login
+            -register
+            -profile
+        -Second nav bar for search options/filters
+    -Create directives for common UI elements: card? properties on lists?
+    -How to do animations between:
+        Switching among pages
+        Expanding a card
+        Dropping down a map?
     -User Authentication - make a service similar to firebaseSimpleLogin using hibbert backend
+    -Change all colors and maybe type
     -Tune up backend
         -Pagination
 -Images
@@ -19,6 +43,7 @@ TODO:
     -Recommender system that applies default weight and chooses at random if weight is near the default
     -Remove unwanted Devise modules
     -Move to memcached/memcashier for views(fragment caching) and for geocoding
+    -Grab custom Foundation with only parts that are used
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API

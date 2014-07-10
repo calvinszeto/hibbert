@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-	# TODO: Add angular app
-	# root :to =>
+	root :to => "application#index"
 
 	devise_for :users
 

@@ -57,6 +57,11 @@ gem 'carrierwave'
 gem 'geocoder'
 gem 'Indirizzo'
 
+# Bower for managing Javascript dependencies
+gem 'bower-rails'
+# Foundation CSS and JS framework
+gem 'foundation-rails'
+
 # Gems needed for using RSpec w/ Guard and Spring
 group :development, :test do
 	gem 'rspec-rails'
