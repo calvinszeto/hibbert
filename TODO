@@ -1,16 +1,12 @@
 TODO:
--Code out backend
-    -Views
-        -Write out view specs
-    -Images
-        -Add Images to Restaurants and Sources
-        -Default images based on category if no images are found
 -Code up Frontend
     -Add root route
-    -Plan out JS framework
-    -User Authentication
+    -User Authentication - make a service similar to firebaseSimpleLogin using hibbert backend
     -Tune up backend
         -Pagination
+-Images
+    -Add Images to Restaurants and Sources
+    -Default images based on category if no images are found
 -Optimization
     -Refactor out all hard numbers and error messages 
         source controller spec 
@@ -32,6 +28,7 @@ TODO:
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
 -Future Plans
+    -Welcome screen and tutorials
     -Fix up Address to save full address text
     -Add User Favorites
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations
