@@ -14,6 +14,8 @@
   <body>
 
     <%= yield %>
+    <!-- Get the root URL for Angular to know where to reach the API -->
+    <script type="text/javascript" charset="utf-8">var ROOT_PATH = '<%= request.original_url %>';</script>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

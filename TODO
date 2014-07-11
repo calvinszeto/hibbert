@@ -1,7 +1,6 @@
 TODO:
 -Code up Frontend
     -Decide on how to split up application
-        -Nav bar
         -restaurants
             -service
             -list
@@ -10,6 +9,7 @@ TODO:
             -service
             -list
             -show
+        -nav bar and routing
         -recommendation groups
             -service
             -show

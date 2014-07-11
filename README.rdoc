@@ -1,7 +1,8 @@
-== README
+== Hibbert
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hibbert is an application for finding new restaurants, based on recommendations from critics, TV shows, blogs, etc.
+You pick and choose which sources you trust and which ones you don't - Hibbert will compile recommendations just for you.
+No more relying on shaky user reviews or keeping tabs on tons of foodie blogs!
 
 Things you may want to cover:
 
