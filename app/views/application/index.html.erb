@@ -1,3 +1,17 @@
-<div ng-app="hibbertApp">
-    <div ng-include="'<%= asset_path('nav.html') %>'"></div>
+<!-- Get the root URL for Angular to know where to reach the API -->
+<script type="text/javascript" charset="utf-8">var ROOT_PATH = '<%= request.original_url %>';</script>
+
+<div id="container" ng-app="hibbertApp">
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <div ng-include="'<%= asset_path('nav.html') %>'"></div>
+            <section class="main-section">
+                <div id="browser" ng-view=""></div>
+            </section>
+            <aside class="right-off-canvas-menu">
+                <div ng-include="'<%= asset_path('user.html') %>'"></div>
+            </aside>
+            <a class="exit-off-canvas"></a>
+        </div>
+    </div>
 </div>

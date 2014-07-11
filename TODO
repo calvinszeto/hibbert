@@ -1,26 +1,30 @@
 TODO:
 -Code up Frontend
     -Decide on how to split up application
-        -restaurants
-            -service
-            -list
-            -show
-        -sources
-            -service
-            -list
-            -show
-        -nav bar and routing
-        -recommendation groups
-            -service
-            -show
-        -users
-            -service
-            -login
-            -register
-            -profile
-        -Second nav bar for search options/filters
+        The following are in the "browser" module
+            -restaurants
+                -service
+                -list
+                -show
+            -sources
+                -service
+                -list
+                -show
+            -recommendation groups
+                -service
+                -show
+            -Second nav bar for search options/filters
+        The following is in the "nav" module
+            -nav bar and routing
+        The following is in an off canvas "user" module:
+            -users
+                -service
+                -login
+                -register
+                -profile: preferences if screen is medium/large
     -Create directives for common UI elements: card? properties on lists?
     -How to do animations between:
+        Cards leaving/entering the screen
         Switching among pages
         Expanding a card
         Dropping down a map?

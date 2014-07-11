@@ -18702,7 +18702,7 @@ var ngCloakDirective = ngDirective({
  *     </ul>
  *    </div>
  *   </file>
- *   <file name="app.js">
+ *   <file name="app.js.erb">
  *    function SettingsController1() {
  *      this.name = "John Smith";
  *      this.contacts = [
@@ -18782,7 +18782,7 @@ var ngCloakDirective = ngDirective({
  *    </ul>
  *   </div>
  *  </file>
- *  <file name="app.js">
+ *  <file name="app.js.erb">
  *   function SettingsController2($scope) {
  *     $scope.name = "John Smith";
  *     $scope.contacts = [

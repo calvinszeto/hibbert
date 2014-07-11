@@ -1,0 +1,14 @@
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/restaurants', {
+            templateUrl: '<%= asset_path("restaurants.html") %>',
+            controller: 'RestaurantsController'
+        })
+        .when('/sources', {
+            templateUrl: '<%= asset_path("sources.html") %>',
+            controller: 'SourcesController'
+        })
+        .otherwise({
+            redirectTo: '/restaurants'
+        });
+});
