@@ -1,0 +1,21 @@
+
+<div class="row full-width">
+    <div class="large-12 columns">
+        <ul class="cards">
+            <li ng-repeat="restaurant in restaurants">
+                <div class="card">
+                    <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
+                    {{restaurant.name}}
+                    {{restaurant.categories}}
+                    <div ng-show="hasUserPreferences">
+                        <input ng-change="updateNoShow(restaurant)" type="checkbox" ng-model="restaurant.no_show">
+                        <input ng-change="updateTried(restaurant)" type="checkbox" ng-model="restaurant.tried">
+                    </div>
+                    <div ng-show="hasDistance">
+                        {{restaurant.distance}} miles away
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

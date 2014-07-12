@@ -1,35 +1,38 @@
 TODO:
 -Code up Frontend
     -Decide on how to split up application
-        The following are in the "browser" module
-            -restaurants
-                -service
-                -list
-                -show
-            -sources
-                -service
-                -list
-                -show
-            -recommendation groups
-                -service
-                -show
-            -Second nav bar for search options/filters
-        The following is in the "nav" module
-            -nav bar and routing
-        The following is in an off canvas "user" module:
-            -users
-                -service
-                -login
-                -register
-                -profile: preferences if screen is medium/large
+        -restaurants
+            -service
+            -list
+            -show
+        -sources
+            -service
+            -list
+            -show
+        -recommendation groups
+            -service
+            -show
+        -search options/filters
+        -nav bar and routing
+        -users
+            -service
+            -login
+            -register
+            -profile: preferences if screen is medium/large
     -Create directives for common UI elements: card? properties on lists?
+    -Add alerts
     -How to do animations between:
+        General on hover effects
         Cards leaving/entering the screen
         Switching among pages
         Expanding a card
         Dropping down a map?
     -User Authentication - make a service similar to firebaseSimpleLogin using hibbert backend
     -Change all colors and maybe type
+    -Change out hardcoded images
+    -Bugs
+        -Make off canvas fixed?
+        -Navbar becomes unfixed when offcanvas is activated
     -Tune up backend
         -Pagination
 -Images
