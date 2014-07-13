@@ -24,6 +24,10 @@ $include-html-classes: false;
   height: 100vh;
 }
 
+.nav_icon_right {
+  margin-left: 16px;
+}
+
 .cards {
   @include block-grid(5);
 }

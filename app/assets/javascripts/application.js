@@ -13,7 +13,8 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.topbar
 //= require angular
 //= require angular-route
 //= require angular-resource
