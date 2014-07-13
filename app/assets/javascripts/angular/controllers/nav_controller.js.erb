@@ -1,0 +1,19 @@
+app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
+    function (HIBBERT_URL, $scope, $location, $modal) {
+        $scope.showingRestaurants = function () {
+            return $location.path() === "/restaurants";
+        };
+
+        $scope.openRestaurantsQuery = function () {
+            if ($location.path() === "/restaurants") {
+                $modalInstance = $modal.open({
+                    templateUrl: "<%= asset_path('restaurants_query.html') %>",
+                    controller: 'RestaurantsQueryController'
+                });
+            }
+        };
+
+        $scope.showingSources = function () {
+            return $location.path() === "/sources";
+        };
+    }]);

@@ -1,7 +1,9 @@
 var app = angular.module("hibbertApp", [
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'mm.foundation'
 ])
+//    The following provides the root path and current angular path to our templates
     .constant('HIBBERT_URL', ROOT_PATH)
     .run([ '$rootScope', '$location', function ($rootScope, $location) {
         $rootScope.location = $location;

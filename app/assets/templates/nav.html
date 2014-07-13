@@ -1,3 +1,4 @@
+<!--Fixed Nav bar for displaying the logo, switching pages, and accessing search filters.-->
 <div class="fixed">
     <nav class="top-bar" data-topbar data-options="is_hover: false" ng-controller="NavCtrl as nav">
         <ul class="title-area">
@@ -5,9 +6,12 @@
         </ul>
         <section class="top-bar-section">
             <ul class="left">
-                <li><a href="#/restaurants">Restaurants</a></li>
-                <li ng-show=""></li>
-                <li><a href="#/sources">Sources</a></li>
+                <li><a ng-click="openRestaurantsQuery()" href="#/restaurants">Restaurants<img ng-if="showingRestaurants()"
+                                                            src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/106-sliders-icon.png"></a>
+                </li>
+                <li><a href="#/sources">Sources<img ng-if="showingSources()"
+                                                    src="http://icons.iconarchive.com/icons/glyphish/glyphish/32/106-sliders-icon.png"></a>
+                </li>
             </ul>
             <ul class="right">
                 <li><a class="right-off-canvas-toggle" href="#{{ location.path() }}">User</a></li>
