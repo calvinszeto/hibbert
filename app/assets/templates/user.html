@@ -1,10 +1,27 @@
-<div class="auth-forms">
-    <h2>Log In</h2>
+<div class="auth-forms" ng-controller="UserController">
+    <div ng-if="user.logged_in">
+        <h2>{{user.email}}'s Profile</h2>
+        <button class="btn btn-primary" ng-click="logout()">Logout</button>
+    </div>
+    <div ng-if="!user.logged_in">
+        <h2>Log In</h2>
 
-    <form ng-submit="login()">
-        <p ng-show="error" class="text-danger">{{error}}</p>
-        <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
-        <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
-        <input type="submit" value="Log in" class="btn btn-primary"/>
-    </form>
+        <form ng-submit="login()">
+            <p ng-show="error" class="text-danger">{{error}}</p>
+            <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
+            <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
+            <input type="submit" value="Log in" class="btn btn-primary"/>
+        </form>
+    </div>
+    <!--<div ng-if="">-->
+        <!--<h2>Register</h2>-->
+
+        <!--<form ng-submit="register()">-->
+            <!--<p ng-show="error" class="text-danger">{{error}}</p>-->
+            <!--<input type="text" ng-model="user.username" placeholder="Username" class="form-control"><br>-->
+            <!--<input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>-->
+            <!--<input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>-->
+            <!--<input type="submit" value="Register" class="btn btn-primary"/>-->
+        <!--</form>-->
+    <!--</div>-->
 </div>

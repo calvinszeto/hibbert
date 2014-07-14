@@ -4,8 +4,35 @@ var app = angular.module("hibbertApp", [
     'mm.foundation',
     'ui.select2'
 ])
+    .config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+        var interceptor = ['$location', '$rootScope', '$q', function ($location, $rootScope, $q) {
+            function success(response) {
+                return response
+            };
+
+            function error(response) {
+                if (response.status == 401) {
+                    $rootScope.$broadcast('event:unauthorized');
+                    // Show Login
+                    return response;
+                }
+                ;
+                return $q.reject(response);
+            };
+
+            return function (promise) {
+                return promise.then(success, error);
+            };
+        }];
+        $httpProvider.responseInterceptors.push(interceptor);
+
+    }])
 //    The following provides the root path and current angular path to our templates
     .constant('HIBBERT_URL', ROOT_PATH)
     .run([ '$rootScope', '$location', function ($rootScope, $location) {
         $rootScope.location = $location;
-}]);
+    }])
+    .run([ '$rootScope', 'User', function ($rootScope, User) {
+        $rootScope.User = User;
+    }]);

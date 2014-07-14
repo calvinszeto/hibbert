@@ -36,6 +36,7 @@ TODO:
         -Navbar becomes unfixed when offcanvas is activated
     -Tune up backend
         -Pagination
+    -Move out all erb so that the frontend can be tested with karma
 -Images
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found

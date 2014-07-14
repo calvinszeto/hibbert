@@ -1,7 +1,7 @@
 class SessionsController < Devise::SessionsController
 	# The following code is borrowed from http://jes.al/2013/08/authentication-with-rails-devise-and-angularjs/
 	
-  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/vnd.radd.v1' }
+  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/hibbert' }
 
   def create
     warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
