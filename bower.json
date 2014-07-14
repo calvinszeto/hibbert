@@ -10,7 +10,9 @@
         "angular": "latest",
         "angular-route": "latest",
         "angular-resource": "latest",
-        "angular-foundation": "latest"
+        "angular-foundation": "latest",
+        "select2": "latest",
+        "angular-ui-select2": "latest"
     }
   }
 }

@@ -1,3 +1,2 @@
-app.controller('RestaurantsQueryController', [function() {
-
+app.controller('RestaurantsQueryController', ['$scope', function($scope) {
 }]);
