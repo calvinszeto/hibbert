@@ -1,8 +1,6 @@
 app.controller('RestaurantsController', ['$scope', 'Restaurant', 'RestaurantsQuery',
     function ($scope, Restaurant, RestaurantsQuery) {
-        $scope.restaurants = RestaurantsQuery.restaurants;
-        $scope.hasUserPreferences = RestaurantsQuery.hasUserPreferences;
-        $scope.hasDistance = RestaurantsQuery.hasDistance;
+        $scope.RestaurantsQuery = RestaurantsQuery;
 
         // Fill out the following when the User service is done
 //        $scope.updateNoShow = function (restaurant) {

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 		get '/restaurants', to: 'restaurants#index'
 		get '/restaurants/:id', to: 'restaurants#show'
 
+		get '/categories', to: 'categories#index'
+
 		get '/recommendation_groups/:id', to: 'recommendation_groups#show'
 
 		get '/sources', to: 'sources#index'
