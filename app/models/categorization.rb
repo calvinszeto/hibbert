@@ -10,7 +10,7 @@
 #
 
 class Categorization < ActiveRecord::Base
-  belongs_to :category
+  belongs_to :category, :counter_cache => true
   belongs_to :restaurant
 
 	after_create :add_to_restaurant_categories_list
