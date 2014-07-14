@@ -1,5 +1,5 @@
-app.controller('RestaurantsQueryController', ['$scope', 'Category', 'RestaurantsQuery',
-    function ($scope, Category, RestaurantsQuery) {
+app.controller('RestaurantsQueryController', ['$scope', 'Category', 'RestaurantsQuery', '$rootScope',
+    function ($scope, Category, RestaurantsQuery, $rootScope) {
         $scope.categories = Category.query();
         $scope.query = {
             onlyCategories: [],
@@ -8,9 +8,7 @@ app.controller('RestaurantsQueryController', ['$scope', 'Category', 'Restaurants
             distance: 5
         };
         $scope.RestaurantsQuery = RestaurantsQuery;
-        // If logged in
-        // Tried
-        // No Show
+        $scope.loggedIn = $rootScope.User.isAuthenticated();
         $scope.submitQuery = function () {
             $scope.RestaurantsQuery.search($scope.query);
         };

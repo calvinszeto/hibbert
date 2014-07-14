@@ -1,9 +1,9 @@
 <div class="auth-forms" ng-controller="UserController">
-    <div ng-if="user.logged_in">
+    <div ng-if="user.loggedIn">
         <h2>{{user.email}}'s Profile</h2>
         <button class="btn btn-primary" ng-click="logout()">Logout</button>
     </div>
-    <div ng-if="!user.logged_in">
+    <div ng-if="!user.loggedIn">
         <h2>Log In</h2>
 
         <form ng-submit="login()">

@@ -1,9 +1,9 @@
 app.controller('UserController', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.User = $rootScope.User;
-    $scope.user = {email: "", password: "", logged_in: false};
-    $scope.User.currentUser().then(function (result) {
+    $scope.user = {email: "", password: "", loggedIn: false};
+    $scope.User.currentUser().success(function (result) {
         $scope.user = result;
-        $scope.user.logged_in = true;
+        $scope.user.loggedIn = true;
     });
 
     $scope.login = function () {
@@ -15,7 +15,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
                     $scope.authError = 'Credentials are not valid';
                 } else {
                     $scope.authError = 'Success!';
-                    $scope.user.logged_in = true;
+                    $scope.user.loggedIn = true;
                 }
             }, function (response) {
                 $scope.authError = 'Server offline, please try later';
@@ -24,7 +24,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
 
     $scope.logout = function () {
         $scope.User.logout().then(function() {
-            $scope.user = {email: "", password: "", logged_in: false};
+            $scope.user = {email: "", password: "", loggedIn: false};
         });
     };
 

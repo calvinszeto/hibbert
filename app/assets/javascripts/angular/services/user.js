@@ -6,8 +6,8 @@ app.factory('User', ['$q', '$http',
                 if (User.isAuthenticated()) {
                     return $q.when(User._currentUser);
                 } else {
-                    return $http.get('/users.json').then(function (response) {
-                        User._currentUser = response.data;
+                    return $http.get('/users.json').success(function (data, status, headers, config) {
+                        User._currentUser = data;
                         return User._currentUser;
                     });
                 }
