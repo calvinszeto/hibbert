@@ -1,6 +1,6 @@
 TODO:
--Frontend geolocation
 -Code up Frontend
+    -Maps API
     -Decide on how to split up application
         -restaurants
             -service
@@ -32,8 +32,7 @@ TODO:
     -User Authentication - make a service similar to firebaseSimpleLogin using hibbert backend
     -Change all colors and maybe type
     -Bugs
-        -Make off canvas fixed?
-        -Navbar becomes unfixed when offcanvas is activated
+        -Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
     -Tune up backend
         -Pagination
     -Move out all erb so that the frontend can be tested with karma
@@ -44,6 +43,7 @@ TODO:
 -Optimization
     -Refactor Angular App
         Create directives for common elements
+        Add validations to RestaurantQuery service
     -Refactor out all hard numbers and error messages 
         source controller spec 
         both location using controllers

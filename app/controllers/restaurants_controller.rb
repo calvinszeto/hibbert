@@ -7,8 +7,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants?format=json{&only&except&location&tried&no_filter}
   def index
     @restaurants = Restaurant.all
-		@no_filter = params[:no_filter] == true
-		@tried = params[:tried] == true
+		@no_filter = params[:no_filter] == "true"
+		@tried = params[:tried] == "true"
 		@user = current_user
 		if params[:only]
 			@restaurants = @restaurants.only_categories(params[:only])
@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
 				@restaurants = @restaurants.source_showable(current_user)
 			end
 		end
-		if params[:location]
+		if params[:location] && !params[:location].empty?
 			distance = params[:distance] || @@default_search_distance
 			near_restaurants = Restaurant.near(@restaurants, params[:location], distance)
 			@location = near_restaurants.empty? ? "error" : params[:location]

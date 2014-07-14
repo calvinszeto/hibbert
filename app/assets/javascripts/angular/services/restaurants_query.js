@@ -3,14 +3,16 @@ app.factory('RestaurantsQuery', ['Restaurant', function (Restaurant) {
     var RestaurantsQuery = {
         restaurants: Restaurant.query(),
         search: function (filters) {
-            RestaurantsQuery.restaurants = Restaurant.query({
-                location: "506 W 37. St. Austin, TX 78705"
-            });
-            RestaurantsQuery.hasDistance = true;
+            RestaurantsQuery.restaurants = Restaurant.query(filters,
+                function (data, status, headers, config) {
+                    if (data && data[0].hasOwnProperty("distance")) {
+                        RestaurantsQuery.hasDistance = true;
+                    }
+                });
         },
-        hasPreferences: false,
-        hasDistance: false,
-        test: ""
+        hasTried: false,
+        hasNoShow: false,
+        hasDistance: false
     };
 
     return RestaurantsQuery;

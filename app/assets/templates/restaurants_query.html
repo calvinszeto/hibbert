@@ -3,7 +3,7 @@
     <div class="row form-group">
         <div class="large-6 columns">
             <label>Only Show Categories:
-                <select ui-select2 ng-model="query.onlyCategories">
+                <select ui-select2 ng-model="query.only">
                     <option ng-repeat="category in categories" value="{{category.name}}">
                         {{category.name}}
                     </option>
@@ -12,7 +12,7 @@
         </div>
         <div class="large-6 columns">
             <label>Don't Show Categories:
-                <select ui-select2 ng-model="query.exceptCategories">
+                <select ui-select2 ng-model="query.except">
                     <option ng-repeat="category in categories" value="{{category.name}}">
                         {{category.name}}
                     </option>
@@ -20,25 +20,26 @@
             </label>
         </div>
     </div>
-    <div class="row form-group">
-        <div class="large-12 columns">
-            <label>Search for restaurants near: <input type="text" ng-model="query.searchLocation"></label>
+    <div class="form-group">
+        <div class="row">
+            <div class="large-10 columns">
+                <label>Search for restaurants near: <input type="text" ng-model="query.location"></label>
+            </div>
+            <div class="large-2 columns">
+                <label>within:<br><input type="number" ng-model="query.distance"> miles</label>
+            </div>
         </div>
     </div>
-    <div class="row description">
-        <div class="large-6-offset-3 columns">
-            <label>within <input type="number" ng-model="query.distance"> miles</label>
+    <div class="form-group" ng-show="loggedIn">
+        <div class="row">
+            <div class="large-3 columns end">
+                <label><input type="checkbox" ng-model="query.tried"> Show tried restaurants</label>
+            </div>
         </div>
-        <div class="large-3 columns"></div>
-    </div>
-    <div class="row form-group" ng-show="loggedIn">
-        <div class="large-12 columns">
-            <label><input type="checkbox"> Show tried restaurants</label>
-        </div>
-    </div>
-    <div class="row form-group" ng-show="loggedIn">
-        <div class="large-12 columns">
-            <label><input type="checkbox"> Show blocked restaurants</label>
+        <div class="row">
+            <div class="large-3 columns end">
+                <label><input type="checkbox" ng-model="query.no_filter"> Show blocked restaurants</label>
+            </div>
         </div>
     </div>
     <div class="row form-group">
