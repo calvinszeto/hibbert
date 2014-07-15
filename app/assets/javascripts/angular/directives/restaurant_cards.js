@@ -1,13 +1,18 @@
 app.directive('restaurantCards', [function () {
-    var controller = function($element) {
-        this.toggleRestaurant = function(restaurant, expandedElement, expanded) {
-            if(expanded) {
+    var controller = function($element, $animate, $timeout) {
+        this.toggleRestaurant = function(restaurant, expandedElement) {
+            if(!expandedElement.hasClass("expanded")) {
                 $element.removeClass("cards-list");
                 $element.addClass("cards-show");
-                expandedElement.addClass("expanded");
+                $animate.addClass(expandedElement, "expanded");
+                // TODO: Hardcoded numbers: animation duration
+                $timeout(function() {
+                    $element.addClass("hide-removed");
+                }, 300);
             } else {
-                expandedElement.removeClass("expanded");
+                $animate.removeClass(expandedElement, "expanded");
                 $element.removeClass("cards-show");
+                $element.removeClass("hide-removed");
                 $element.addClass("cards-list");
             }
         }
@@ -21,8 +26,7 @@ app.directive('restaurantCards', [function () {
         },
         replace: true,
         template: '<ul class="cards-list">' +
-            '<li ng-repeat="restaurant in restaurants">' +
-            '<restaurant-card restaurant="restaurant"></restaurant-card>' +
-            '</li></ul>'
+            '<restaurant-card ng-repeat="restaurant in restaurants" index="{{$index}}" restaurant="restaurant"></restaurant-card>' +
+            '</ul>'
     };
 }]);

@@ -1,34 +1,111 @@
 $include-html-classes: false;
 @import "foundation_and_overrides";
 
+// TODO: Hardcoded numbers: number of blocks per row
 .cards-list {
   @include block-grid(5);
 }
 
-// TODO: put back per-row and spacing
 .cards-show {
   @include block-grid(false);
+  // TODO: Hardcoded numbers: blocks per row and animation duration
   & > li {
+    width: (100%/5);
+    &:not(.expanded) {
+      -webkit-animation: remove 0.5s forwards; /* Safari 4+ */
+      -moz-animation: remove 0.5s forwards; /* Fx 5+ */
+      -o-animation: remove 0.5s forwards; /* Opera 12+ */
+      animation: remove 0.5s forwards; /* IE 10+, Fx 29+ */
 
-//    width: (100%/5);
-    display: none;
+
     &.expanded {
-      width: 100%;
-      display: block;
+      -webkit-animation: expand 1s forwards; /* Safari 4+ */
+      -moz-animation: expand 1s forwards; /* Fx 5+ */
+      -o-animation: expand 1s forwards; /* Opera 12+ */
+      animation: expand 1s forwards; /* IE 10+, Fx 29+ */
     }
-
-//
-//    padding: 0 (1.25rem/2) 1.25rem;
-//    list-style: none;
-//
-//    &:nth-of-type(1n) {
-//      clear: none;
-//    }
-//    &:nth-of-type(5n+1) {
-//      clear: both;
-//    }
   }
+}
 
+.hide-removed {
+  & > li:not(.expanded) {
+    display: none;
+  }
+}
+
+@-webkit-keyframes remove {
+  0% {
+    transform: translateY(0vh);
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@-moz-keyframes remove {
+  0% {
+    transform: translateY(0vh);
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@-o-keyframes remove {
+  0% {
+    transform: translateY(0vh);
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes remove {
+  0% {
+    transform: translateY(0vh);
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// TODO: Hardcoded numbers: card width
+@-webkit-keyframes expand {
+  0% {
+    width: (100%/5)
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-moz-keyframes expand {
+  0% {
+    width: (100%/5)
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-o-keyframes expand {
+  0% {
+    width: (100%/5)
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes expand {
+  0% {
+    width: (100%/5)
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 /* Card, Dialog */
@@ -36,7 +113,7 @@ $include-html-classes: false;
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 100%;
+  height: 21rem;
   vertical-align: top;
   background-color: #B00100;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);

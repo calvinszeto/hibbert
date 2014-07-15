@@ -8,6 +8,7 @@
     "name": "bower-rails generated vendor assets",
     "dependencies": {
         "angular": "latest",
+        "angular-animate": "latest",
         "angular-route": "latest",
         "angular-resource": "latest",
         "angular-foundation": "latest",

@@ -17,6 +17,7 @@
 //= require foundation/foundation
 //= require foundation/foundation.topbar
 //= require angular
+//= require angular-animate
 //= require angular-route
 //= require angular-resource
 //= require angular-foundation
