@@ -1,13 +1,28 @@
 <li ng-click="toggleRestaurant(restaurant)">
     <div class="card">
-        <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
-        {{restaurant.name}}
-        {{restaurant.categories}}
-        <p ng-if="restaurant.no_show">Blocked</p>
-        <p ng-if="restaurant.tried">Tried</p>
-        <div ng-show="RestaurantsQuery.hasDistance">
-            {{restaurant.distance}} miles away
+        <div class="row">
+            <div class="large-2 columns"></div>
+            <div class="large-2 columns image">
+                <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
+            </div>
+            <div class="large-2 columns"></div>
+            <div class="large-6 columns"></div>
         </div>
-        <p ng-if="card.expanded">STUFF GOES HERE</p>
+        <div class="row">
+            <div class="large-6 columns">
+                {{restaurant.name}}
+                {{restaurant.categories}}
+                <p ng-if="restaurant.no_show">Blocked</p>
+
+                <p ng-if="restaurant.tried">Tried</p>
+
+                <div ng-show="RestaurantsQuery.hasDistance">
+                    {{restaurant.distance}} miles away
+                </div>
+            </div>
+        </div>
+        <div ng-if="card.expanded">
+
+        </div>
     </div>
 </li>

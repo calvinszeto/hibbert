@@ -8,7 +8,7 @@ app.directive('restaurantCards', [function () {
                 // TODO: Hardcoded numbers: animation duration
                 $timeout(function() {
                     $element.addClass("hide-removed");
-                }, 300);
+                }, 200);
             } else {
                 $animate.removeClass(expandedElement, "expanded");
                 $element.removeClass("cards-show");

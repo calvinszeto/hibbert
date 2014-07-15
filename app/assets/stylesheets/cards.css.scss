@@ -12,17 +12,17 @@ $include-html-classes: false;
   & > li {
     width: (100%/5);
     &:not(.expanded) {
-      -webkit-animation: remove 0.5s forwards; /* Safari 4+ */
-      -moz-animation: remove 0.5s forwards; /* Fx 5+ */
-      -o-animation: remove 0.5s forwards; /* Opera 12+ */
-      animation: remove 0.5s forwards; /* IE 10+, Fx 29+ */
-
+      -webkit-animation: remove 0.2s forwards; /* Safari 4+ */
+      -moz-animation: remove 0.2s forwards; /* Fx 5+ */
+      -o-animation: remove 0.2s forwards; /* Opera 12+ */
+      animation: remove 0.2s forwards; /* IE 10+, Fx 29+ */
+    }
 
     &.expanded {
-      -webkit-animation: expand 1s forwards; /* Safari 4+ */
-      -moz-animation: expand 1s forwards; /* Fx 5+ */
-      -o-animation: expand 1s forwards; /* Opera 12+ */
-      animation: expand 1s forwards; /* IE 10+, Fx 29+ */
+      -webkit-animation: expand 0.2s forwards; /* Safari 4+ */
+      -moz-animation: expand 0.2s forwards; /* Fx 5+ */
+      -o-animation: expand 0.2s forwards; /* Opera 12+ */
+      animation: expand 0.2s forwards; /* IE 10+, Fx 29+ */
     }
   }
 }
@@ -117,4 +117,17 @@ $include-html-classes: false;
   vertical-align: top;
   background-color: #B00100;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+
+  .image {
+    width: 100%;
+  }
+}
+
+.card.expanded {
+  height: 100%;
+
+  .image {
+    width: 20%;
+    margin: 5rem;
+  }
 }

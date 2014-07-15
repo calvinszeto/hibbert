@@ -4,15 +4,22 @@ app.directive('restaurantCard', [function () {
         scope.toggleRestaurant = function(restaurant) {
             scope.card.expanded = !element.hasClass("expanded");
             // TODO: Hardcoded numbers: height/width of cards and animation duration
+            // Calculate the approximate position in the block grid
             var top = Math.floor(scope.index/5) * 376;
             var left = (scope.index % 5) * 315.4;
             if(scope.card.expanded) {
+                // Convert the card to expanded mode
+                element.children().addClass("expanded");
+                // Animate the card moving to the top left corner
                 element.css("top", top.toString() + "px");
                 element.css("left", left.toString() + "px");
                 element.css("position", "absolute");
-                element.animate({top: 0, left: 0}, 500);
+                element.animate({top: 0, left: 0}, 300);
             } else {
-                element.animate({top: top, left: left}, 500);
+                // Convert the card to block mode
+                element.children().removeClass("expanded");
+                // TODO: This doesn't work
+                element.animate({top: top, left: left}, 300);
                 element.css("position", "block");
             }
             restaurantCardsCtrl.toggleRestaurant(restaurant, element);
