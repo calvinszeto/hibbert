@@ -25,6 +25,13 @@ $include-html-classes: false;
   height: 90vh;
 }
 
+.nav_icon_right {
+  margin-left: 16px;
+}
+
+.full-width {
+  max-width: 100%;
+}
 
 .fade {
   opacity: 0;
@@ -57,12 +64,4 @@ $include-html-classes: false;
 .reveal-modal-bg.in {
   filter: alpha(opacity=50);
   opacity: .5;
-}
-
-.nav_icon_right {
-  margin-left: 16px;
-}
-
-.full-width {
-  max-width: 100%;
 }
