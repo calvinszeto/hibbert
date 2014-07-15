@@ -1,0 +1,21 @@
+app.directive('restaurantCard', [function () {
+    function link(scope, element, attrs, restaurantCardsCtrl) {
+        scope.card = {expanded: false};
+        scope.toggleRestaurant = function(restaurant) {
+            element.toggleClass("expanded");
+            scope.card.expanded = element.hasClass("expanded");
+            restaurantCardsCtrl.toggleRestaurant(restaurant, element.parent(), scope.card.expanded);
+        };
+    };
+
+    return {
+        restrict: "E",
+        require: "^restaurantCards",
+        scope: {
+            restaurant: '='
+        },
+        replace: true,
+        templateUrl: "<%= asset_path('restaurant_card.html') %>",
+        link: link
+    }
+}]);

@@ -1,19 +1,6 @@
 <!--Block grid of restaurants returned by the restaurants query-->
 <div class="row full-width">
     <div class="large-12 columns">
-        <ul class="cards">
-            <li ng-repeat="restaurant in RestaurantsQuery.restaurants">
-                <div class="card">
-                    <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
-                    {{restaurant.name}}
-                    {{restaurant.categories}}
-                    <p ng-if="restaurant.no_show">Blocked</p>
-                    <p ng-if="restaurant.tried">Tried</p>
-                    <div ng-show="RestaurantsQuery.hasDistance">
-                        {{restaurant.distance}} miles away
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <restaurant-cards restaurants="RestaurantsQuery.restaurants"></restaurant-cards>
     </div>
 </div>
