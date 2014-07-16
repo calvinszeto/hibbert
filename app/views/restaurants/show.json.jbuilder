@@ -5,6 +5,7 @@ if @user
 	json.tried @user.tried_restaurants.include?(@restaurant.id)
 end
 json.sources @restaurant.sources do |source|
+	json.id source.id
 	json.name source.name
 	json.category source.category
 	json.website source.website

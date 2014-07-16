@@ -1,10 +1,8 @@
 TODO:
 -Link Up Rec Groups
--Add checks for tried/no show
--Code up Frontend
-    -Add alerts right under the nav bar
-    -Tune up backend
-        -Pagination
+-Add checks for tried/no show and user functions
+-Add alerts right under the nav bar
+-Add Pagination to Backend
 -Images
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found

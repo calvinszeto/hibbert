@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c1ea45f-d702-49a7-bbe7-0bd982ae617f" name="Default" comment="Add Bower, Angular and Foundation and start on nav bar.kkkkkjkjkjkj">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/sources_controller.js.erb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/sources_controller.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO" afterPath="$PROJECT_DIR$/TODO" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/nav_controller.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/nav_controller.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_card.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_card.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/templates/restaurant.html" afterPath="$PROJECT_DIR$/app/assets/templates/restaurant.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/routes.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/routes.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles-TODO" afterPath="$PROJECT_DIR$/styles-TODO" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/restaurants/show.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/restaurants/show.json.jbuilder" />
     </list>
     <ignored path="hibbert.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,31 +41,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="restaurant.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="restaurant.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/templates/restaurant.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="restaurants_query.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/assets/templates/restaurants_query.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="840">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="restaurant_controller.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.040650405" vertical-offset="0" max-vertical-offset="738">
-                  <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.2853261" vertical-offset="0" max-vertical-offset="736">
+                  <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
                   <folding />
                 </state>
               </provider>
@@ -104,8 +78,18 @@
           <file leaf-file-name="restaurants_controller.js.erb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="747">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.32128513" vertical-offset="0" max-vertical-offset="747">
+                  <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="restaurant_controller.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+                  <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -156,7 +140,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/user_controller.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/services/user.js" />
         <option value="$PROJECT_DIR$/app/assets/templates/restaurant_card.html" />
-        <option value="$PROJECT_DIR$/app/assets/templates/restaurant.html" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/services/restaurant.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/services/source.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/source_controller.js" />
@@ -175,6 +158,7 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/sources_controller.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_card.js.erb" />
+        <option value="$PROJECT_DIR$/app/assets/templates/restaurant.html" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb" />
       </list>
@@ -851,14 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/templates/restaurants_query.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_cards.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
@@ -899,6 +875,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_card.js.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19736843" vertical-offset="0" max-vertical-offset="760">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/templates/restaurants_query.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/sources_controller.js.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
@@ -909,32 +901,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/templates/restaurant.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2853261" vertical-offset="0" max-vertical-offset="736">
+          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurant_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.040650405" vertical-offset="0" max-vertical-offset="738">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/directives/restaurant_card.js.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19736843" vertical-offset="0" max-vertical-offset="760">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers/restaurants_controller.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="747">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.32128513" vertical-offset="0" max-vertical-offset="747">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
