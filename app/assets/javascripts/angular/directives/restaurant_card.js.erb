@@ -1,15 +1,7 @@
-app.directive('restaurantCard', ['$modal', function ($modal) {
+app.directive('restaurantCard', ['$modal', '$location', function ($modal, $location) {
     function link(scope, element, attrs) {
         scope.openRestaurant = function (restaurant) {
-            $modalInstance = $modal.open({
-                templateUrl: "<%= asset_path('restaurant.html') %>",
-                controller: "RestaurantController",
-                resolve: {
-                    restaurant: function() {
-                        return restaurant;
-                    }
-                }
-            });
+            $location.path("/restaurants/"+restaurant.id);
         }
     };
     return {

@@ -1,7 +1,20 @@
 app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
     function (HIBBERT_URL, $scope, $location, $modal) {
+        var restaurantPath = {
+            previousPath: null,
+            previousDecision: false
+        };
+        var sourcePath = {
+            previousPath: null,
+            previousDecision: false
+        };
+
         $scope.showingRestaurants = function () {
-            return $location.path() === "/restaurants";
+            if ($location.path() != restaurantPath.previousPath) {
+                restaurantPath.previousPath = $location.path();
+                restaurantPath.previousDecision = /\/restaurants*/.exec($location.path());
+            }
+            return restaurantPath.previousDecision;
         };
 
         $scope.openRestaurantsQuery = function () {
@@ -14,7 +27,11 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
         };
 
         $scope.showingSources = function () {
-            return $location.path() === "/sources";
+            if ($location.path() != sourcePath.previousPath) {
+                sourcePath.previousPath = $location.path();
+                sourcePath.previousDecision = /\/sources*/.exec($location.path());
+            }
+            return sourcePath.previousDecision;
         };
 
         $scope.openSourcesQuery = function () {
@@ -25,4 +42,5 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
                 });
             }
         };
-    }]);
+    }])
+;

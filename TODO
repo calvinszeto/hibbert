@@ -1,37 +1,18 @@
 TODO:
+-Link Up Rec Groups
 -Add checks for tried/no show
 -Code up Frontend
-    -Maps API
-    -Decide on how to split up application
-        -restaurants
-            -service
-            -list
-            -show
-        -sources
-            -service
-            -list
-            -show
-            -recommendation groups
-                -service
-                -show
-        -search options/filters
-            New plan is to put it inside the nav bar, with separate controllers.
-        -nav bar and routing
-        -users
-            -service
-            -login
-            -register
-            -profile: preferences if screen is medium/large
     -Add alerts right under the nav bar
     -Tune up backend
         -Pagination
-    -Move out all erb so that the frontend can be tested with karma
 -Images
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found
     -Change out hardcoded images
 -Add Usernames to user/auth
 -Optimization
+    -Move out all erb so that the frontend can be tested with karma
+    -Maps API
     -Refactor Angular App
         Create directives for common elements
         Add validations to RestaurantQuery service
