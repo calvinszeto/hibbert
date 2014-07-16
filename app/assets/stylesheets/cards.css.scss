@@ -20,6 +20,11 @@ $include-html-classes: false;
 .show-card {
   height: 70vh;
 //  max-height: 80vh;
+  .card-nav {
+    .close {
+      float: right;
+    }
+  }
 
   label {
     display: inline-block;

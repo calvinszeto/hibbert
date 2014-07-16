@@ -6,6 +6,10 @@ app.controller('RestaurantController', ['$scope', '$modalInstance', '$rootScope'
             $modalInstance.close();
         };
 
+        $scope.closeWindow = function() {
+            $modalInstance.close();
+        }
+
         $scope.updateNoShow = function () {
             var operation = restaurant.no_show ? "add" : "remove";
             $rootScope.User.updatePreferences({operation: operation, no_show_restaurant: restaurant.id});
