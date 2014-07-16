@@ -35,6 +35,9 @@ app.factory('User', ['$q', '$http',
                     return response;
                 });
             },
+            updatePreferences: function(options) {
+                return $http.put('/users.json', options);
+            },
             isAuthenticated: function () {
                 return !!User._currentUser;
             }

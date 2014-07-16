@@ -1,12 +1,17 @@
 Nav Bar:
 Card:
 Modal:
+    Make modal cover most of the screen - all if screen is small
+    Either give modal a border or background of color
+    Make image a square of some set rem size
     Handle long lists
 OffCanvas:
+    Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
 Search Box:
--Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
--Change all colors and maybe type
--How to do animations between:
+Overall:
+    Change all colors and maybe type
+    Add favicon
+Animations:
     Switching modal
     General on hover effects
     Cards leaving/entering the screen

@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 	root :to => "application#index"
 
-	devise_for :users
-
 	scope :format => true, :constraints => { :format => 'json' } do
 		get '/users', to: 'users#show'
+		put '/users', to: 'users#update'
 		patch '/users', to: 'users#update'
 		post '/users', to: 'users#create'
 		delete '/users', to: 'users#destroy'
@@ -34,4 +33,6 @@ Rails.application.routes.draw do
 			resources :restaurants
 		end
 	end
+
+	devise_for :users
 end

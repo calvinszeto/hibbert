@@ -1,13 +1,16 @@
 TODO:
--Add checks for tried/no show and user functions
+
 -Add exit to show
 -Add alerts right under the nav bar
 -Add Pagination to Backend
+
 -Images
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found
     -Change out hardcoded images
 -Add Usernames to user/auth
+-Deploy
+    -Add Bower to Heroku postinstall script
 -Optimization
     -MOBILEMOBILEMOBILE
     -Organize Angular Files

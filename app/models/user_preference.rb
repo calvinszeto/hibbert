@@ -15,38 +15,50 @@ class UserPreference < ActiveRecord::Base
   belongs_to :user
 
 	def add_no_show_source(source)
-		self.no_show_sources.push(source.id)
-		self.no_show_sources_will_change!
-		self.save
+		unless no_show_sources.include? source
+			self.no_show_sources.push(source.id)
+			self.no_show_sources_will_change!
+			self.save
+		end
 	end
 
 	def remove_no_show_source(source)
-		self.no_show_sources.delete(source.id)
-		self.no_show_sources_will_change!
-		self.save
+		if no_show_sources.include? source
+			self.no_show_sources.delete(source.id)
+			self.no_show_sources_will_change!
+			self.save
+		end
 	end
 
 	def add_no_show_restaurant(restaurant)
-		self.no_show_restaurants.push(restaurant.id)
-		self.no_show_restaurants_will_change!
-		self.save
+		unless no_show_restaurants.include? restaurant
+			self.no_show_restaurants.push(restaurant.id)
+			self.no_show_restaurants_will_change!
+			self.save
+		end
 	end
 
 	def remove_no_show_restaurant(restaurant)
-		self.no_show_restaurants.delete(restaurant.id)
-		self.no_show_restaurants_will_change!
-		self.save
+		if no_show_restaurants.include? restaurant
+			self.no_show_restaurants.delete(restaurant.id)
+			self.no_show_restaurants_will_change!
+			self.save
+		end
 	end
 
 	def add_tried_restaurant(restaurant)
-		self.tried_restaurants.push(restaurant.id)
-		self.tried_restaurants_will_change!
-		self.save
+		unless tried_restaurants.include? restaurant
+			self.tried_restaurants.push(restaurant.id)
+			self.tried_restaurants_will_change!
+			self.save
+		end
 	end
 
 	def remove_tried_restaurant(restaurant)
-		self.tried_restaurants.delete(restaurant.id)
-		self.tried_restaurants_will_change!
-		self.save
+		if tried_restaurants.include? restaurant
+			self.tried_restaurants.delete(restaurant.id)
+			self.tried_restaurants_will_change!
+			self.save
+		end
 	end
 end
