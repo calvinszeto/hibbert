@@ -6,6 +6,11 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
         $scope.user.loggedIn = true;
     });
 
+    $scope.user.register = false;
+    $scope.showRegister = function () {
+        $scope.user.register = true;
+    };
+
     $scope.login = function () {
         $scope.authError = null;
 
@@ -23,7 +28,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
     };
 
     $scope.logout = function () {
-        $scope.User.logout().then(function() {
+        $scope.User.logout().then(function () {
             $scope.user = {email: "", password: "", loggedIn: false};
         });
     };
@@ -31,8 +36,10 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
     $scope.register = function (user) {
         $scope.authError = null;
 
-        $scope.session.register(user.email, user.password, user.confirm_password)
+        $scope.User.register($scope.user.email,
+            $scope.user.password, $scope.user.confirm_password)
             .then(function (response) {
+                $scope.user.register = false;
                 console.log(response);
             }, function (response) {
                 var errors = '';

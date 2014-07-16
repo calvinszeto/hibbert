@@ -1,17 +1,17 @@
 <div>
-    {{ restaurant.name }}
+    {{ source.name }}
     <br>
-    {{ restaurant.website }}
+    {{ source.website }}
     <br>
-    {{ restaurant.categories_list }}
+    {{ source.categories_list }}
     <br>
-    {{ restaurant.address }}
+    {{ source.address }}
     <br>
-    {{ restaurant.no_show }}
+    {{ source.no_show }}
     <br>
-    {{ restaurant.tried }}
+    {{ source.tried }}
     <br>
-    <div ng-repeat="source in restaurant.sources">
+    <div ng-repeat="source in source.sources">
         {{ source.name }}
         <br>
         {{ source.category }}

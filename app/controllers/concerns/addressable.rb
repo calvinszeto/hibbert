@@ -8,9 +8,13 @@ module Addressable
 	
 	# Delegate Address attributes and methods to the first address
 	def method_missing(meth, *args, &block)
-		methods = [:street, :city, :state, :zip_code, :latitude, :longitude]
-		if methods.include? meth
-			addresses.first[meth]
+		methods = [:street, :city, :state, :zip_code, :latitude, :longitude, :full_address]
+		if methods.include? meth 
+			if addresses.first
+				addresses.first.send(meth)
+			else
+				return
+			end
 		else
 			super
 		end

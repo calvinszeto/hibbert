@@ -26,10 +26,13 @@ app.factory('User', ['$q', '$http',
                 });
             },
             register: function (email, password, password_confirmation) {
-                User._currentUser = User.create({
+                User._currentUser = $http.post('/users.json', { user: {
                     email: email,
                     password: password,
                     password_confirmation: password_confirmation
+                }}).then(function (response) {
+                    User._currentUser = response.data.user;
+                    return response;
                 });
             },
             isAuthenticated: function () {

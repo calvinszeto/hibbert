@@ -1,0 +1,15 @@
+Nav Bar:
+Restaurant Card:
+Restaurant Modal:
+OffCanvas:
+Search Box:
+-Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
+-Change all colors and maybe type
+-How to do animations between:
+    Modal entering the screen
+    General on hover effects
+    Cards leaving/entering the screen
+    Switching among pages
+    Expanding a card
+    Dropping down a map?
+

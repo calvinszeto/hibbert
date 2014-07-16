@@ -1,4 +1,5 @@
 TODO:
+-Add checks for tried/no show
 -Code up Frontend
     -Maps API
     -Decide on how to split up application
@@ -22,17 +23,6 @@ TODO:
             -register
             -profile: preferences if screen is medium/large
     -Add alerts right under the nav bar
-    -How to do animations between:
-        Modal entering the screen
-        General on hover effects
-        Cards leaving/entering the screen
-        Switching among pages
-        Expanding a card
-        Dropping down a map?
-    -User Authentication - make a service similar to firebaseSimpleLogin using hibbert backend
-    -Change all colors and maybe type
-    -Bugs
-        -Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
     -Tune up backend
         -Pagination
     -Move out all erb so that the frontend can be tested with karma
@@ -40,6 +30,7 @@ TODO:
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found
     -Change out hardcoded images
+-Add Usernames to user/auth
 -Optimization
     -Refactor Angular App
         Create directives for common elements

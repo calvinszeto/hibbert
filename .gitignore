@@ -18,3 +18,6 @@
 # Ignore Vim swap files and session files.
 *.swp
 *.vim
+
+# Ignore any uploaded images
+/uploads

@@ -16,4 +16,13 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
         $scope.showingSources = function () {
             return $location.path() === "/sources";
         };
+
+        $scope.openSourcesQuery = function () {
+            if ($location.path() === "/sources") {
+                $modalInstance = $modal.open({
+                    templateUrl: "<%= asset_path('sources_query.html') %>",
+                    controller: 'SourcesQueryController'
+                });
+            }
+        };
     }]);

@@ -1,0 +1,25 @@
+app.directive('sourceCard', ['$modal', function ($modal) {
+    function link(scope, element, attrs) {
+        scope.openSource = function (source) {
+            $modalInstance = $modal.open({
+                templateUrl: "<%= asset_path('source.html') %>",
+                controller: "SourceController",
+                resolve: {
+                    source: function() {
+                        return source;
+                    }
+                }
+            });
+        }
+    };
+    return {
+        restrict: "E",
+        scope: {
+            source: '=',
+            index: '@'
+        },
+        replace: true,
+        templateUrl: "<%= asset_path('source_card.html') %>",
+        link: link
+    }
+}]);
