@@ -1,8 +1,8 @@
 TODO:
-
--Add alerts right under the nav bar
 -Add Pagination to Backend
-
+-Alerts
+    Bad search location
+    Disconnection from server
 -Images
     -Add Images to Restaurants and Sources
     -Default images based on category if no images are found

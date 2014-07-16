@@ -1,5 +1,8 @@
 Nav Bar:
 Card:
+    Add padding
+    Fit in all information
+    Make sure height/width always holds information
 Modal:
     Make modal cover most of the screen - all if screen is small
     Either give modal a border or background of color

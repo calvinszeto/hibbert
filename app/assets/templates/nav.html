@@ -21,3 +21,4 @@
         </section>
     </nav>
 </div>
+<alert ng-repeat="alert in alert.alerts" type="alert.type" close="closeAlert($index)">{{ alert.msg }}</alert>
