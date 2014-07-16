@@ -1,0 +1,20 @@
+<!-- Get the root URL for Angular to know where to reach the API -->
+<script type="text/javascript" charset="utf-8">var ROOT_PATH = '<%= request.original_url %>';</script>
+
+<div id="container" ng-app="hibbertApp">
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <!--Nav Bar-->
+            <div ng-include="'<%= asset_path('nav.html') %>'"></div>
+            <!--Main Browser for restaurants/sources-->
+            <section class="main-section">
+                <div id="browser" ng-view=""></div>
+            </section>
+            <!--Off Canvas for login/logout and user profile-->
+            <aside class="right-off-canvas-menu">
+                <div ng-include="'<%= asset_path('user.html') %>'"></div>
+            </aside>
+            <a class="exit-off-canvas"></a>
+        </div>
+    </div>
+</div>

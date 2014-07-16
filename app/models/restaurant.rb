@@ -14,6 +14,7 @@
 
 class Restaurant < ActiveRecord::Base
 	include Addressable
+	include Imageable
 	
 	validates :name, presence: true
 	validates :name, :uniqueness => {case_sensitive: false}

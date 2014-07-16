@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-	# TODO: Add angular app
-	# root :to =>
+	root :to => "application#index"
 
 	devise_for :users
 
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
 
 		get '/restaurants', to: 'restaurants#index'
 		get '/restaurants/:id', to: 'restaurants#show'
+
+		get '/categories', to: 'categories#index'
 
 		get '/recommendation_groups/:id', to: 'recommendation_groups#show'
 

@@ -1,0 +1,13 @@
+Nav Bar:
+Card:
+Modal:
+    Handle long lists
+OffCanvas:
+Search Box:
+-Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
+-Change all colors and maybe type
+-How to do animations between:
+    Switching modal
+    General on hover effects
+    Cards leaving/entering the screen
+    Switching among pages

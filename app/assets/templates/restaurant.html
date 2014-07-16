@@ -1,0 +1,25 @@
+<div>
+    {{ restaurant.name }}
+    <br>
+    {{ restaurant.website }}
+    <br>
+    {{ restaurant.categories_list }}
+    <br>
+    {{ restaurant.address }}
+    <br>
+    {{ restaurant.no_show }}
+    <br>
+    {{ restaurant.tried }}
+    <br>
+    <div ng-repeat="source in restaurant.sources">
+        <a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a>
+        <br>
+        {{ source.category }}
+        <br>
+        {{ source.website }}
+        <br>
+        <div ng-repeat="group in source.recommendation_groups">
+            {{ group.name }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/restaurants/:restaurantId?', {
+            templateUrl: '<%= asset_path("restaurants.html") %>',
+            controller: 'RestaurantsController'
+        })
+        .when('/sources/:sourceId?', {
+            templateUrl: '<%= asset_path("sources.html") %>',
+            controller: 'SourcesController'
+        })
+        .when('/sources/group/:groupId', {
+            templateUrl: '<%= asset_path("sources.html") %>',
+            controller: 'SourcesController'
+        })
+        .otherwise({
+            redirectTo: '/restaurants'
+        });
+});

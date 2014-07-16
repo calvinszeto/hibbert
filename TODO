@@ -1,17 +1,23 @@
 TODO:
--Code out backend
-    -Views
-        -Write out view specs
-    -Images
-        -Add Images to Restaurants and Sources
-        -Default images based on category if no images are found
--Code up Frontend
-    -Add root route
-    -Plan out JS framework
-    -User Authentication
-    -Tune up backend
-        -Pagination
+-Link Up Rec Groups
+-Add checks for tried/no show and user functions
+-Add exit to show
+-Add alerts right under the nav bar
+-Add Pagination to Backend
+-Images
+    -Add Images to Restaurants and Sources
+    -Default images based on category if no images are found
+    -Change out hardcoded images
+-Add Usernames to user/auth
 -Optimization
+    -MOBILEMOBILEMOBILE
+    -Organize Angular Files
+    -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
+    -Move out all erb so that the frontend can be tested with karma
+    -Maps API
+    -Refactor Angular App
+        Create directives for common elements
+        Add validations to RestaurantQuery service
     -Refactor out all hard numbers and error messages 
         source controller spec 
         both location using controllers
@@ -23,6 +29,7 @@ TODO:
     -Recommender system that applies default weight and chooses at random if weight is near the default
     -Remove unwanted Devise modules
     -Move to memcached/memcashier for views(fragment caching) and for geocoding
+    -Grab custom Foundation with only parts that are used
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API
@@ -32,6 +39,7 @@ TODO:
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
 -Future Plans
+    -Welcome screen and tutorials
     -Fix up Address to save full address text
     -Add User Favorites
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations

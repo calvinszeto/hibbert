@@ -1,0 +1,17 @@
+app.directive('restaurantCard', ['$modal', '$location', function ($modal, $location) {
+    function link(scope, element, attrs) {
+        scope.openRestaurant = function (restaurant) {
+            $location.path("/restaurants/"+restaurant.id);
+        }
+    };
+    return {
+        restrict: "E",
+        scope: {
+            restaurant: '=',
+            index: '@'
+        },
+        replace: true,
+        templateUrl: "<%= asset_path('restaurant_card.html') %>",
+        link: link
+    }
+}]);

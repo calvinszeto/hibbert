@@ -1,0 +1,14 @@
+<li ng-click="openRestaurant(restaurant)">
+    <div class="card">
+        <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
+        {{restaurant.name}}
+        {{restaurant.categories_list}}
+        <p ng-if="restaurant.no_show">Blocked</p>
+
+        <p ng-if="restaurant.tried">Tried</p>
+
+        <div ng-show="RestaurantsQuery.hasDistance">
+            {{restaurant.distance}} miles away
+        </div>
+    </div>
+</li>

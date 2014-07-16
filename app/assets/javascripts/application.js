@@ -10,7 +10,19 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
+//= require select2
+//= require foundation/foundation
+//= require foundation/foundation.topbar
+//= require angular
+//= require angular-animate
+//= require angular-route
+//= require angular-resource
+//= require angular-foundation
+//= require angular-ui-select2
 //= require turbolinks
 //= require_tree .
+
+$(function(){ $(document).foundation(); });

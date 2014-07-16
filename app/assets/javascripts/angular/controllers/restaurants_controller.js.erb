@@ -1,0 +1,34 @@
+app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', '$modal', 'Restaurant', 'RestaurantsQuery',
+    function ($scope, $routeParams, $location, $modal, Restaurant, RestaurantsQuery) {
+        if (!!$routeParams.restaurantId) {
+            Restaurant.get({restaurantId: $routeParams.restaurantId},
+                function (data, status, headers, config) {
+                    var modalInstance = $modal.open({
+                        templateUrl: "<%= asset_path('restaurant.html') %>",
+                        controller: "RestaurantController",
+                        resolve: {
+                            restaurant: function () {
+                                return data;
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function () {
+                        // resolved - a link was clicked
+                    }, function () {
+                        // dismissed - go back to list
+                        $location.path("/restaurants");
+                    });
+                }
+                , error = function (data, status, headers, config) {
+                    //TODO: add error alert
+                });
+        }
+        $scope.RestaurantsQuery = RestaurantsQuery;
+        // Fill out the following when the User service is done
+//        $scope.updateNoShow = function (restaurant) {
+//
+//        };
+//        $scope.updateTried = function (restaurant) {
+//
+//        };
+    }]);

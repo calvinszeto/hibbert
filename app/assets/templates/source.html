@@ -1,0 +1,17 @@
+<div>
+    {{ source.name }}
+    <br>
+    {{ source.website }}
+    <br>
+    {{ source.category }}
+    <br>
+    {{ source.no_show }}
+    <br>
+    <div ng-repeat="group in source.recommendation_groups">
+        <a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name}}</a>
+        <br>
+        {{ group.date }}
+        <br>
+        {{ group.recommendations_count}}
+   </div>
+</div>
