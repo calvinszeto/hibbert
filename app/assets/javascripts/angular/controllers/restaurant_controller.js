@@ -1,8 +1,8 @@
-app.controller('RestaurantController', ['$scope', '$location', '$modalInstance', 'Restaurant', 'restaurant',
-    function($scope, $location, $modalInstance, Restaurant, restaurant) {
-    $scope.restaurant = restaurant;
+app.controller('RestaurantController', ['$scope', '$modalInstance', 'restaurant',
+    function ($scope, $modalInstance, restaurant) {
+        $scope.restaurant = restaurant;
 
-    $scope.showSource = function(source) {
-        $modalInstance.close();
-    };
-}]);
+        $scope.showSource = function () {
+            $modalInstance.close();
+        };
+    }]);

@@ -1,5 +1,5 @@
-app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source', 'SourcesQuery',
-    function ($scope, $routeParams, $modal, Source, SourcesQuery) {
+app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source', 'SourcesQuery', 'RecommendationGroup',
+    function ($scope, $routeParams, $modal, Source, SourcesQuery, RecommendationGroup) {
         if (!!$routeParams.sourceId) {
             Source.get({sourceId: $routeParams.sourceId},
                 function (data, status, headers, config) {
@@ -17,22 +17,21 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source
                     //TODO: add error alert
                 });
         } else if (!!$routeParams.groupId) {
-            console.log($routeParams.groupId);
-//            Source.get({sourceId: $routeParams.restaurantId},
-//                function (data, status, headers, config) {
-//                    $modalInstance = $modal.open({
-//                        templateUrl: "<%= asset_path('source.html') %>",
-//                        controller: "SourceController",
-//                        resolve: {
-//                            source: function () {
-//                                return data;
-//                            }
-//                        }
-//                    });
-//                }
-//                , error = function (data, status, headers, config) {
-//                    //TODO: add error alert
-//                });
+            RecommendationGroup.get({groupId: $routeParams.groupId},
+                function (data, status, headers, config) {
+                    $modalInstance = $modal.open({
+                        templateUrl: "<%= asset_path('recommendation_group.html') %>",
+                        controller: "RecommendationGroupController",
+                        resolve: {
+                            group: function () {
+                                return data;
+                            }
+                        }
+                    });
+                }
+                , error = function (data, status, headers, config) {
+                    //TODO: add error alert
+                });
         }
 
         $scope.SourcesQuery = SourcesQuery;

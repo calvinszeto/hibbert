@@ -1,6 +1,7 @@
 Nav Bar:
-Restaurant Card:
-Restaurant Modal:
+Card:
+Modal:
+    Handle long lists
 OffCanvas:
 Search Box:
 -Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated

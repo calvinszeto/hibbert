@@ -1,0 +1,23 @@
+<div>
+    {{ group.name }}
+    <br>
+    {{ group.website }}
+    <br>
+    {{ group.date }}
+    <br>
+    {{ group.description }}
+    <br>
+    {{ group.source_name }}
+    <br>
+
+    <div ng-repeat="recommendation in group.recommendations">
+        <a ng-click="showRestaurant()" href="#/restaurants/{{ recommendation.restaurant_id }}">{{
+            recommendation.restaurant_name }}</a>
+        <br>
+        {{ recommendation.restaurant_categories }}
+        <br>
+        {{ recommendation.restaurant_no_show }}
+        <br>
+        {{ recommendation.restaurant_tried }}
+    </div>
+</div>

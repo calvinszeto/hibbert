@@ -12,7 +12,7 @@
     {{ restaurant.tried }}
     <br>
     <div ng-repeat="source in restaurant.sources">
-        <a ng-click="showSource(source)" href="#/sources/{{ source.id }}">{{ source.name }}</a>
+        <a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a>
         <br>
         {{ source.category }}
         <br>

@@ -1,6 +1,7 @@
 TODO:
 -Link Up Rec Groups
 -Add checks for tried/no show and user functions
+-Add exit to show
 -Add alerts right under the nav bar
 -Add Pagination to Backend
 -Images
@@ -9,6 +10,9 @@ TODO:
     -Change out hardcoded images
 -Add Usernames to user/auth
 -Optimization
+    -MOBILEMOBILEMOBILE
+    -Organize Angular Files
+    -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
     -Move out all erb so that the frontend can be tested with karma
     -Maps API
     -Refactor Angular App

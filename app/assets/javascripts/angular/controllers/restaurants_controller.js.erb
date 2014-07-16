@@ -12,9 +12,9 @@ app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', 
                             }
                         }
                     });
-                    modalInstance.result.then(function() {
+                    modalInstance.result.then(function () {
                         // resolved - a link was clicked
-                    }, function() {
+                    }, function () {
                         // dismissed - go back to list
                         $location.path("/restaurants");
                     });
