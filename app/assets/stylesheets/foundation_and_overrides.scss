@@ -62,7 +62,8 @@
 // We use these as default colors throughout
 //$primary-color: #008CBA;
 $primary-color: #0077FF;
-$secondary-color: #FFAC19;
+//$secondary-color: #FFAC19;
+$secondary-color: #FFBF4C;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
@@ -529,10 +530,14 @@ $button-lrg: 0.75rem;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: #fff;
 // $input-font-size: rem-calc(14);
 // $input-bg-color: #fff;
+$input-bg-color: $secondary-color;
 // $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
+$input-focus-bg-color: scale-color($secondary-color, $lightness: -2%);
 // $input-border-color: scale-color(#fff, $lightness: -20%);
+$input-border-color: #fff;
 // $input-focus-border-color: scale-color(#fff, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;

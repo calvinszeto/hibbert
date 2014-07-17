@@ -17,6 +17,7 @@ TODO:
     -Add Bower to Heroku postinstall script
 -Some Log In Bugs
 -Optimization
+    -Pressing "Enter" on all forms should work as expected
     -Topbar Mobile JS is not working
     -Organize Angular Files
     -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
