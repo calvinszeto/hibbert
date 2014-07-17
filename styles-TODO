@@ -37,8 +37,13 @@ BLOCK GRID:
     Block Per Row: small:1/medium:3/large-xlarge:5/xxlarge:7
     Block Grid Default Spacing: 1.25rem
 CARDS:
-    Card Height:
-    Card Text:
-    Card Padding:
+    Card Height: Varies with content
+    Card Title Text: 1em
+    Card Content Text: 0.8125em
+    Card Padding: 0.3125em
 OFF CANVAS:
+    Off Canvas Width:
+    Off Canvas Text Size:
+    Off Canvas Button Size:
+    Off Canvas Padding:
 MODAL:
