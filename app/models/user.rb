@@ -16,6 +16,7 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  admin                  :boolean
+#  username               :string(255)
 #
 
 class User < ActiveRecord::Base
