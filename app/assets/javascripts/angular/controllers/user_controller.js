@@ -2,7 +2,6 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
     $scope.User = $rootScope.User;
     $scope.user = {login: "", password: "", loggedIn: false};
     $scope.User.currentUser().success(function (result) {
-        console.log(result);
         $scope.user = result;
         $scope.user.loggedIn = true;
     });
