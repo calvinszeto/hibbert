@@ -1,11 +1,7 @@
 app.controller('SourcesQueryController', ['$scope', 'Category', 'SourcesQuery', '$rootScope', '$modalInstance',
     function ($scope, Category, SourcesQuery, $rootScope, $modalInstance) {
         $scope.categories = Category.query();
-        $scope.query = {
-            location: "",
-            distance: 5,
-            no_filter: false
-        };
+        $scope.query = SourcesQuery.query;
         $scope.SourcesQuery = SourcesQuery;
         $scope.loggedIn = $rootScope.User.isAuthenticated();
         $scope.submitQuery = function () {

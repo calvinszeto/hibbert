@@ -1,9 +1,9 @@
-app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source', 'SourcesQuery', 'RecommendationGroup',
-    function ($scope, $routeParams, $modal, Source, SourcesQuery, RecommendationGroup) {
+app.controller('SourcesController', ['$scope', '$routeParams', '$location', '$modal', 'Source', 'SourcesQuery', 'RecommendationGroup',
+    function ($scope, $routeParams, $location, $modal, Source, SourcesQuery, RecommendationGroup) {
         if (!!$routeParams.sourceId) {
             Source.get({sourceId: $routeParams.sourceId},
                 function (data, status, headers, config) {
-                    $modalInstance = $modal.open({
+                    var modalInstance = $modal.open({
                         templateUrl: "<%= asset_path('source.html') %>",
                         controller: "SourceController",
                         resolve: {
@@ -11,6 +11,20 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source
                                 return data;
                             }
                         }
+                    });
+                    modalInstance.result.then(function () {
+                        // resolved - a link was clicked
+                        if (SourcesQuery.refresh) {
+                            SourcesQuery.search();
+                            SourcesQuery.refresh = false;
+                        }
+                    }, function () {
+                        // dismissed - go back to list
+                        if (SourcesQuery.refresh) {
+                            SourcesQuery.search();
+                            SourcesQuery.refresh = false;
+                        }
+                        $location.path("/sources");
                     });
                 }
                 , error = function (data, status, headers, config) {
@@ -35,11 +49,4 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$modal', 'Source
         }
 
         $scope.SourcesQuery = SourcesQuery;
-        // Fill out the following when the User service is done
-//        $scope.updateNoShow = function (source) {
-//
-//        };
-//        $scope.updateTried = function (source) {
-//
-//        };
     }]);

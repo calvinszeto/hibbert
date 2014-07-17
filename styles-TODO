@@ -18,6 +18,11 @@ Animations:
     General on hover effects
     Cards leaving/entering the screen
     Switching among pages
+     
+General Strategy: 
+    Set a font-size on each major component in rems.
+    Set all specific elements in ems based on the the component font-size.
+    Set height in ems, width in % or vw.
 
 TOP BAR:
     How are link/title widths calculated? Need to fix for $small

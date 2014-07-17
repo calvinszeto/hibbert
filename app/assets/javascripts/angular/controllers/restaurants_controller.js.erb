@@ -1,6 +1,5 @@
 app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', '$modal', 'Restaurant', 'RestaurantsQuery',
     function ($scope, $routeParams, $location, $modal, Restaurant, RestaurantsQuery) {
-        console.log(RestaurantsQuery.filters);
         if (!!$routeParams.restaurantId) {
             Restaurant.get({restaurantId: $routeParams.restaurantId},
                 function (data, status, headers, config) {
