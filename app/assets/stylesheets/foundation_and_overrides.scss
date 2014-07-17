@@ -60,8 +60,9 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #008CBA;
-$secondary-color: #e7e7e7;
+//$primary-color: #008CBA;
+$primary-color: #0077FF;
+$secondary-color: #FFAC19;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
@@ -343,10 +344,10 @@ $block-grid-default-spacing: 1.25rem;
 // $include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
-// $button-tny: rem-calc(10);
-// $button-sml: rem-calc(14);
-// $button-med: rem-calc(16);
-// $button-lrg: rem-calc(18);
+$button-tny: 0.375rem;
+$button-sml: 0.5rem;
+$button-med: 0.625rem;
+$button-lrg: 0.75rem;
 
 // We use this to control the display property.
 // $button-display: inline-block;

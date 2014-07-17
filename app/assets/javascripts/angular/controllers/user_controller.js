@@ -10,6 +10,9 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
     $scope.showRegister = function () {
         $scope.user.register = true;
     };
+    $scope.showLogIn= function () {
+        $scope.user.register = false;
+    };
 
     $scope.login = function () {
         $scope.authError = null;
@@ -20,6 +23,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
                     $scope.authError = 'Credentials are not valid';
                 } else {
                     $scope.authError = 'Success!';
+                    $scope.user = response.data.user;
                     $scope.user.loggedIn = true;
                 }
             }, function (response) {
@@ -39,6 +43,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
         $scope.User.register($scope.user.username, $scope.user.email,
             $scope.user.password, $scope.user.confirm_password)
             .then(function (response) {
+                $scope.user = response.data;
                 $scope.user.register = false;
                 $scope.user.loggedIn = true;
             }, function (response) {
