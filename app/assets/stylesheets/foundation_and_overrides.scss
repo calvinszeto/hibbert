@@ -299,7 +299,7 @@ $info-color: #a0d3e8;
 
 // We use this to control the maximum number of block grid elements per row
 // $block-grid-elements: 12;
-// $block-grid-default-spacing: rem-calc(20);
+$block-grid-default-spacing: 1.25rem;
 // $align-block-grid-to-grid: false;
 
 
@@ -1188,15 +1188,15 @@ $off-canvas-overlay-background-hover: rgba(#fff, 0.05);
 
 // Background color for the top bar
 $topbar-bg-color: #FFA300;
-// $topbar-bg: $topbar-bg-color;
+//$topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 50px;
+$topbar-height: 3.125rem;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: $font-weight-normal;
-// $topbar-title-font-size: rem-calc(17);
+$topbar-title-font-size: 1rem;
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
@@ -1208,12 +1208,12 @@ $topbar-height: 50px;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: #fff;
-$topbar-link-color-hover: #fff;
-$topbar-link-color-active: #fff;
-$topbar-link-color-active-hover: #fff;
-//$topbar-link-weight: $font-weight-normal;
-//$topbar-link-font-size: rem-calc(13);
+// $topbar-link-color: #fff;
+// $topbar-link-color-hover: #fff;
+// $topbar-link-color-active: #fff;
+// $topbar-link-color-active-hover: #fff;
+// $topbar-link-weight: $font-weight-normal;
+$topbar-link-font-size: 0.8125rem;
 //$topbar-link-hover-lightness: -10%; // Darken by 10%
 //$topbar-link-bg: $topbar-bg;
 $topbar-link-bg-color-hover: #B27200;
@@ -1223,6 +1223,7 @@ $topbar-link-bg-hover: #B27200;
 //$topbar-link-font-family: $body-font-family;
 //$topbar-link-text-transform: none;
 //$topbar-link-padding: $topbar-height / 3;
+$topbar-link-padding: 1.125rem;
 
 // $topbar-button-font-size: 0.75rem;
 // $topbar-button-top: 7px;
@@ -1235,7 +1236,7 @@ $topbar-link-bg-hover: #B27200;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
-// $topbar-menu-link-font-size: rem-calc(13);
+// $topbar-menu-link-font-size: rem-calc(100);
 // $topbar-menu-link-weight: $font-weight-bold;
 // $topbar-menu-link-color: #fff;
 // $topbar-menu-icon-color: #fff;

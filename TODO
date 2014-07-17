@@ -1,17 +1,22 @@
 TODO:
 -Add Pagination to Backend
 -Alerts
+    Bad Log In/Register
     Bad search location
     Disconnection from server
 -Images
     -Add Images to Restaurants and Sources
+    -Set Images to be square and of different sizes
     -Default images based on category if no images are found
     -Change out hardcoded images
+-Categories
+    -Seed Category Information
 -Add Usernames to user/auth
 -Deploy
     -Add Bower to Heroku postinstall script
+-Some Log In Bugs
 -Optimization
-    -MOBILEMOBILEMOBILE
+    -Topbar Mobile JS is not working
     -Organize Angular Files
     -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
     -Move out all erb so that the frontend can be tested with karma

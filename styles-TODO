@@ -1,21 +1,38 @@
+Overall:
+    Calculate all sizes of every element, padding, margin and for medium+ screens 
+    Change all colors and maybe type
+    Text should be changing with screen size
+    Add favicon/icon
 Nav Bar:
+    Switch out icon
 Card:
-    Add padding
-    Fit in all information
-    Make sure height/width always holds information
 Modal:
-    Make modal cover most of the screen - all if screen is small
     Either give modal a border or background of color
-    Make image a square of some set rem size
     Handle long lists
 OffCanvas:
     Make off canvas fixed/Navbar becomes unfixed when offcanvas is activated
 Search Box:
-Overall:
-    Change all colors and maybe type
-    Add favicon
 Animations:
     Switching modal
     General on hover effects
     Cards leaving/entering the screen
     Switching among pages
+
+TOP BAR:
+    How are link/title widths calculated? Need to fix for $small
+    Topbar Height: 3.125rem
+    Topbar Title Text: 1rem
+    Topbar Link Text: 0.8125rem
+    Topbar Link Padding: 1.125rem
+    Topbar BG Color: #FFA300
+    Topbar Link BG Hover Color: #B27200
+BLOCK GRID:
+    I'm iffy on medium:3. Try 1 or 2 later and see if it is better.
+    Block Per Row: small:1/medium:3/large-xlarge:5/xxlarge:7
+    Block Grid Default Spacing: 1.25rem
+CARDS:
+    Card Height:
+    Card Text:
+    Card Padding:
+OFF CANVAS:
+MODAL:
