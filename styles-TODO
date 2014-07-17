@@ -6,6 +6,7 @@ Overall:
 Nav Bar:
     Switch out icon
 Card:
+    Long titles may break card
 Modal:
     Either give modal a border or background of color
     Handle long lists
