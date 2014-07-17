@@ -12,8 +12,8 @@ app.factory('User', ['$q', '$http',
                     });
                 }
             },
-            login: function (email, password) {
-                return $http.post('/sessions.json', {user: {email: email, password: password} })
+            login: function (login, password) {
+                return $http.post('/sessions.json', {user: {login: login, password: password} })
                     .then(function (response) {
                         User._currentUser = response.data.user;
                         return response;
@@ -25,8 +25,9 @@ app.factory('User', ['$q', '$http',
                     User._currentUser = null;
                 });
             },
-            register: function (email, password, password_confirmation) {
+            register: function (username, email, password, password_confirmation) {
                 User._currentUser = $http.post('/users.json', { user: {
+                    username: username,
                     email: email,
                     password: password,
                     password_confirmation: password_confirmation
@@ -34,6 +35,7 @@ app.factory('User', ['$q', '$http',
                     User._currentUser = response.data.user;
                     return response;
                 });
+                return User._currentUser;
             },
             updatePreferences: function(options) {
                 return $http.put('/users.json', options);

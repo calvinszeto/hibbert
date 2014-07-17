@@ -1,7 +1,8 @@
 app.controller('UserController', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.User = $rootScope.User;
-    $scope.user = {email: "", password: "", loggedIn: false};
+    $scope.user = {login: "", password: "", loggedIn: false};
     $scope.User.currentUser().success(function (result) {
+        console.log(result);
         $scope.user = result;
         $scope.user.loggedIn = true;
     });
@@ -14,7 +15,7 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
     $scope.login = function () {
         $scope.authError = null;
 
-        $scope.User.login($scope.user.email, $scope.user.password)
+        $scope.User.login($scope.user.login, $scope.user.password)
             .then(function (response) {
                 if (!response) {
                     $scope.authError = 'Credentials are not valid';
@@ -29,18 +30,18 @@ app.controller('UserController', ['$scope', '$rootScope', function ($scope, $roo
 
     $scope.logout = function () {
         $scope.User.logout().then(function () {
-            $scope.user = {email: "", password: "", loggedIn: false};
+            $scope.user = {login: "", password: "", loggedIn: false};
         });
     };
 
     $scope.register = function (user) {
         $scope.authError = null;
 
-        $scope.User.register($scope.user.email,
+        $scope.User.register($scope.user.username, $scope.user.email,
             $scope.user.password, $scope.user.confirm_password)
             .then(function (response) {
                 $scope.user.register = false;
-                console.log(response);
+                $scope.user.loggedIn = true;
             }, function (response) {
                 var errors = '';
                 $.each(response.data.errors, function (index, value) {

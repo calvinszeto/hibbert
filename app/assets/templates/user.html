@@ -1,6 +1,6 @@
 <div class="auth-forms" ng-controller="UserController">
     <div ng-if="user.loggedIn">
-        <h2>{{user.email}}'s Profile</h2>
+        <h2>{{user.username}}'s Profile</h2>
         <button class="btn btn-primary" ng-click="logout()">Logout</button>
     </div>
     <div ng-if="!user.loggedIn && !user.register">
@@ -8,7 +8,7 @@
 
         <form ng-submit="login()">
             <p ng-show="error" class="text-danger">{{error}}</p>
-            <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
+            <input type="text" ng-model="user.login" placeholder="Username or Email" class="form-control"><br>
             <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
             <input type="submit" value="Log in" class="btn btn-primary"/>
             <a href="{{ location.path }}" ng-click="showRegister()">Register</a>
@@ -19,7 +19,7 @@
 
         <form ng-submit="register()">
             <p ng-show="error" class="text-danger">{{error}}</p>
-            <!--<input type="text" ng-model="user.username" placeholder="Username" class="form-control"><br>-->
+            <input type="text" ng-model="user.username" placeholder="Username" class="form-control"><br>
             <input type="email" ng-model="user.email" placeholder="Email" class="form-control"><br>
             <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
             <input type="password" ng-model="user.confirm_password" placeholder="Confirm Password" class="form-control"><br>
