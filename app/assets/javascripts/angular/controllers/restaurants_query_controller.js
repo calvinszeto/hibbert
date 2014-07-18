@@ -5,7 +5,7 @@ app.controller('RestaurantsQueryController', ['$scope', 'Category', 'Restaurants
         $scope.query = RestaurantsQuery.query;
         $scope.loggedIn = $rootScope.User.isAuthenticated();
         $scope.submitQuery = function () {
-            $scope.RestaurantsQuery.search();
+            $scope.RestaurantsQuery.search(true);
             $modalInstance.close();
         };
     }]);

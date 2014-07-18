@@ -14,8 +14,10 @@
         <div ng-if="!!source.website">
             <a href="{{ source.website }}" target="_blank">Website</a>
         </div>
-        <label><input type="checkbox" ng-model="source.no_show" ng-change="updateNoShow()"> Block this
-            Source</label>
+        <div ng-if="loggedIn">
+            <label><input type="checkbox" ng-model="source.no_show" ng-change="updateNoShow()"> Block this
+                Source</label>
+        </div>
     </li>
     <li>
         <div class="scroll-list">

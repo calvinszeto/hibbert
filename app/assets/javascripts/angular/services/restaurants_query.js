@@ -18,12 +18,14 @@ app.factory('RestaurantsQuery', ['Restaurant', function (Restaurant) {
             hasDistance: false
         },
         restaurants: [],
-        search: function () {
+        // Refresh is optional - set to true if restarting query
+        search: function (refresh) {
             // Ignore query requests when one is still waiting
             if (RestaurantsQuery.busy) return;
             RestaurantsQuery.busy = true;
             // Reset current restaurants if asking for page 0
-            if (RestaurantsQuery.query.page === 0) {
+            if (!!refresh) {
+                RestaurantsQuery.query.page = 0;
                 RestaurantsQuery.restaurants = [];
             }
             Restaurant.query(RestaurantsQuery.query,
@@ -48,5 +50,6 @@ app.factory('RestaurantsQuery', ['Restaurant', function (Restaurant) {
         // Set refresh to true if you want to delay refreshing the query, e.g. until after closing a modal
         refresh: false
     };
+    RestaurantsQuery.search(true);
     return RestaurantsQuery;
 }]);

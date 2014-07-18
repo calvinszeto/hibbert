@@ -1,6 +1,7 @@
-app.controller('SourceController', ['$scope', 'Source', 'source', '$modalInstance',
-    function ($scope, Source, source, $modalInstance) {
+app.controller('SourceController', ['$scope', '$rootScope', 'Source', 'source', '$modalInstance',
+    function ($scope, $rootScope, Source, source, $modalInstance) {
         $scope.source = Source.get({sourceId: source.id});
+        $scope.loggedIn = $rootScope.User.isAuthenticated();
 
         $scope.showGroup = function() {
             $modalInstance.close();
