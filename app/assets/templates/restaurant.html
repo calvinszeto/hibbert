@@ -17,30 +17,35 @@
         <p>{{ restaurant.address }}</p>
         <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this
             Restaurant</label>
+        &nbsp;&nbsp;&nbsp;
         <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this
             Restaurant</label>
     </li>
     <li>
         <p>Recommended by:</p>
-        <accordion class="scroll-list">
-            <accordion-group ng-repeat="source in restaurant.sources" heading="{{ source.name }}">
-                <ul class="small-block-grid-1 medium-block-grid-2">
-                    <li>
-                        <p><a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a></p>
 
-                        <p>{{ source.category }}</p>
+        <div class="scroll-list">
+            <accordion>
+                <accordion-group ng-repeat="source in restaurant.sources" heading="{{ source.name }}">
+                    <ul class="small-block-grid-1 medium-block-grid-2">
+                        <li>
+                            <p><a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a></p>
 
-                        <p><a href="{{ source.website }}" target="_blank">Website</a></p>
-                    </li>
-                    <li>
-                        <p>Recommended in:</p>
+                            <p>{{ source.category }}</p>
 
-                        <div ng-repeat="group in source.recommendation_groups">
-                            <p>{{ group.name }}</p>
-                        </div>
-                    </li>
-                </ul>
-            </accordion-group>
-        </accordion>
+                            <p><a href="{{ source.website }}" target="_blank">Website</a></p>
+                        </li>
+                        <li>
+                            <p>Recommended in:</p>
+
+                            <div ng-repeat="group in source.recommendation_groups">
+                                <p><a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name }}</a>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </accordion-group>
+            </accordion>
+        </div>
     </li>
 </ul>

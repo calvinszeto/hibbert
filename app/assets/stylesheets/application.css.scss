@@ -20,15 +20,23 @@
 $include-html-classes: false;
 @import "foundation_and_overrides";
 
+// Move the browser content under the fixed nav bar
 #browser {
   margin-top: $topbar-height + 1.25rem;
   height: 90vh;
 }
 
+// Nav bar search filter icon
 .nav_icon_right {
   margin-left: 1rem;
 }
 
+// Make Foundation rows expand to the full width
 .full-width {
   max-width: 100%;
+}
+
+// Make body stay still while modal is open
+.modal-open {
+  overflow: hidden;
 }

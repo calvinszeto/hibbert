@@ -67,6 +67,8 @@ $include-html-classes: false;
 
 .show-card {
   height: 100%;
+  max-height: 70vh;
+  overflow: auto;
   font-size: 1rem;
   .card-nav {
     .close-reveal-modal {
@@ -80,7 +82,7 @@ $include-html-classes: false;
   }
 
   .img-size-wrapper {
-    width: 25rem;
+    max-width: 25rem;
   }
 
   .img-wrapper {
@@ -99,12 +101,12 @@ $include-html-classes: false;
   p {
     margin: 0;
   }
-}
 
-.scroll-list {
-  overflow: auto;
-  height: 100%;
-  p {
-    font-size: 0.75em;
+  .scroll-list {
+    max-height: 60vh;
+    overflow: auto;
+    p {
+      font-size: 0.75em;
+    }
   }
 }

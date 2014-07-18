@@ -7,6 +7,10 @@ app.controller('RestaurantController', ['$scope', '$modalInstance', '$rootScope'
             $modalInstance.close();
         };
 
+        $scope.showGroup = function () {
+            $modalInstance.close();
+        }
+
         $scope.closeWindow = function() {
             $modalInstance.close();
         }
