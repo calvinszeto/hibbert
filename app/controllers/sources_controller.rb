@@ -4,7 +4,7 @@ class SourcesController < ApplicationController
 		@@default_search_distance
 	end
 
-  # GET /sources?format=json{&location&no_filter}
+  # GET /sources?format=json{&location&no_filter&page&per_page}
   def index
     @sources = Source.all
 		@no_filter = params[:no_filter] == "true"
@@ -19,6 +19,9 @@ class SourcesController < ApplicationController
 			@sources = near_sources unless near_sources.empty?
 		else
 			@sources.order(:name)
+		end
+		if params[:page] && params[:per_page]
+			@sources = @sources.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
 		end
 		@sources
   end

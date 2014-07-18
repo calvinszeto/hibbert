@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
 		@@default_search_distance
 	end
 
-  # GET /restaurants?format=json{&only&except&location&tried&no_filter}
+  # GET /restaurants?format=json{&only&except&location&tried&no_filter&page&per_page}
   def index
     @restaurants = Restaurant.all
 		@no_filter = params[:no_filter] == "true"
@@ -32,6 +32,9 @@ class RestaurantsController < ApplicationController
 			@restaurants = near_restaurants unless near_restaurants.empty?
 		else
 			@restaurants = @restaurants.order_by_reputation
+		end
+		if params[:page] && params[:per_page]
+			@restaurants = @restaurants.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
 		end
 		@restaurants
   end
