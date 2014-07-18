@@ -1,23 +1,38 @@
-<div>
-    {{ group.name }}
-    <br>
-    {{ group.website }}
-    <br>
-    {{ group.date }}
-    <br>
-    {{ group.description }}
-    <br>
-    {{ group.source_name }}
-    <br>
-
-    <div ng-repeat="recommendation in group.recommendations">
-        <a ng-click="showRestaurant()" href="#/restaurants/{{ recommendation.restaurant_id }}">{{
-            recommendation.restaurant_name }}</a>
-        <br>
-        {{ recommendation.restaurant_categories }}
-        <br>
-        {{ recommendation.restaurant_no_show }}
-        <br>
-        {{ recommendation.restaurant_tried }}
+<ul class="small-block-grid-1 large-block-grid-2 show-card">
+    <div class="card-nav">
+        <a class="close-reveal-modal" href="#/sources" ng-click="closeWindow()">&#215</a>
     </div>
-</div>
+    <li>
+        <h1>{{ group.name }}</h1>
+
+        <p><a ng-click="showSource()" href="#/sources/{{ group.source_id }}">{{ group.source_name }}</a></p>
+
+        <p>{{ group.date }}</p>
+
+        <div ng-if="!!group.website">
+            <a href="{{ group.website }}" target="_blank">Website</a>
+        </div>
+
+        <p>{{ group.description }}</p>
+    </li>
+    <li>
+        <p>Recommendations:</p>
+
+        <div class="scroll-list">
+            <accordion>
+                <accordion-group ng-repeat="recommendation in group.recommendations"
+                                 heading="{{ recommendation.restaurant_name }}">
+                    <p><a ng-click="showRestaurant()" href="#/restaurants/{{ recommendation.restaurant_id }}">{{
+                        recommendation.restaurant_name }}</a></p>
+
+                    <p>{{ recommendation.restaurant_categories | arrayToString | checkNoCategories }}</p>
+
+                    <p class="tags" ng-if="hasNoShow || hasTried">
+                        {{ !!recommendation.no_show_restaurant ? "Blocked&nbsp&nbsp" : ""}}{{!!recommendation.tried_restaurant ? "Tried" : ""}}
+                    </p>
+
+                </accordion-group>
+            </accordion>
+        </div>
+    </li>
+</ul>
