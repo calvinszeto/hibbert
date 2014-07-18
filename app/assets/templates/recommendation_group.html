@@ -7,7 +7,7 @@
 
         <p><a ng-click="showSource()" href="#/sources/{{ group.source_id }}">{{ group.source_name }}</a></p>
 
-        <p>{{ group.date }}</p>
+        <p>{{ group.date | date : 'longDate'}}</p>
 
         <div ng-if="!!group.website">
             <a href="{{ group.website }}" target="_blank">Website</a>

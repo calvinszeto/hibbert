@@ -33,7 +33,7 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$location', '$mo
         } else if (!!$routeParams.groupId) {
             RecommendationGroup.get({groupId: $routeParams.groupId},
                 function (data, status, headers, config) {
-                    $modalInstance = $modal.open({
+                    var modalInstance = $modal.open({
                         templateUrl: "<%= asset_path('recommendation_group.html') %>",
                         controller: "RecommendationGroupController",
                         resolve: {
@@ -41,6 +41,12 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$location', '$mo
                                 return data;
                             }
                         }
+                    });
+                    modalInstance.result.then(function () {
+                        // resolved - a link was clicked
+                    }, function () {
+                        // dismissed - go back to list
+                        $location.path("/sources");
                     });
                 }
                 , error = function (data, status, headers, config) {

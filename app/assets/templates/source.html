@@ -23,7 +23,7 @@
                 <accordion-group ng-repeat="group in source.recommendation_groups" heading="{{ group.name }}">
                     <p><a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name }}</a></p>
 
-                    <p>{{ group.date }}</p>
+                    <p>{{ group.date | date : 'longDate'}}</p>
 
                     <p>{{ group.recommendations_count }} recommendations</p>
                 </accordion-group>
