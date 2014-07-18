@@ -1,25 +1,51 @@
-<div>
-    {{ restaurant.name }}
-    <br>
-    {{ restaurant.website }}
-    <br>
-    {{ restaurant.categories_list }}
-    <br>
-    {{ restaurant.address }}
-    <br>
-    {{ restaurant.no_show }}
-    <br>
-    {{ restaurant.tried }}
-    <br>
-    <div ng-repeat="source in restaurant.sources">
-        <a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a>
-        <br>
-        {{ source.category }}
-        <br>
-        {{ source.website }}
-        <br>
-        <div ng-repeat="group in source.recommendation_groups">
-            {{ group.name }}
-        </div>
+<ul class="small-block-grid-1 large-block-grid-2 show-card">
+    <div class="card-nav">
+        <a class="close-reveal-modal" href="#/restaurants" ng-click="closeWindow()">&#215</a>
     </div>
-</div>
+    <li>
+        <h1>{{ restaurant.name }}</h1>
+
+        <div class="img-size-wrapper">
+            <div class="img-wrapper"><img
+                    src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/></div>
+        </div>
+        <p>{{ restaurant.categories_list | arrayToString | checkNoCategories }}</p>
+
+        <div ng-if="!!restaurant.website">
+            <a href="{{ restaurant.website }}" target="_blank">Website</a>
+        </div>
+        <p>{{ restaurant.address }}</p>
+        <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this
+            Restaurant</label>
+        &nbsp;&nbsp;&nbsp;
+        <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this
+            Restaurant</label>
+    </li>
+    <li>
+        <p>Recommended by:</p>
+
+        <div class="scroll-list">
+            <accordion>
+                <accordion-group ng-repeat="source in restaurant.sources" heading="{{ source.name }}">
+                    <ul class="small-block-grid-1 medium-block-grid-2">
+                        <li>
+                            <p><a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a></p>
+
+                            <p>{{ source.category }}</p>
+
+                            <p ng-if="!!source.website"><a href="{{ source.website }}" target="_blank">Website</a></p>
+                        </li>
+                        <li>
+                            <p>Recommended in:</p>
+
+                            <div ng-repeat="group in source.recommendation_groups">
+                                <p><a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name }}</a>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </accordion-group>
+            </accordion>
+        </div>
+    </li>
+</ul>

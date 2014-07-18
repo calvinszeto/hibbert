@@ -1,18 +1,117 @@
 $include-html-classes: false;
 @import "foundation_and_overrides";
 
-// TODO: Hardcoded numbers: number of blocks per row
 .cards-list {
-  @include block-grid(5);
+  @media #{$small-only} {
+    @include block-grid(1);
+  }
+  @media #{$medium-only} {
+    @include block-grid(3);
+  }
+  @media #{$large-up} {
+    @include block-grid(5);
+  }
+  @media #{$xxlarge-up} {
+    @include block-grid(7);
+  }
 }
 
-/* Card, Dialog */
 .card {
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+
   position: relative;
   display: inline-block;
-  width: 100%;
-  height: 21rem;
   vertical-align: top;
   background-color: #FFA300;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+  color: #fff;
+
+  // Force images into 4:3 ratio with dynamic width
+  .img-wrapper {
+    position: relative;
+    padding-bottom: 75%;
+    height:0;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .title{
+    padding: 0.3125em 0.625em;
+    font-size: 1em;
+  }
+
+  .description {
+    padding: 0.3125em 0.625em;
+    .title {
+      font-size: 1em;
+    }
+    p {
+       &.tags {
+        font-style: italic;
+      }
+      font-size: 0.8125em;
+      height: 1.615em;
+      margin: 0;
+    }
+  }
+}
+
+.show-card {
+  font-size: 1rem;
+  // Maximum height of the modal is 70% of the screen; content becomes scrollable
+  height: 100%;
+  max-height: 70vh;
+  overflow: auto;
+  .card-nav {
+    // Placing the "close" icon
+    .close-reveal-modal {
+      margin: -0.375em 0 0;
+      float: right;
+    }
+  }
+
+  // Make checkbox labels fit the label text
+  label {
+    display: inline-block;
+  }
+
+  // Maximum image size is 25%
+  .img-size-wrapper {
+    max-width: 25rem;
+  }
+
+  // Force images into 4:3 ratio with dynamic width
+  .img-wrapper {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  // Limit the sources list height; content becomes scrollable
+  .scroll-list {
+    max-height: 60vh;
+    overflow: auto;
+    p {
+      font-size: 0.75em;
+    }
+  }
 }

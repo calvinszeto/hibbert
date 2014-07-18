@@ -14,8 +14,16 @@ app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', 
                     });
                     modalInstance.result.then(function () {
                         // resolved - a link was clicked
+                        if(RestaurantsQuery.refresh) {
+                            RestaurantsQuery.search();
+                            RestaurantsQuery.refresh = false;
+                        }
                     }, function () {
                         // dismissed - go back to list
+                        if(RestaurantsQuery.refresh) {
+                            RestaurantsQuery.search();
+                            RestaurantsQuery.refresh = false;
+                        }
                         $location.path("/restaurants");
                     });
                 }
@@ -24,11 +32,4 @@ app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', 
                 });
         }
         $scope.RestaurantsQuery = RestaurantsQuery;
-        // Fill out the following when the User service is done
-//        $scope.updateNoShow = function (restaurant) {
-//
-//        };
-//        $scope.updateTried = function (restaurant) {
-//
-//        };
     }]);

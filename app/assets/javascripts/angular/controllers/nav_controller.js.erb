@@ -1,5 +1,11 @@
-app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
-    function (HIBBERT_URL, $scope, $location, $modal) {
+app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal', 'Alert',
+    function (HIBBERT_URL, $scope, $location, $modal, Alert) {
+        $scope.alert = Alert;
+        $scope.closeAlert = function(index) {
+            $scope.alert.alerts.splice(index, 1);
+        }
+
+        // Variables for holding the recent path so the regexes aren't being executed constantly
         var restaurantPath = {
             previousPath: null,
             previousDecision: false
@@ -17,6 +23,14 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
             return restaurantPath.previousDecision;
         };
 
+        $scope.showingSources = function () {
+            if ($location.path() != sourcePath.previousPath) {
+                sourcePath.previousPath = $location.path();
+                sourcePath.previousDecision = /\/sources*/.exec($location.path());
+            }
+            return sourcePath.previousDecision;
+        };
+
         $scope.openRestaurantsQuery = function () {
             if ($location.path() === "/restaurants") {
                 $modalInstance = $modal.open({
@@ -24,14 +38,6 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal',
                     controller: 'RestaurantsQueryController'
                 });
             }
-        };
-
-        $scope.showingSources = function () {
-            if ($location.path() != sourcePath.previousPath) {
-                sourcePath.previousPath = $location.path();
-                sourcePath.previousDecision = /\/sources*/.exec($location.path());
-            }
-            return sourcePath.previousDecision;
         };
 
         $scope.openSourcesQuery = function () {

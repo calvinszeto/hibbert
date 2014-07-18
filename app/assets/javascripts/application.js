@@ -16,6 +16,7 @@
 //= require select2
 //= require foundation/foundation
 //= require foundation/foundation.topbar
+//= require foundation/foundation.equalizer
 //= require angular
 //= require angular-animate
 //= require angular-route

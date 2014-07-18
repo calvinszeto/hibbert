@@ -1,14 +1,22 @@
 <li ng-click="openRestaurant(restaurant)">
     <div class="card">
-        <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
-        {{restaurant.name}}
-        {{restaurant.categories_list}}
-        <p ng-if="restaurant.no_show">Blocked</p>
+        <div class="title"> {{restaurant.name}}</div>
+        <div class="img-wrapper"><img
+                src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/></div>
+        <div class="description">
+            <p> {{restaurant.categories_list | arrayToString | checkNoCategories }} </p>
 
-        <p ng-if="restaurant.tried">Tried</p>
+            <p ng-if="!filters.hasDistance">
+                Recommended by {{ restaurant.sources_count | numberToSources }}
+            </p>
 
-        <div ng-show="RestaurantsQuery.hasDistance">
-            {{restaurant.distance}} miles away
+            <p ng-if="filters.hasDistance">
+                {{restaurant.distance | number : 3}} miles away
+            </p>
+
+            <p class="tags" ng-if="filters.hasNoShow || filters.hasTried">
+                {{ !!restaurant.no_show ? "Blocked&nbsp&nbsp" : ""}}{{!!restaurant.tried ? "Tried" : ""}}
+            </p>
         </div>
     </div>
 </li>

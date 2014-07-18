@@ -1,4 +1,4 @@
-json.extract! @user, :id, :email
+json.extract! @user, :id, :email, :username
 json.no_show_sources Source.where(id: @user.no_show_sources) do |source|
 	json.extract! source, :id, :name
 end
