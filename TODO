@@ -1,6 +1,9 @@
 TODO:
+-Bug with opening recommendation group modal
+-Modals aren't closing when moving to a new one
 -Add validations to user stuff
 -Add Pagination to Backend
+-Fix up addresses
 -Alerts
     Bad Log In/Register
     Bad search location
@@ -12,10 +15,8 @@ TODO:
     -Change out hardcoded images
 -Categories
     -Seed Category Information
--Add Usernames to user/auth
 -Deploy
     -Add Bower to Heroku postinstall script
--Some Log In Bugs
 -Optimization
     -Pressing "Enter" on all forms should work as expected
     -Topbar Mobile JS is not working
@@ -48,7 +49,6 @@ TODO:
     -Automatic up-to-date for recommendations
 -Future Plans
     -Welcome screen and tutorials
-    -Fix up Address to save full address text
     -Add User Favorites
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations
     -Search recommendation groups based on restaurant

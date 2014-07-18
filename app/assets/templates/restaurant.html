@@ -1,42 +1,46 @@
-<div class="row show-card">
-    <div class="row card-nav">
-        <a class="close" href="#/restaurants" ng-click="closeWindow()">Close</a>
+<ul class="small-block-grid-1 large-block-grid-2 show-card">
+    <div class="card-nav">
+        <a class="close-reveal-modal" href="#/restaurants" ng-click="closeWindow()">&#215</a>
     </div>
-    <div class="small-6 columns">
-        <div class="row">
-            <img src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/>
+    <li>
+        <h1>{{ restaurant.name }}</h1>
+
+        <div class="img-size-wrapper">
+            <div class="img-wrapper"><img
+                    src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/></div>
         </div>
-        <div class="row">
-            <h1>{{ restaurant.name }}</h1>
-        </div>
-        <div class="row">
-            {{ restaurant.categories_list | arrayToString }}
-        </div>
-        <div class="row" ng-if="!!restaurant.website">
+        <p>{{ restaurant.categories_list | arrayToString | checkNoCategories }}</p>
+
+        <div ng-if="!!restaurant.website">
             <a href="{{ restaurant.website }}" target="_blank">Website</a>
         </div>
-        <div class="row">
-            {{ restaurant.address }}
-        </div>
-        <div class="row">
-            <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this Restaurant</label>
-        </div>
-        <div class="row">
-            <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this Restaurant</label>
-        </div>
-    </div>
-    <div class="small-6 columns">
-        <div ng-repeat="source in restaurant.sources">
-            <a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a>
-            <br>
-            {{ source.category }}
-            <br>
-            {{ source.website }}
-            <br>
+        <p>{{ restaurant.address }}</p>
+        <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this
+            Restaurant</label>
+        <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this
+            Restaurant</label>
+    </li>
+    <li>
+        <p>Recommended by:</p>
+        <accordion class="scroll-list">
+            <accordion-group ng-repeat="source in restaurant.sources" heading="{{ source.name }}">
+                <ul class="small-block-grid-1 medium-block-grid-2">
+                    <li>
+                        <p><a ng-click="showSource()" href="#/sources/{{ source.id }}">{{ source.name }}</a></p>
 
-            <div ng-repeat="group in source.recommendation_groups">
-                {{ group.name }}
-            </div>
-        </div>
-    </div>
-</div>
+                        <p>{{ source.category }}</p>
+
+                        <p><a href="{{ source.website }}" target="_blank">Website</a></p>
+                    </li>
+                    <li>
+                        <p>Recommended in:</p>
+
+                        <div ng-repeat="group in source.recommendation_groups">
+                            <p>{{ group.name }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </accordion-group>
+        </accordion>
+    </li>
+</ul>
