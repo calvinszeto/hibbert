@@ -33,7 +33,7 @@
 
                             <p>{{ source.category }}</p>
 
-                            <p><a href="{{ source.website }}" target="_blank">Website</a></p>
+                            <p ng-if="!!source.website"><a href="{{ source.website }}" target="_blank">Website</a></p>
                         </li>
                         <li>
                             <p>Recommended in:</p>

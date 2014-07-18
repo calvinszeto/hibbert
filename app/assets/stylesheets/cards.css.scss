@@ -1,7 +1,6 @@
 $include-html-classes: false;
 @import "foundation_and_overrides";
 
-// TODO: Hardcoded numbers: number of blocks per row
 .cards-list {
   @media #{$small-only} {
     @include block-grid(1);
@@ -17,7 +16,6 @@ $include-html-classes: false;
   }
 }
 
-/* Card, Dialog */
 .card {
   font-size: 1rem;
   width: 100%;
@@ -30,6 +28,7 @@ $include-html-classes: false;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
   color: #fff;
 
+  // Force images into 4:3 ratio with dynamic width
   .img-wrapper {
     position: relative;
     padding-bottom: 75%;
@@ -66,25 +65,30 @@ $include-html-classes: false;
 }
 
 .show-card {
+  font-size: 1rem;
+  // Maximum height of the modal is 70% of the screen; content becomes scrollable
   height: 100%;
   max-height: 70vh;
   overflow: auto;
-  font-size: 1rem;
   .card-nav {
+    // Placing the "close" icon
     .close-reveal-modal {
       margin: -0.375em 0 0;
       float: right;
     }
   }
 
+  // Make checkbox labels fit the label text
   label {
     display: inline-block;
   }
 
+  // Maximum image size is 25%
   .img-size-wrapper {
     max-width: 25rem;
   }
 
+  // Force images into 4:3 ratio with dynamic width
   .img-wrapper {
     position: relative;
     padding-bottom: 75%;
@@ -102,6 +106,7 @@ $include-html-classes: false;
     margin: 0;
   }
 
+  // Limit the sources list height; content becomes scrollable
   .scroll-list {
     max-height: 60vh;
     overflow: auto;

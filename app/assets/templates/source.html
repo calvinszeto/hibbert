@@ -1,17 +1,33 @@
-<div>
-    {{ source.name }}
-    <br>
-    {{ source.website }}
-    <br>
-    {{ source.category }}
-    <br>
-    {{ source.no_show }}
-    <br>
-    <div ng-repeat="group in source.recommendation_groups">
-        <a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name}}</a>
-        <br>
-        {{ group.date }}
-        <br>
-        {{ group.recommendations_count}}
-   </div>
-</div>
+<ul class="small-block-grid-1 large-block-grid-2 show-card">
+    <div class="card-nav">
+        <a class="close-reveal-modal" href="#/sources" ng-click="closeWindow()">&#215</a>
+    </div>
+    <li>
+        <h1>{{ source.name }}</h1>
+
+        <div class="img-size-wrapper">
+            <div class="img-wrapper"><img
+                    src="http://sandyhaight.com/wordpress/wp-content/uploads/2011/02/9man-food-tray-600x600.jpg"/></div>
+        </div>
+        <p>{{ source.category }}</p>
+
+        <div ng-if="!!source.website">
+            <a href="{{ source.website }}" target="_blank">Website</a>
+        </div>
+        <label><input type="checkbox" ng-model="source.no_show" ng-change="updateNoShow()"> Block this
+            Source</label>
+    </li>
+    <li>
+        <div class="scroll-list">
+            <accordion>
+                <accordion-group ng-repeat="group in source.recommendation_groups" heading="{{ group.name }}">
+                    <p><a ng-click="showGroup()" href="#/sources/group/{{ group.id }}">{{ group.name }}</a></p>
+
+                    <p>{{ group.date }}</p>
+
+                    <p>{{ group.recommendations_count }} recommendations</p>
+                </accordion-group>
+            </accordion>
+        </div>
+    </li>
+</ul>
