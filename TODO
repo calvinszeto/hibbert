@@ -1,5 +1,4 @@
 TODO:
--Add Pagination to Backend
 -Fix up addresses
 -Images
     -Add Images to Restaurants and Sources
@@ -13,6 +12,7 @@ TODO:
 -Release Version 1.0
 
 -Optimization
+    -Add loading data icon
     -Alerts
         Bad Log In/Register
         Bad search location
