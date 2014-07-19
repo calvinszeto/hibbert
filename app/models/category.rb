@@ -14,4 +14,11 @@ class Category < ActiveRecord::Base
 	has_many :categorizations, dependent: :destroy
 
 	include Imageable
+	def default_image
+		images.first
+	end
+
+	def self.default_category
+		Category.find_by_name "American"
+	end
 end
