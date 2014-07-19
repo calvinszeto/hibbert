@@ -55,19 +55,44 @@ namespace :upload do
 			scope = "Source"
 			begin
 				source_params = filter_hash(data, :required => ['name'], :optional => ['category', 'website', 'description'])
-				source = Source.create(source_params)
-				puts "Created new Source: #{source['name']}"
+				if (sources = Source.where(:name => source_params['name'])).empty?
+					source = Source.create(source_params)
+					puts "Created new Source: #{source['name']}"
+				else
+					source = sources.first
+					source.update_attributes(source_params)
+					source.save!
+					puts "Updated Sources: #{source['name']}"
+				end
+
 				scope = "Recommendation Group"
 				recommendation_group_params = filter_hash(data['recommendation_group'],
 					:required => ['name'], :optional => ['name', 'website', 'date', 'description'])
 				recommendation_group_params[:source] = source
-				rg = RecommendationGroup.create(recommendation_group_params)
-				puts "Created new RecommendationGroup: #{rg['name']}"
+				if (groups = RecommendationGroup.where(:name => recommendation_group_params['name'], :source => source)).empty?
+					rg = RecommendationGroup.create(recommendation_group_params)
+					puts "Created new RecommendationGroup: #{rg['name']}"
+				else
+					rg = groups.first
+					rg.update_attributes(recommendation_group_params)
+					rg.save!
+					puts "Updated RecommendationGroup: #{rg['name']}"
+				end
+
 				data['recommendations'].each do |rec|
 					scope = "Restaurants"
+
 					restaurant_params = filter_hash(rec, :required => ['name'], :optional => ['name', 'website'])
-					restaurant = Restaurant.create(restaurant_params)
-					puts "Created new Restaurant: #{restaurant['name']}"
+					if (restaurants = Restaurant.where(:name => restaurant_params['name'])).empty?
+						restaurant = Restaurant.create(restaurant_params)
+						puts "Created new Restaurant: #{restaurant['name']}"
+					else
+						restaurant = restaurants.first
+						restaurant.update_attributes(restaurant_params)
+						restaurant.save!
+						puts "Updated Restaurant: #{restaurant['name']}"
+					end
+
 					address_params = filter_hash(rec, :required => [], :optional => ['address'])
 					unless address_params['address'].empty?
 						scope = "Address"
@@ -82,7 +107,13 @@ namespace :upload do
 						Address.create(address_params)
 						sleep(0.2) # Google limits requests to 5 per second
 					end
-					Recommendation.create(:restaurant => restaurant, :recommendation_group => rg)
+
+					if Recommendation.where(:restaurant => restaurant, :recommendation_group => rg).empty?
+						Recommendation.create(:restaurant => restaurant, :recommendation_group => rg)
+						puts "Recommendation created."
+					else
+						puts "Recommendation already exists."
+					end
 				end
 			rescue Exception => e
 				abort "Invalid format of #{scope}. See the comments in lib/tasks/upload.rake.\nError Message: #{e.message}"
@@ -118,7 +149,7 @@ namespace :upload do
 						puts "Uploaded new Image: #{image.image.identifier}"
 					end
 					scope = "Category"
-					if categories = Category.where(:name => category_params['name']).empty?
+					if (categories = Category.where(:name => category_params['name'])).empty?
 						category = Category.create(:name => category['name'])
 						image.imageable = category
 						image.save!
