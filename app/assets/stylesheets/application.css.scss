@@ -28,7 +28,10 @@ $include-html-classes: false;
 
 // Nav bar search filter icon
 .nav_icon_right {
-  margin-left: 1rem;
+	margin-left: 0.25rem;
+	margin-bottom: 0.125rem;
+	width: 1.5rem;
+	height: 1.5rem;
 }
 
 // Make Foundation rows expand to the full width

@@ -1,0 +1,28 @@
+<!--Fixed Nav bar for displaying the logo, switching pages, and accessing search filters.-->
+<div class="fixed">
+    <nav class="top-bar" data-topbar data-options="is_hover: false" ng-controller="NavCtrl as nav">
+        <ul class="title-area">
+            <li class="name"><h1><a href="#/restaurants">Hibbert</a></h1></li>
+        </ul>
+        <section class="top-bar-section">
+            <ul class="left">
+							<li>
+								<a ng-click="openRestaurantsQuery()" href="#/restaurants">
+									Restaurants
+									<img class="nav_icon_right" ng-if="showingRestaurants()" src="<%= asset_path('search_glass.png') %>">
+								</a>
+							</li>
+							<li>
+								<a ng-click="openSourcesQuery()" href="#/sources">
+									Sources
+									<img class="nav_icon_right" ng-if="showingSources()" src="<%= asset_path('search_glass.png') %>">
+								</a>
+							</li>
+            </ul>
+            <ul class="right">
+                <li><a class="right-off-canvas-toggle" href="#{{ location.path() }}">User</a></li>
+            </ul>
+        </section>
+    </nav>
+</div>
+<alert ng-repeat="alert in alert.alerts" type="alert.type" close="closeAlert($index)">{{ alert.msg }}</alert>
