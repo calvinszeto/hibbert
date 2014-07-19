@@ -1,6 +1,6 @@
 json.extract! @restaurant, :id, :name, :website, :categories_list
 json.address @restaurant.full_address
-json.image restaurant.default_image.image.url
+json.image @restaurant.default_image.image.url
 if @user
 	json.no_show @user.no_show_restaurants.include?(@restaurant.id)
 	json.tried @user.tried_restaurants.include?(@restaurant.id)
