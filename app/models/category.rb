@@ -10,6 +10,8 @@
 #
 
 class Category < ActiveRecord::Base
-		has_many :restaurants, through: :categorizations
-		has_many :categorizations, dependent: :destroy
+	has_many :restaurants, through: :categorizations
+	has_many :categorizations, dependent: :destroy
+
+	include Imageable
 end

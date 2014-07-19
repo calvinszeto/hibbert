@@ -1,5 +1,5 @@
 TODO:
--Fix up addresses
+-Fix upload rake to re-use existing restaurants/sources
 -Images
     -Add Images to Restaurants and Sources
     -Set Images to be square and of different sizes
@@ -12,6 +12,8 @@ TODO:
 -Release Version 1.0
 
 -Optimization
+    -Save query in cookies
+    -Fix broken links
     -Add loading data icon
     -Alerts
         Bad Log In/Register
@@ -48,6 +50,7 @@ TODO:
 -Content
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
+    -Find out how to categorize
 -Future Plans
     -Welcome screen and tutorials
     -Add User Favorites
