@@ -26,7 +26,7 @@ namespace :upload do
 		# Example of a valid input:
 		# Names are the only required fields, but all others are highly recommended,
 		# especially Restaurant Address
-		# {"name": "Source Name", 
+		# [{"name": "Source Name", 
 		# "category": "Source Category", 
 		# "website": "Source Website", 
 		# "description": "Source Description",
@@ -34,15 +34,17 @@ namespace :upload do
 		#			{"name": "RecommendationGroup Name", 
 		#			"website": "RecommendationGroup Website", 
 		#			"date": "RecommendationGroup Date", 
-		#			"description": "RecommendationGroup Description"},
-		#		"recommendations": [
-		#			{"name": "Restaurant Name",
-		#			"website": "Restaurant Website",
-		#			"address": "Restaurant Address"
-		#			},
-		#			...
+		#			"description": "RecommendationGroup Description",
+			#		"recommendations": [
+			#			{"name": "Restaurant Name",
+			#			"website": "Restaurant Website",
+			#			"address": "Restaurant Address"
+			#			},
+		#			...}
 		#		]
-		#	}
+		#	},
+		#	...
+		#	]
 
 		if ENV['UPLOAD_FILE'].empty?
 			abort "Specify a JSON file in ENV['UPLOAD_FILE']"
@@ -54,65 +56,67 @@ namespace :upload do
 			end
 			scope = "Source"
 			begin
-				source_params = filter_hash(data, :required => ['name'], :optional => ['category', 'website', 'description'])
-				if (sources = Source.where(:name => source_params['name'])).empty?
-					source = Source.create(source_params)
-					puts "Created new Source: #{source['name']}"
-				else
-					source = sources.first
-					source.update_attributes(source_params)
-					source.save!
-					puts "Updated Sources: #{source['name']}"
-				end
-
-				scope = "Recommendation Group"
-				recommendation_group_params = filter_hash(data['recommendation_group'],
-					:required => ['name'], :optional => ['name', 'website', 'date', 'description'])
-				recommendation_group_params[:source] = source
-				if (groups = RecommendationGroup.where(:name => recommendation_group_params['name'], :source => source)).empty?
-					rg = RecommendationGroup.create(recommendation_group_params)
-					puts "Created new RecommendationGroup: #{rg['name']}"
-				else
-					rg = groups.first
-					rg.update_attributes(recommendation_group_params)
-					rg.save!
-					puts "Updated RecommendationGroup: #{rg['name']}"
-				end
-
-				data['recommendations'].each do |rec|
-					scope = "Restaurants"
-
-					restaurant_params = filter_hash(rec, :required => ['name'], :optional => ['name', 'website'])
-					if (restaurants = Restaurant.where(:name => restaurant_params['name'])).empty?
-						restaurant = Restaurant.create(restaurant_params)
-						puts "Created new Restaurant: #{restaurant['name']}"
+				data.each do |dat|
+					source_params = filter_hash(dat, :required => ['name'], :optional => ['category', 'website', 'description'])
+					if (sources = Source.where(:name => source_params['name'])).empty?
+						source = Source.create(source_params)
+						puts "Created new Source: #{source['name']}"
 					else
-						restaurant = restaurants.first
-						restaurant.update_attributes(restaurant_params)
-						restaurant.save!
-						puts "Updated Restaurant: #{restaurant['name']}"
+						source = sources.first
+						source.update_attributes(source_params)
+						source.save!
+						puts "Updated Sources: #{source['name']}"
 					end
 
-					address_params = filter_hash(rec, :required => [], :optional => ['address'])
-					unless address_params['address'].empty?
-						scope = "Address"
-						adr = Indirizzo::Address.new(address_params['address'])
-						address_params['street'] = "#{adr.number} #{adr.street.first}"
-						address_params['city'] = adr.city.first
-						address_params['state'] = adr.state
-						address_params['zip_code'] = adr.zip
-						address_params['address_text'] = address_params['address']
-						address_params.delete 'address'
-						address_params['addressable'] = restaurant
-						Address.create(address_params)
-						sleep(0.2) # Google limits requests to 5 per second
+					scope = "Recommendation Group"
+					recommendation_group_params = filter_hash(dat['recommendation_group'],
+						:required => ['name'], :optional => ['name', 'website', 'date', 'description'])
+					recommendation_group_params[:source] = source
+					if (groups = RecommendationGroup.where(:name => recommendation_group_params['name'], :source => source)).empty?
+						rg = RecommendationGroup.create(recommendation_group_params)
+						puts "Created new RecommendationGroup: #{rg['name']}"
+					else
+						rg = groups.first
+						rg.update_attributes(recommendation_group_params)
+						rg.save!
+						puts "Updated RecommendationGroup: #{rg['name']}"
 					end
 
-					if Recommendation.where(:restaurant => restaurant, :recommendation_group => rg).empty?
-						Recommendation.create(:restaurant => restaurant, :recommendation_group => rg)
-						puts "Recommendation created."
-					else
-						puts "Recommendation already exists."
+					dat['recommendation_group']['recommendations'].each do |rec|
+						scope = "Restaurants"
+
+						restaurant_params = filter_hash(rec, :required => ['name'], :optional => ['name', 'website'])
+						if (restaurants = Restaurant.where(:name => restaurant_params['name'])).empty?
+							restaurant = Restaurant.create(restaurant_params)
+							puts "Created new Restaurant: #{restaurant['name']}"
+						else
+							restaurant = restaurants.first
+							restaurant.update_attributes(restaurant_params)
+							restaurant.save!
+							puts "Updated Restaurant: #{restaurant['name']}"
+						end
+
+						address_params = filter_hash(rec, :required => [], :optional => ['address'])
+						unless address_params['address'].empty?
+							scope = "Address"
+							adr = Indirizzo::Address.new(address_params['address'])
+							address_params['street'] = "#{adr.number} #{adr.street.first}"
+							address_params['city'] = adr.city.first
+							address_params['state'] = adr.state
+							address_params['zip_code'] = adr.zip
+							address_params['address_text'] = address_params['address']
+							address_params.delete 'address'
+							address_params['addressable'] = restaurant
+							Address.create(address_params)
+							sleep(0.2) # Google limits requests to 5 per second
+						end
+
+						if Recommendation.where(:restaurant => restaurant, :recommendation_group => rg).empty?
+							Recommendation.create(:restaurant => restaurant, :recommendation_group => rg)
+							puts "Recommendation created."
+						else
+							puts "Recommendation already exists."
+						end
 					end
 				end
 			rescue Exception => e
@@ -128,7 +132,7 @@ namespace :upload do
 		#		"image_location": "Image Location (in local files)"},
 		#		...
 		# ]
-		if ENV['UPLOAD_FILE'].empty?
+		unless ENV['UPLOAD_FILE']
 			abort "Specify a JSON file in ENV['UPLOAD_FILE']"
 		else
 			begin
@@ -166,4 +170,5 @@ namespace :upload do
 			end
 		end
 	end
+
 end

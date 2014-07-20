@@ -12,6 +12,8 @@
 #
 
 class Source < ActiveRecord::Base
+	include Imageable
+
 	has_many :recommendation_groups, dependent: :destroy
 	has_many :recommendations, through: :recommendation_groups
 
@@ -41,4 +43,7 @@ class Source < ActiveRecord::Base
 		end
 	end
 
+	def default_image
+		images.first
+	end
 end

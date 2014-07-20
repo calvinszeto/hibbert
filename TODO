@@ -1,10 +1,6 @@
 TODO:
--Fix upload rake to re-use existing restaurants/sources
 -Images
-    -Add Images to Restaurants and Sources
-    -Set Images to be square and of different sizes
-    -Default images based on category if no images are found
-    -Change out hardcoded images
+    -Add Images to Sources
 -Categories
     -Seed Category Information
 -Deploy
@@ -12,6 +8,7 @@ TODO:
 -Release Version 1.0
 
 -Optimization
+    -Play with Image Uploader
     -Save query in cookies
     -Fix broken links
     -Add loading data icon
