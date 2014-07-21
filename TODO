@@ -1,15 +1,25 @@
 TODO:
--Add checks for tried/no show and user functions
--Add exit to show
--Add alerts right under the nav bar
--Add Pagination to Backend
 -Images
-    -Add Images to Restaurants and Sources
-    -Default images based on category if no images are found
-    -Change out hardcoded images
--Add Usernames to user/auth
+    -Add Images to Sources
+-Categories
+    -Seed Category Information
+-Deploy
+    -Add Bower to Heroku postinstall script
+-Release Version 1.0
+
 -Optimization
-    -MOBILEMOBILEMOBILE
+    -Play with Image Uploader
+    -Save query in cookies
+    -Fix broken links
+    -Add loading data icon
+    -Alerts
+        Bad Log In/Register
+        Bad search location
+        Disconnection from server
+    -Add validations to user stuff
+    -Complete styles-TODO
+    -Pressing "Enter" on all forms should work as expected
+    -Topbar Mobile JS is not working
     -Organize Angular Files
     -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
     -Move out all erb so that the frontend can be tested with karma
@@ -37,9 +47,9 @@ TODO:
 -Content
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
+    -Find out how to categorize
 -Future Plans
     -Welcome screen and tutorials
-    -Fix up Address to save full address text
     -Add User Favorites
     -Add more fine tuning btwn ordering by location vs. ordering by recommendations
     -Search recommendation groups based on restaurant

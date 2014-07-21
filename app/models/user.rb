@@ -15,7 +15,8 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  admin                  :boolean
+#  admin                  :boolean          default(FALSE)
+#  username               :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -23,6 +24,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+	attr_accessor :login
+	validates :username, :uniqueness => true
 
 	has_one :user_preference, dependent: :destroy
 	before_create :create_user_preference
@@ -37,6 +41,15 @@ class User < ActiveRecord::Base
 		:add_tried_restaurant,
 		:remove_tried_restaurant,
 		:to => :user_preference
+
+    def self.find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
+    end
 
 	private
 		def create_user_preference

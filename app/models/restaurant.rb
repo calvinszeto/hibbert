@@ -46,6 +46,10 @@ class Restaurant < ActiveRecord::Base
 	scope :order_by_reputation, ->() { select('*, array_length(sources_list, 1) as s_count') 
 																		.order('s_count DESC')
 																		.order(recommendations_count: :desc)}
+
+	def default_image
+		categories.empty? ? Category.default_category.default_image : categories.first.default_image
+	end
 	
 	def sources
 		Source.find(sources_list)

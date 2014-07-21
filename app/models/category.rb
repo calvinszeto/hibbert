@@ -10,6 +10,15 @@
 #
 
 class Category < ActiveRecord::Base
-		has_many :restaurants, through: :categorizations
-		has_many :categorizations, dependent: :destroy
+	has_many :restaurants, through: :categorizations
+	has_many :categorizations, dependent: :destroy
+
+	include Imageable
+	def default_image
+		images.empty? ? Category.default_category.default_image : images.first
+	end
+
+	def self.default_category
+		Category.find_by_name "American"
+	end
 end

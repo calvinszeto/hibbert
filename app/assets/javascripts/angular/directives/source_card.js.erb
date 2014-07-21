@@ -1,25 +1,19 @@
-app.directive('sourceCard', ['$modal', function ($modal) {
-    function link(scope, element, attrs) {
-        scope.openSource = function (source) {
-            $modalInstance = $modal.open({
-                templateUrl: "<%= asset_path('source.html') %>",
-                controller: "SourceController",
-                resolve: {
-                    source: function() {
-                        return source;
-                    }
-                }
-            });
+app.directive('sourceCard', ['$modal', '$location', 'SourcesQuery',
+    function ($modal, $location, SourcesQuery) {
+        function link(scope, element, attrs) {
+            scope.filters = SourcesQuery.filters;
+            scope.openSource = function (source) {
+                $location.path("/sources/" + source.id);
+            }
+        };
+        return {
+            restrict: "E",
+            scope: {
+                source: '=',
+                index: '@'
+            },
+            replace: true,
+            templateUrl: "<%= asset_path('source_card.html') %>",
+            link: link
         }
-    };
-    return {
-        restrict: "E",
-        scope: {
-            source: '=',
-            index: '@'
-        },
-        replace: true,
-        templateUrl: "<%= asset_path('source_card.html') %>",
-        link: link
-    }
-}]);
+    }]);

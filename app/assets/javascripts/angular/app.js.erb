@@ -3,7 +3,8 @@ var app = angular.module("hibbertApp", [
     'ngResource',
     'ngRoute',
     'mm.foundation',
-    'ui.select2'
+    'ui.select2',
+    'infinite-scroll'
 ])
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
