@@ -25,16 +25,24 @@ class RestaurantsController < ApplicationController
 				@restaurants = @restaurants.source_showable(current_user)
 			end
 		end
+		located = false
 		if params[:location] && !params[:location].empty?
 			distance = params[:distance] || @@default_search_distance
 			near_restaurants = Restaurant.near(@restaurants, params[:location], distance)
 			@location = near_restaurants.empty? ? "error" : params[:location]
 			@restaurants = near_restaurants unless near_restaurants.empty?
-		else
-			@restaurants = @restaurants.order_by_reputation
+			# TODO: Hack to fix pagination in address search. Refactor and test
+			if params[:page] && params[:per_page]
+				start = (params[:page].to_i * params[:per_page].to_i)
+				@restaurants = @restaurants[start..(start + params[:per_page].to_i + 1)]
+			end
+			located = !near_restaurants.empty?
 		end
-		if params[:page] && params[:per_page]
-			@restaurants = @restaurants.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
+		if !located	
+			@restaurants = @restaurants.order_by_reputation
+			if params[:page] && params[:per_page]
+				@restaurants = @restaurants.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
+			end
 		end
 		@restaurants
   end

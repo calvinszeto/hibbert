@@ -12,16 +12,24 @@ class SourcesController < ApplicationController
 		unless current_user.nil? || @no_filter
 			@sources = @sources.showable(current_user)
 		end
+		located = false
 		if params[:location]
 			distance = params[:distance] || @@default_search_distance
 			near_sources = Source.sources_near(@sources, params[:location], distance)
 			@location = near_sources.empty? ? "error" : params[:location]
 			@sources = near_sources unless near_sources.empty?
-		else
-			@sources.order(:name)
+			# TODO: Hack to fix pagination in address search. Refactor and test
+			if params[:page] && params[:per_page]
+				start = (params[:page].to_i * params[:per_page].to_i)
+				@sources = @sources[start..(start + params[:per_page].to_i + 1)]
+			end
+			located = !near_sources.empty?
 		end
-		if params[:page] && params[:per_page]
-			@sources = @sources.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
+		if !located
+			@sources.order(:name)
+			if params[:page] && params[:per_page]
+				@sources = @sources.offset(params[:page].to_i * params[:per_page].to_i).limit(params[:per_page].to_i)
+			end
 		end
 		@sources
   end
