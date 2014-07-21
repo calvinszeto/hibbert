@@ -1,12 +1,4 @@
 TODO:
--Images
-    -Add Images to Sources
--Categories
-    -Seed Category Information
--Deploy
-    -Add Bower to Heroku postinstall script
--Release Version 1.0
-
 -Optimization
     -Play with Image Uploader
     -Save query in cookies
