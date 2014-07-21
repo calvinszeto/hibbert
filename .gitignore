@@ -20,7 +20,7 @@
 *.vim
 
 # Ignore any uploaded images
-/public/uploads
+#/public/uploads
 
 # Ignore Webstorm config
 /.idea
