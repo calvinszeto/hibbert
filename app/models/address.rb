@@ -13,6 +13,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  addressable_type :integer
+#  address_text     :string(255)
 #
 
 class Address < ActiveRecord::Base
@@ -22,10 +23,10 @@ class Address < ActiveRecord::Base
 	after_validation :geocode, if: :address_changed?
 
 	def full_address
-		return [street, city, state, zip_code].join(" ")
+		return address_text ? address_text : [street, city, state, zip_code].join(" ")
 	end
 
 	def address_changed?
-		street_changed? || city_changed? || state_changed? || zip_code_changed?
+		street_changed? || city_changed? || state_changed? || zip_code_changed? || address_text_changed?
 	end
 end

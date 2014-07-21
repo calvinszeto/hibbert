@@ -2,6 +2,7 @@ app.controller('RestaurantController', ['$scope', '$modalInstance', '$rootScope'
     function ($scope, $modalInstance, $rootScope, restaurant, RestaurantsQuery) {
         $scope.restaurant = restaurant;
         $scope.refresh = false;
+        $scope.loggedIn = $rootScope.User.isAuthenticated();
 
         $scope.showSource = function () {
             $modalInstance.close();

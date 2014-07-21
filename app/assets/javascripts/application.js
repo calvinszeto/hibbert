@@ -23,6 +23,7 @@
 //= require angular-resource
 //= require angular-foundation
 //= require angular-ui-select2
+//= require ngInfiniteScroll
 //= require turbolinks
 //= require_tree .
 

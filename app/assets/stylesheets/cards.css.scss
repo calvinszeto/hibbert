@@ -36,6 +36,7 @@ $include-html-classes: false;
   }
 
   img {
+    background-color: #fff;
     position: absolute;
     top: 0;
     left: 0;
@@ -59,6 +60,7 @@ $include-html-classes: false;
       }
       font-size: 0.8125em;
       height: 1.615em;
+      overflow: hidden;
       margin: 0;
     }
   }

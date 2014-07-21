@@ -13,6 +13,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  addressable_type :integer
+#  address_text     :string(255)
 #
 
 require 'rails_helper'

@@ -15,11 +15,14 @@
             <a href="{{ restaurant.website }}" target="_blank">Website</a>
         </div>
         <p>{{ restaurant.address }}</p>
-        <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this
-            Restaurant</label>
-        &nbsp;&nbsp;&nbsp;
-        <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this
-            Restaurant</label>
+
+        <div ng-if="loggedIn">
+            <label><input type="checkbox" ng-model="restaurant.no_show" ng-change="updateNoShow()"> Block this
+                Restaurant</label>
+            &nbsp;&nbsp;&nbsp;
+            <label><input type="checkbox" ng-model="restaurant.tried" ng-change="updateTried()"> Tried this
+                Restaurant</label>
+        </div>
     </li>
     <li>
         <p>Recommended by:</p>

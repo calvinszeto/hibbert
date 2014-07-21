@@ -1,23 +1,23 @@
 TODO:
--Bug with opening recommendation group modal
--Modals aren't closing when moving to a new one
--Add validations to user stuff
--Add Pagination to Backend
--Fix up addresses
--Alerts
-    Bad Log In/Register
-    Bad search location
-    Disconnection from server
 -Images
-    -Add Images to Restaurants and Sources
-    -Set Images to be square and of different sizes
-    -Default images based on category if no images are found
-    -Change out hardcoded images
+    -Add Images to Sources
 -Categories
     -Seed Category Information
 -Deploy
     -Add Bower to Heroku postinstall script
+-Release Version 1.0
+
 -Optimization
+    -Play with Image Uploader
+    -Save query in cookies
+    -Fix broken links
+    -Add loading data icon
+    -Alerts
+        Bad Log In/Register
+        Bad search location
+        Disconnection from server
+    -Add validations to user stuff
+    -Complete styles-TODO
     -Pressing "Enter" on all forms should work as expected
     -Topbar Mobile JS is not working
     -Organize Angular Files
@@ -47,6 +47,7 @@ TODO:
 -Content
     -Seed Heroku Database
     -Automatic up-to-date for recommendations
+    -Find out how to categorize
 -Future Plans
     -Welcome screen and tutorials
     -Add User Favorites
