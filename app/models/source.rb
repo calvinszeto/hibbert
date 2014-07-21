@@ -44,6 +44,11 @@ class Source < ActiveRecord::Base
 	end
 
 	def default_image
-		images.first
+		images ? Source.default_image : images.first
+	end
+
+	# TODO: Add a default image
+	def self.default_image
+		Image.first
 	end
 end

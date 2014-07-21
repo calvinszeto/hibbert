@@ -15,7 +15,7 @@ class Category < ActiveRecord::Base
 
 	include Imageable
 	def default_image
-		images.first
+		images.empty? ? Category.default_category.default_image : images.first
 	end
 
 	def self.default_category

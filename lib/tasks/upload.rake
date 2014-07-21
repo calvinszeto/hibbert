@@ -19,6 +19,12 @@ def filter_hash(hash, params)
 	new_hash
 end
 
+def same_restaurants(restaurant_params, address_params)
+	Restaurant.where(:name => restaurant_params['name'])
+						.joins(:addresses)
+						.where(addresses: {city: address_params['city']})
+end
+
 namespace :upload do
 	desc "Upload Restaurants and Recommendations for a single Source"
 	task :recommendations => :environment do
@@ -86,17 +92,8 @@ namespace :upload do
 						scope = "Restaurants"
 
 						restaurant_params = filter_hash(rec, :required => ['name'], :optional => ['name', 'website'])
-						if (restaurants = Restaurant.where(:name => restaurant_params['name'])).empty?
-							restaurant = Restaurant.create(restaurant_params)
-							puts "Created new Restaurant: #{restaurant['name']}"
-						else
-							restaurant = restaurants.first
-							restaurant.update_attributes(restaurant_params)
-							restaurant.save!
-							puts "Updated Restaurant: #{restaurant['name']}"
-						end
-
 						address_params = filter_hash(rec, :required => [], :optional => ['address'])
+
 						unless address_params['address'].empty?
 							scope = "Address"
 							adr = Indirizzo::Address.new(address_params['address'])
@@ -106,10 +103,22 @@ namespace :upload do
 							address_params['zip_code'] = adr.zip
 							address_params['address_text'] = address_params['address']
 							address_params.delete 'address'
-							address_params['addressable'] = restaurant
-							Address.create(address_params)
+							address = Address.create(address_params)
 							sleep(0.2) # Google limits requests to 5 per second
 						end
+						
+						# Checking for restaurants with the same name in the same city
+						if (restaurants = same_restaurants(restaurant_params, address_params)).empty?
+							restaurant = Restaurant.create(restaurant_params)
+							puts "Created new Restaurant: #{restaurant['name']}"
+						else
+							restaurant = restaurants.first
+							restaurant.update_attributes(restaurant_params)
+							restaurant.save!
+							puts "Updated Restaurant: #{restaurant['name']}"
+						end
+
+						address.update_attributes(:addressable => restaurant) if address
 
 						if Recommendation.where(:restaurant => restaurant, :recommendation_group => rg).empty?
 							Recommendation.create(:restaurant => restaurant, :recommendation_group => rg)
