@@ -1,5 +1,6 @@
 // The following provides the root path and current angular path to our templates
-app.constant('HIBBERT_URL', ROOT_PATH)
+angular.module('constants', [])
+    .constant('HIBBERT_URL', ROOT_PATH)
     // The following contains the Rails-generated asset paths for all Angular templates
     .constant('TEMPLATES', {
         "nav": "<%= asset_path('nav.html') %>",
