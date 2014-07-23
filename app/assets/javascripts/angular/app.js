@@ -9,8 +9,6 @@ var app = angular.module("hibbertApp", [
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     }])
-//    The following provides the root path and current angular path to our templates
-    .constant('HIBBERT_URL', ROOT_PATH)
     .run([ '$rootScope', '$location', function ($rootScope, $location) {
         $rootScope.location = $location;
     }])

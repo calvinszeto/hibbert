@@ -1,5 +1,5 @@
-app.directive('restaurantCard', ['$modal', '$location', 'RestaurantsQuery',
-    function ($modal, $location, RestaurantsQuery) {
+app.directive('restaurantCard', ['TEMPLATES', '$modal', '$location', 'RestaurantsQuery',
+    function (TEMPLATES, $modal, $location, RestaurantsQuery) {
         function link(scope, element, attrs) {
             scope.filters = RestaurantsQuery.filters;
             scope.openRestaurant = function (restaurant) {
@@ -13,7 +13,7 @@ app.directive('restaurantCard', ['$modal', '$location', 'RestaurantsQuery',
                 index: '@'
             },
             replace: true,
-            templateUrl: "<%= asset_path('restaurant_card.html') %>",
+            templateUrl: TEMPLATES.restaurant_card,
             link: link
         }
     }

@@ -1,0 +1,16 @@
+// The following provides the root path and current angular path to our templates
+app.constant('HIBBERT_URL', ROOT_PATH)
+    // The following contains the Rails-generated asset paths for all Angular templates
+    .constant('TEMPLATES', {
+        "nav": "<%= asset_path('nav.html') %>",
+        "recommendation_group": "<%= asset_path('recommendation_group.html') %>",
+        "restaurant": "<%= asset_path('restaurant.html') %>",
+        "restaurant_card": "<%= asset_path('restaurant_card.html') %>",
+        "restaurants": "<%= asset_path('restaurants.html') %>",
+        "restaurants_query": "<%= asset_path('restaurants_query.html') %>",
+        "source": "<%= asset_path('source.html') %>",
+        "source_card": "<%= asset_path('source_card.html') %>",
+        "sources": "<%= asset_path('sources.html') %>",
+        "sources_query": "<%= asset_path('sources_query.html') %>",
+        "user": "<%= asset_path('user.html') %>"
+    });

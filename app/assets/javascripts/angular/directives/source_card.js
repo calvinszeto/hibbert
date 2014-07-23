@@ -1,5 +1,5 @@
-app.directive('sourceCard', ['$modal', '$location', 'SourcesQuery',
-    function ($modal, $location, SourcesQuery) {
+app.directive('sourceCard', ['TEMPLATES', '$modal', '$location', 'SourcesQuery',
+    function (TEMPLATES, $modal, $location, SourcesQuery) {
         function link(scope, element, attrs) {
             scope.filters = SourcesQuery.filters;
             scope.openSource = function (source) {
@@ -13,7 +13,7 @@ app.directive('sourceCard', ['$modal', '$location', 'SourcesQuery',
                 index: '@'
             },
             replace: true,
-            templateUrl: "<%= asset_path('source_card.html') %>",
+            templateUrl: TEMPLATES.source_card,
             link: link
         }
     }]);

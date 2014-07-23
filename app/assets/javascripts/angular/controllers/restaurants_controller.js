@@ -1,10 +1,10 @@
-app.controller('RestaurantsController', ['$scope', '$routeParams', '$location', '$modal', 'Restaurant', 'RestaurantsQuery',
-    function ($scope, $routeParams, $location, $modal, Restaurant, RestaurantsQuery) {
+app.controller('RestaurantsController', ['TEMPLATES', '$scope', '$routeParams', '$location', '$modal', 'Restaurant', 'RestaurantsQuery',
+    function (TEMPLATES, $scope, $routeParams, $location, $modal, Restaurant, RestaurantsQuery) {
         if (!!$routeParams.restaurantId) {
             Restaurant.get({restaurantId: $routeParams.restaurantId},
                 function (data, status, headers, config) {
                     var modalInstance = $modal.open({
-                        templateUrl: "<%= asset_path('restaurant.html') %>",
+                        templateUrl: TEMPLATES.restaurant,
                         controller: "RestaurantController",
                         resolve: {
                             restaurant: function () {

@@ -1,10 +1,10 @@
-app.controller('SourcesController', ['$scope', '$routeParams', '$location', '$modal', 'Source', 'SourcesQuery', 'RecommendationGroup',
-    function ($scope, $routeParams, $location, $modal, Source, SourcesQuery, RecommendationGroup) {
+app.controller('SourcesController', ['TEMPLATES', '$scope', '$routeParams', '$location', '$modal', 'Source', 'SourcesQuery', 'RecommendationGroup',
+    function (TEMPLATES, $scope, $routeParams, $location, $modal, Source, SourcesQuery, RecommendationGroup) {
         if (!!$routeParams.sourceId) {
             Source.get({sourceId: $routeParams.sourceId},
                 function (data, status, headers, config) {
                     var modalInstance = $modal.open({
-                        templateUrl: "<%= asset_path('source.html') %>",
+                        templateUrl: TEMPLATES.source,
                         controller: "SourceController",
                         resolve: {
                             source: function () {
@@ -34,7 +34,7 @@ app.controller('SourcesController', ['$scope', '$routeParams', '$location', '$mo
             RecommendationGroup.get({groupId: $routeParams.groupId},
                 function (data, status, headers, config) {
                     var modalInstance = $modal.open({
-                        templateUrl: "<%= asset_path('recommendation_group.html') %>",
+                        templateUrl: TEMPLATES.recommendation_group,
                         controller: "RecommendationGroupController",
                         resolve: {
                             group: function () {

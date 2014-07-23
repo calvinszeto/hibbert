@@ -1,5 +1,5 @@
-app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal', 'Alert',
-    function (HIBBERT_URL, $scope, $location, $modal, Alert) {
+app.controller('NavCtrl', [ 'HIBBERT_URL', 'TEMPLATES', '$scope', '$location', '$modal', 'Alert',
+    function (HIBBERT_URL, TEMPLATES, $scope, $location, $modal, Alert) {
         $scope.alert = Alert;
         $scope.closeAlert = function(index) {
             $scope.alert.alerts.splice(index, 1);
@@ -34,7 +34,7 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal', 'Ale
         $scope.openRestaurantsQuery = function () {
             if ($location.path() === "/restaurants") {
                 $modalInstance = $modal.open({
-                    templateUrl: "<%= asset_path('restaurants_query.html') %>",
+                    templateUrl: TEMPLATES.restaurants_query,
                     controller: 'RestaurantsQueryController'
                 });
             }
@@ -43,7 +43,7 @@ app.controller('NavCtrl', [ 'HIBBERT_URL', '$scope', '$location', '$modal', 'Ale
         $scope.openSourcesQuery = function () {
             if ($location.path() === "/sources") {
                 $modalInstance = $modal.open({
-                    templateUrl: "<%= asset_path('sources_query.html') %>",
+                    templateUrl: TEMPLATES.sources_query,
                     controller: 'SourcesQueryController'
                 });
             }

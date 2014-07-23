@@ -1,15 +1,15 @@
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', 'TEMPLATES', function($routeProvider, TEMPLATES) {
     $routeProvider
         .when('/restaurants/:restaurantId?', {
-            templateUrl: '<%= asset_path("restaurants.html") %>',
+            templateUrl: TEMPLATES.restaurants,
             controller: 'RestaurantsController'
         })
         .when('/sources/:sourceId?', {
-            templateUrl: '<%= asset_path("sources.html") %>',
+            templateUrl: TEMPLATES.sources,
             controller: 'SourcesController'
         })
         .when('/sources/group/:groupId', {
-            templateUrl: '<%= asset_path("sources.html") %>',
+            templateUrl: TEMPLATES.sources,
             controller: 'SourcesController'
         })
         .otherwise({
