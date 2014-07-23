@@ -2,6 +2,7 @@ var app = angular.module("hibbertApp", [
     'ngAnimate',
     'ngResource',
     'ngRoute',
+    'ngMock',
     'mm.foundation',
     'ui.select2',
     'infinite-scroll'
