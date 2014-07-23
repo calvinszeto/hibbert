@@ -1,0 +1,12 @@
+{
+  "name": "Hibbert",
+  "version": "0.1.1",
+  "description": "An Angular.js front-end for the Hibbert restaurant discovery application.",
+  "homepage": "http://hibbert.herokuapp.com",
+  "devDependencies": {
+    "karma": "~0.12.17",
+    "karma-chrome-launcher": "~0.1.4",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "~0.1.5"
+  }
+}
