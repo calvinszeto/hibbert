@@ -24,3 +24,6 @@
 
 # Ignore Webstorm config
 /.idea
+
+# Ignore node_modules
+/node_modules

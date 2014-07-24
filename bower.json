@@ -14,7 +14,9 @@
         "angular-foundation": "latest",
         "select2": "latest",
         "angular-ui-select2": "latest",
-        "ngInfiniteScroll" : "latest"
+        "ngInfiniteScroll" : "latest",
+        "angular-mocks": "latest",
+        "jasmine": "latest"
     }
   }
 }

@@ -1,45 +1,43 @@
 TODO:
+-Refactoring
+    -Move out all erb so that the frontend can be tested with karma
+    -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
+    -Rewrite specs to use FactoryGirl's create_list
+    -Rewrite UsersController specs with expect..change
+    -Refactor Source location search
+    -Refactor out all hard numbers and error messages 
+        source controller spec 
+        both location using controllers
+        error messages in source and restaurant index views
+    -Organize Angular Files
+    -Refactor Angular App
+        Create directives for common elements
+        Add validations to RestaurantQuery service
 -Optimization
-    -Play with Image Uploader
-    -Save query in cookies
-    -Fix broken links
-    -Add loading data icon
+    -Complete styles-TODO
     -Alerts
         Bad Log In/Register
         Bad search location
         Disconnection from server
     -Add validations to user stuff
-    -Complete styles-TODO
+    -Play with Image Uploader
+    -Fill out package.json
+    -Save query in cookies
+    -Fix broken links
+    -Add loading data icon
     -Pressing "Enter" on all forms should work as expected
     -Topbar Mobile JS is not working
-    -Organize Angular Files
-    -Refactor all "show" modals to be separate from the list, i.e. the modal becomes its own "browser"
-    -Move out all erb so that the frontend can be tested with karma
     -Maps API
-    -Refactor Angular App
-        Create directives for common elements
-        Add validations to RestaurantQuery service
-    -Refactor out all hard numbers and error messages 
-        source controller spec 
-        both location using controllers
-        error messages in source and restaurant index views
-    -Rewrite specs to use FactoryGirl's create_list
-    -Rewrite UsersController specs with expect..change
-    -Refactor Source location search
-    -Add uploading of categories for restaurants
     -Recommender system that applies default weight and chooses at random if weight is near the default
     -Remove unwanted Devise modules
-    -Move to memcached/memcashier for views(fragment caching) and for geocoding
     -Grab custom Foundation with only parts that are used
 -Admin
     -Plan out admin backend API
     -Write rspec expectations of admin API
     -Code out admin stuff
-    -Improve manual uploading
 -Content
-    -Seed Heroku Database
-    -Automatic up-to-date for recommendations
-    -Find out how to categorize
+    -Scrape more data
+    -Category classifier
 -Future Plans
     -Welcome screen and tutorials
     -Add User Favorites
